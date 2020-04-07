@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>OneCSharp.TSQL.Scripting</AssemblyName>
+    <RootNamespace>OneCSharp.TSQL.Scripting</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.SqlServer.TransactSql.ScriptDom">
+      <HintPath>..\..\lib\Microsoft.SqlServer.TransactSql.ScriptDom.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
