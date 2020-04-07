@@ -1,0 +1,11 @@
+SelectStatement - Represents a SELECT statement.
++ DataModificationStatement - Represents a data modification statement.
+++ InsertStatement - Represents the insert statement.
+++ DeleteStatement - Represents the delete statement.
+++ UpdateStatement - Represents the update statement.
+++ MergeStatement - Represents the MERGE statement.
+   - MergeActionClause
+     - InsertMergeAction
+     - UpdateMergeAction
+     - DeleteMergeAction
+   - OutputClause

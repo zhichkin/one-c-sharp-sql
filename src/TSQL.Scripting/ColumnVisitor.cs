@@ -2,10 +2,10 @@
 
 namespace OneCSharp.TSQL.Scripting
 {
-    internal class ColumnReferenceVisitor : TSqlConcreteFragmentVisitor
+    internal class ColumnVisitor : TSqlConcreteFragmentVisitor
     {
         private SchemaMapper Mapper { get; }
-        public ColumnReferenceVisitor(SchemaMapper mapper)
+        public ColumnVisitor(SchemaMapper mapper)
         {
             Mapper = mapper;
         }
@@ -36,7 +36,11 @@ namespace OneCSharp.TSQL.Scripting
             }
             if (identifier != null)
             {
-                identifier.Value = Mapper.Mappings[identifier.Value];
+                string value;
+                if (Mapper.Mappings.TryGetValue(identifier.Value, out value))
+                {
+                    identifier.Value = Mapper.Mappings[identifier.Value];
+                }
             }
         }
     }

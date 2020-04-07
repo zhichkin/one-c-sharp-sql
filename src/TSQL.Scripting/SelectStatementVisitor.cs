@@ -1,5 +1,5 @@
 ﻿using Microsoft.SqlServer.TransactSql.ScriptDom;
-using System.Linq;
+using System.Collections.Generic;
 
 namespace OneCSharp.TSQL.Scripting
 {
@@ -12,30 +12,23 @@ namespace OneCSharp.TSQL.Scripting
         }
         public override void Visit(SelectStatement node)
         {
-            var specification = (node.QueryExpression) as QuerySpecification;
-            var tableReference = specification.FromClause.TableReferences.FirstOrDefault() as NamedTableReference;
+            if (node == null) return;
+            var specification = node.QueryExpression as QuerySpecification;
+            IList<TableReference> tables = specification?.FromClause?.TableReferences;
+            if (tables == null) return;
 
-            string alias = tableReference.Alias?.Value;
-            if (!string.IsNullOrEmpty(alias))
+            Mapper.ClearCash();
+
+            var tableVisitor = new TableVisitor(Mapper);
+            foreach (var table in tables)
             {
-                Mapper.TableAliases.Add(alias, tableReference);
+                table.Accept(tableVisitor);
             }
 
-            string serverIdentifier = tableReference?.SchemaObject.ServerIdentifier?.Value;
-            string databaseIdentifier = tableReference?.SchemaObject.DatabaseIdentifier?.Value;
-            string schemaIdentifier = tableReference?.SchemaObject.SchemaIdentifier?.Value;
-            string tableIdentifier = tableReference?.SchemaObject.BaseIdentifier?.Value;
-            if (databaseIdentifier != null)
+            var columnVisitor = new ColumnVisitor(Mapper);
+            if (columnVisitor != null)
             {
-                tableReference.SchemaObject.DatabaseIdentifier.Value = Mapper.Mappings[databaseIdentifier];
-            }
-            if (schemaIdentifier != null)
-            {
-                tableReference.SchemaObject.SchemaIdentifier.Value = Mapper.Mappings[schemaIdentifier];
-            }
-            if (tableIdentifier != null)
-            {
-                tableReference.SchemaObject.BaseIdentifier.Value = Mapper.Mappings[tableIdentifier];
+                node.Accept(columnVisitor);
             }
         }
     }

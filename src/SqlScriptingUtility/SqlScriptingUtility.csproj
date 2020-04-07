@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Metadata.Services\Metadata.Services.csproj" />
     <ProjectReference Include="..\TSQL.Scripting\TSQL.Scripting.csproj" />
   </ItemGroup>
 

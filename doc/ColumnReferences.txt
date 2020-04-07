@@ -1,0 +1,30 @@
++ ScalarExpression
+++ UnaryExpression - An expression that has a single expression as child.
+++ BinaryExpression - An expression that has two expressions as children.
+++ PrimaryExpression - Represents the abstract base class for primary expressions.
++++ ParseCall
++++ ScalarSubquery
++++ CaseExpression
++++ CastCall
++++ ConvertCall
++++ FunctionCall
++++ ColumnReferenceExpression
+This class represents a column. Because of the ambiguity of Sql syntax,
+we can not distiguish columns from properties without having the Table
+and type definitions, even then it could be ambiguous.
+So the column might have trailing properties in the Identifiers.
+
+ColumnType Enum
+---------------
+IdentityCol		1	IDENTITYCOL was used to define the column.
+PseudoColumnAction	6	$ACTION was used to define the column.
+PseudoColumnCuid	7	$CUID was used to define the column.
+PseudoColumnGraphEdgeId	9	$edge_id was used to define the column.
+PseudoColumnGraphFromId	10	$from_id was used to define the column.
+PseudoColumnGraphNodeId	8	$node_id was used to define the column.
+PseudoColumnGraphToId	11	$to_id was used to define the column.
+PseudoColumnIdentity	4	$Identity was used to define the column.
+PseudoColumnRowGuid	5	$Rowguid was used to define the column.
+Regular			0	The column is a regular identifier.
+RowGuidCol		2	ROWGUIDCOL was used to define the column.
+Wildcard		3	'*' the STAR reserved word was used to define the column.
