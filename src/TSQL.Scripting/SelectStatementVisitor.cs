@@ -1,14 +1,18 @@
 ﻿using Microsoft.SqlServer.TransactSql.ScriptDom;
+using OneCSharp.Metadata.Services;
+using System;
 using System.Collections.Generic;
 
 namespace OneCSharp.TSQL.Scripting
 {
     internal class SelectStatementVisitor : TSqlConcreteFragmentVisitor
     {
-        private SchemaMapper Mapper { get; }
-        public SelectStatementVisitor(SchemaMapper mapper)
+        private IMetadataService MetadataService { get; }
+        private IScriptingSession ScriptingSession { get; }
+        internal SelectStatementVisitor(IMetadataService metadata, IScriptingSession session)
         {
-            Mapper = mapper;
+            MetadataService = metadata ?? throw new ArgumentNullException(nameof(metadata));
+            ScriptingSession = session ?? throw new ArgumentNullException(nameof(session));
         }
         public override void Visit(SelectStatement node)
         {
@@ -17,15 +21,17 @@ namespace OneCSharp.TSQL.Scripting
             IList<TableReference> tables = specification?.FromClause?.TableReferences;
             if (tables == null) return;
 
-            Mapper.ClearCash();
+            ScriptingSession.Statement = node;
+            ScriptingSession.TableAliases.Clear();
+            ScriptingSession.TableAliasAndOriginalName.Clear();
 
-            var tableVisitor = new TableVisitor(Mapper);
+            var tableVisitor = new TableVisitor(MetadataService, ScriptingSession);
             foreach (var table in tables)
             {
                 table.Accept(tableVisitor);
             }
 
-            var columnVisitor = new ColumnVisitor(Mapper);
+            var columnVisitor = new ColumnVisitor(MetadataService, ScriptingSession);
             if (columnVisitor != null)
             {
                 node.Accept(columnVisitor);

@@ -1,0 +1,4 @@
++ SelectElement
+++ SelectScalarExpression - The column element that is used right after the select keyword.
+++ SelectSetVariable - This class represents the setting a variable inside a select statement.
+++ SelectStarExpression - This represents a select * expression

@@ -1,4 +1,6 @@
 ﻿using Microsoft.SqlServer.TransactSql.ScriptDom;
+using OneCSharp.Metadata.Model;
+using OneCSharp.Metadata.Services;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -6,63 +8,69 @@ using System.Linq;
 
 namespace OneCSharp.TSQL.Scripting
 {
-    public sealed class ScriptingService
+    public interface IScriptingService
+    {
+        string PrepareScript(string script, out IList<ParseError> errors);
+    }
+    public sealed class ScriptingService : IScriptingService
     {
         private TSql150Parser Parser { get; }
         private Sql150ScriptGenerator Generator { get; }
-        private SchemaMapper Mapper { get; }
-        private Dictionary<Type, TSqlConcreteFragmentVisitor> Visitors { get; }
-        public ScriptingService(SchemaMapper mapper)
+        private IMetadataService MetadataService { get; set; }
+        public ScriptingService()
         {
-            Mapper = mapper;
             Parser = new TSql150Parser(false, SqlEngineType.Standalone);
             Generator = new Sql150ScriptGenerator(new SqlScriptGeneratorOptions()
             {
                 AlignClauseBodies = true
             });
-            Visitors = new Dictionary<Type, TSqlConcreteFragmentVisitor>();
-            InitializeVisitors();
+            InitializeService();
         }
-        private void InitializeVisitors()
+        private void InitializeService()
         {
-            Visitors.Add(typeof(SelectStatementVisitor), new SelectStatementVisitor(Mapper));
-            Visitors.Add(typeof(ColumnVisitor), new ColumnVisitor(Mapper));
+            MetadataService = new MetadataService();
+            InfoBase infoBase = GetDefaultInfoBase();
+            MetadataService.InitializeMetadata(infoBase);
         }
-        private T GetVisitor<T>() where T : TSqlConcreteFragmentVisitor
+        public string PrepareScript(string script, out IList<ParseError> errors)
         {
-            if (Visitors.TryGetValue(typeof(T), out TSqlConcreteFragmentVisitor visitor))
-            {
-                return (T)visitor;
-            }
-            else
-            {
-                return null;
-            }
-        }
-        public string MapIdentifiers(string query, out IList<ParseError> errors)
-        {
-            //StatementList statements = Parser.ParseStatementList(new StringReader(query), out errors);
-            //if (errors.Count > 0)
-            //{
-            //    return query;
-            //}
-            //foreach (var statement in statements.Statements)
-            //{
-            //    // TODO
-            //}
-
-            TSqlFragment fragment = Parser.Parse(new StringReader(query), out errors);
+            TSqlFragment fragment = Parser.Parse(new StringReader(script), out errors);
             if (errors.Count > 0)
             {
-                return query;
+                return script;
             }
-            var visitor = GetVisitor<SelectStatementVisitor>();
+
+            ScriptingSession session = new ScriptingSession()
+            {
+                InfoBase = GetDefaultInfoBase()
+            };
+            var visitor = new SelectStatementVisitor(MetadataService, session);
             if (visitor != null)
             {
                 fragment.Accept(visitor);
             }
-            Generator.GenerateScript(fragment, out string new_sql);
-            return new_sql;
+            Generator.GenerateScript(fragment, out string sql);
+            return sql;
+        }
+        private InfoBase GetDefaultInfoBase()
+        {
+            return new InfoBase()
+            {
+                Name = "reverse_engineering",
+                Alias = "1C# Integrator Demo App",
+                Version = "0.1.0.0",
+                Server = "zhichkin",
+                Database = "reverse_engineering"
+            };
         }
     }
 }
+//StatementList statements = Parser.ParseStatementList(new StringReader(query), out errors);
+//if (errors.Count > 0)
+//{
+//    return query;
+//}
+//foreach (var statement in statements.Statements)
+//{
+//    // TODO
+//}

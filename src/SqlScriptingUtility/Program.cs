@@ -14,11 +14,11 @@ namespace SqlScriptingUtility
     {
         public static void Main(string[] args)
         {
-            LoadMetadata(@"C:\Users\User\Desktop\GitHub\metadata.xml");
-            //foreach (string file in Directory.GetFiles(TestCatalogPath()))
-            //{
-            //    RunTest(file);
-            //}
+            //LoadMetadata(@"C:\Users\User\Desktop\GitHub\metadata.xml");
+            foreach (string file in Directory.GetFiles(TestCatalogPath()))
+            {
+                RunTest(file);
+            }
             Console.ReadKey(false);
         }
         private static string TestCatalogPath()
@@ -37,18 +37,9 @@ namespace SqlScriptingUtility
             string query = File.ReadAllText(filePath);
             Console.WriteLine(query);
             Console.WriteLine();
-
-            SchemaMapper mapper = new SchemaMapper();
-            mapper.Mappings.Add("trade", "trade");
-            mapper.Mappings.Add("Справочник", "dbo");
-            mapper.Mappings.Add("Номенклатура", "_Reference10");
-            mapper.Mappings.Add("Товары", "_Reference10_VT20");
-            mapper.Mappings.Add("ВидТовара", "_Reference20_VT10");
-            mapper.Mappings.Add("Ссылка", "_IDRRef");
-            mapper.Mappings.Add("Наименование", "_Description");
-            ScriptingService service = new ScriptingService(mapper);
-
-            string sql = service.MapIdentifiers(query, out IList<ParseError> errors);
+            
+            ScriptingService service = new ScriptingService();
+            string sql = service.PrepareScript(query, out IList<ParseError> errors);
             foreach (ParseError error in errors)
             {
                 Console.WriteLine($"{error.Line}: {error.Message}");
