@@ -5,6 +5,7 @@ using OneCSharp.Metadata.Services;
 using OneCSharp.TSQL.Scripting;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 
@@ -39,40 +40,66 @@ namespace SqlScriptingUtility
             Console.WriteLine();
             
             ScriptingService service = new ScriptingService();
-            string sql = service.PrepareScript(query, out IList<ParseError> errors);
-            foreach (ParseError error in errors)
+            try
             {
-                Console.WriteLine($"{error.Line}: {error.Message}");
+                //service.UseServer("zhichkin");
+                //service.UseDatabase("reverse_engineering");
+                Console.WriteLine();
+                Console.WriteLine("Initializing database [reverse_engineering] at server [zhichkin] ...");
+                Stopwatch watch = new Stopwatch();
+                watch.Start();
+                service.Initialize("zhichkin", new string[] { "reverse_engineering" });
+                watch.Stop();
+                Console.WriteLine($"Initializing {watch.Elapsed} elapsed.");
+                Console.WriteLine();
             }
-            if (errors.Count > 0)
+            catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
                 Console.WriteLine("***");
-                return;
             }
-            Console.WriteLine(sql);
-            Console.WriteLine("***");
+            try
+            {
+                string sql = service.PrepareScript(query, out IList<ParseError> errors);
+                foreach (ParseError error in errors)
+                {
+                    Console.WriteLine($"{error.Line}: {error.Message}");
+                }
+                if (errors.Count > 0)
+                {
+                    Console.WriteLine("***");
+                    return;
+                }
+                Console.WriteLine(sql);
+                Console.WriteLine("***");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine("***");
+            }
         }
 
-        private static void LoadMetadata(string file)
-        {
-            InfoBase ib = new InfoBase();
-            XMLMetadataLoader loader = new XMLMetadataLoader();
-            loader.Load(file, ib);
+        //private static void LoadMetadata(string file)
+        //{
+        //    InfoBase ib = new InfoBase();
+        //    XMLMetadataLoader loader = new XMLMetadataLoader();
+        //    loader.Load(file, ib);
             
-            SqlConnectionStringBuilder helper = new SqlConnectionStringBuilder()
-            {
-                DataSource = "zhichkin",
-                InitialCatalog = ib.Database,
-                IntegratedSecurity = string.IsNullOrWhiteSpace(ib.UserName)
-            };
-            if (!helper.IntegratedSecurity)
-            {
-                helper.UserID = ib.UserName;
-                helper.Password = ib.Password;
-                helper.PersistSecurityInfo = false;
-            }
-            SQLMetadataLoader metadataLoader = new SQLMetadataLoader();
-            metadataLoader.Load(helper.ToString(), ib);
-        }
+        //    SqlConnectionStringBuilder helper = new SqlConnectionStringBuilder()
+        //    {
+        //        DataSource = "zhichkin",
+        //        InitialCatalog = ib.Database,
+        //        IntegratedSecurity = string.IsNullOrWhiteSpace(ib.UserName)
+        //    };
+        //    if (!helper.IntegratedSecurity)
+        //    {
+        //        helper.UserID = ib.UserName;
+        //        helper.Password = ib.Password;
+        //        helper.PersistSecurityInfo = false;
+        //    }
+        //    SQLMetadataLoader metadataLoader = new SQLMetadataLoader();
+        //    metadataLoader.Load(helper.ToString(), ib);
+        //}
     }
 }

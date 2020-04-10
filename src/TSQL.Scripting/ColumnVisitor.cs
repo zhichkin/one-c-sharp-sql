@@ -3,92 +3,71 @@ using OneCSharp.Metadata.Model;
 using OneCSharp.Metadata.Services;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace OneCSharp.TSQL.Scripting
 {
     internal class ColumnVisitor : TSqlConcreteFragmentVisitor
     {
         private IMetadataService MetadataService { get; }
-        private IScriptingSession ScriptingSession { get; }
-        public ColumnVisitor(IMetadataService metadataService, IScriptingSession session)
+        private ISelectContext SelectContext { get; }
+        public ColumnVisitor(IMetadataService metadataService, ISelectContext context)
         {
+            SelectContext = context ?? throw new ArgumentNullException(nameof(context));
             MetadataService = metadataService ?? throw new ArgumentNullException(nameof(metadataService));
-            ScriptingSession = session ?? throw new ArgumentNullException(nameof(session));
         }
         public override void Visit(ColumnReferenceExpression node)
         {
             if (node.ColumnType != ColumnType.Regular) return;
 
             Identifier identifier = null;
-            if (node.MultiPartIdentifier.Identifiers.Count == 1)
+            if (node.MultiPartIdentifier.Identifiers.Count == 1) // no table alias - just column name
             {
-                //identifier = node.MultiPartIdentifier.Identifiers[0];
-                // TODO: find table reference by unique name of this column name
-                // NOTE: other tables in FROM clause do not have columns with this column's name
+                if (SelectContext.Tables == null || SelectContext.Tables.Count == 0) return;
+                identifier = node.MultiPartIdentifier.Identifiers[0];
+                foreach (TableInfo table in SelectContext.Tables.Values
+                    .Where(t => string.IsNullOrEmpty(t.Alias)))
+                {
+                    Property @property = MetadataService.GetProperty(table.Database, table.Identifier, identifier.Value);
+                    if (@property == null) continue;
+                    if (@property.Fields.Count == 1)
+                    {
+                        identifier.Value = @property.Fields[0].Name;
+                        break;
+                    }
+                    SelectContext.Actions.Add(new TransformAction()
+                    {
+                        Column = node,
+                        Property = @property
+                    });
+                    break;
+                }
             }
             else if (node.MultiPartIdentifier.Identifiers.Count == 2)
             {
                 Identifier alias = node.MultiPartIdentifier.Identifiers[0];
                 identifier = node.MultiPartIdentifier.Identifiers[1];
-                //if (ScriptingSession.TableAliases.TryGetValue(alias.Value, out NamedTableReference table))
-                if (ScriptingSession.TableAliasAndOriginalName.TryGetValue(alias.Value, out string tableIdentifier))
+                
+                if (SelectContext.Tables.TryGetValue(alias.Value, out TableInfo table))
                 {
-                    IList<Field> fields = MetadataService.MapColumnIdentifier(
-                        ScriptingSession.InfoBase,
-                        tableIdentifier,
-                        identifier.Value);
-                    if (fields == null) return;
-                    if (fields.Count == 1)
+                    if (string.IsNullOrEmpty(table.Identifier))
                     {
-                        identifier.Value = fields[0].Name;
+                        // TODO: query derived table ... get column from there to understand what to do ... tunneling ...
+                        return;
                     }
-                    else
+                    Property @property = MetadataService.GetProperty(table.Database, table.Identifier, identifier.Value);
+                    if (@property == null) return;
+                    if (@property.Fields.Count == 1)
                     {
-                        // TODO: add new columns into current select statement !!!
-                        //identifier.Value = fields[0].Name;
-                        var specification = ScriptingSession.Statement.QueryExpression as QuerySpecification;
-                        SelectElement @this = null;
-                        foreach (SelectElement element in specification.SelectElements)
-                        {
-                            if (element is SelectScalarExpression expression)
-                            {
-                                if (expression.Expression == node)
-                                {
-                                    @this = element;
-                                    break;
-                                }
-                            }
-                        }
-                        if (@this != null)
-                        {
-                            int index = specification.SelectElements.IndexOf(@this);
-                            specification.SelectElements.RemoveAt(index);
-                            int counter = 0;
-                            foreach (Field field in fields)
-                            {
-                                MultiPartIdentifier mpi = new MultiPartIdentifier();
-                                mpi.Identifiers.Add(new Identifier() { Value = alias.Value });
-                                mpi.Identifiers.Add(new Identifier() { Value = field.Name });
-                                SelectScalarExpression exp = new SelectScalarExpression()
-                                {
-                                    ColumnName = new IdentifierOrValueExpression()
-                                    {
-                                        Identifier = new Identifier()
-                                        {
-                                            Value = identifier.Value + (++counter).ToString()
-                                        }
-                                    },
-                                    Expression = new ColumnReferenceExpression()
-                                    {
-                                        ColumnType = ColumnType.Regular,
-                                        MultiPartIdentifier = mpi
-                                    }
-                                };
-                                // TODO: changes to the AST should be remembered and applied after SELECT has been traversed
-                                specification.SelectElements.Insert(index, exp);
-                            }
-                        }
+                        identifier.Value = @property.Fields[0].Name;
+                        return;
                     }
+                    SelectContext.Actions.Add(new TransformAction()
+                    {
+                        Column = node,
+                        Property = @property
+                    });
+                    return;
                 }
             }
             else

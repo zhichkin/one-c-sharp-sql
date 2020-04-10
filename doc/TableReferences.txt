@@ -1,10 +1,10 @@
 QueryDerivedTable - This node represents a derived table.
-InlineDerivedTable - This node represents a derived table.
+InlineDerivedTable (?) - This node represents a derived table. Вложенные запросы ?
 NamedTableReference - database table or cte
 JoinTableReference - Base class for JOIN table references
 + QualifiedJoin - Represents the qualified join in a from clause.
-+ UnqualifiedJoin - Represents the unqualified join in a from clause. Ex: Select * from table1, table2 where table1.col1 = table2.col1
-JoinParenthesisTableReference - Represents the parenthesis that can encapsulate a join.
+- UnqualifiedJoin - Represents the unqualified join in a from clause. Ex: Select * from table1, table2 where table1.col1 = table2.col1
+JoinParenthesisTableReference (?) - Represents the parenthesis that can encapsulate a join.
 BinaryQueryExpression - This class represents the union that is used in a select statement.
 VariableTableReference - This class represents a table reference which is a variable.
 CommonTableExpression - This class represents the common table expression.

@@ -10,12 +10,14 @@ namespace OneCSharp.Metadata.Services
 {
     public interface IMetadataService
     {
-        void UploadMetadata(InfoBase infoBase);
-        void RemoveMetadata(InfoBase infoBase);
-        void InitializeMetadata(InfoBase infoBase);
+        InfoBase CurrentDatabase { get; }
+        void UseServer(string serverAddress);
+        void UseDatabase(string databaseName);
         string MapSchemaIdentifier(string schemaName);
-        string MapTableIdentifier(InfoBase infoBase, string objectName);
+        string MapTableIdentifier(string databaseName, string tableIdentifier);
         IList<Field> MapColumnIdentifier(InfoBase infoBase, string tableName, string columnName);
+        MetaObject GetMetaObject(string databaseName, string tableIdentifier);
+        Property GetProperty(string databaseName, string tableIdentifier, string columnIdentifier);
     }
     public sealed class MetadataService : IMetadataService
     {
@@ -36,69 +38,121 @@ namespace OneCSharp.Metadata.Services
                 return metadataCatalogPath;
             }
         }
-        public void InitializeMetadata(InfoBase infoBase)
+        public string ConnectionString { get; private set; }
+        public InfoBase CurrentDatabase { get; private set; }
+        public void UseServer(string address)
         {
-            if (infoBase == null) throw new ArgumentNullException(nameof(infoBase));
+            if (string.IsNullOrWhiteSpace(address)) throw new ArgumentNullException(nameof(address));
 
-            string metadataFilePath = BuildMetadataFilePath(infoBase);
-            XMLLoader.Load(metadataFilePath, infoBase);
-
-            string connectionString = BuildConnectionString(infoBase);
-            SQLLoader.Load(connectionString, infoBase);
-
-            string key = CreateCashKey(infoBase);
-            if (!Cash.TryAdd(key, infoBase))
+            SqlConnectionStringBuilder csb;
+            if (string.IsNullOrWhiteSpace(ConnectionString))
             {
-                // TODO: do some warning ?
+                csb = new SqlConnectionStringBuilder()
+                {
+                    IntegratedSecurity = true
+                };
+            }
+            else
+            {
+                csb = new SqlConnectionStringBuilder(ConnectionString);
+            }
+            csb.InitialCatalog = address;
+            ConnectionString = csb.ToString();
+        }
+        public void UseDatabase(string identifier)
+        {
+            if (string.IsNullOrWhiteSpace(ConnectionString)) throw new InvalidOperationException(nameof(ConnectionString));
+            if (string.IsNullOrWhiteSpace(identifier)) throw new ArgumentNullException(nameof(identifier));
+
+            InfoBase infobase;
+            string key = CreateCashKey(identifier);
+
+            if (Cash.TryGetValue(key, out infobase))
+            {
+                CurrentDatabase = infobase;
+            }
+            else
+            {
+                SqlConnectionStringBuilder csb = new SqlConnectionStringBuilder(ConnectionString)
+                {
+                    InitialCatalog = identifier
+                };
+                ConnectionString = csb.ToString();
+
+                InitializeMetadata(identifier, out infobase);
+                Cash.Add(key, infobase);
+                CurrentDatabase = infobase;
             }
         }
-        public void UploadMetadata(InfoBase infoBase)
+        private string CreateCashKey(string databaseIdentifier)
         {
-            throw new NotImplementedException();
+            return databaseIdentifier;
         }
-        public void RemoveMetadata(InfoBase infoBase)
+        private string BuildMetadataFilePath(string identifier)
         {
-            throw new NotImplementedException();
-        }
-        private string CreateCashKey(InfoBase infoBase)
-        {
-            return infoBase.Name + infoBase.Version;
-        }
-        private string BuildMetadataFilePath(InfoBase infoBase)
-        {
-            if (string.IsNullOrWhiteSpace(infoBase.Name)) throw new InvalidOperationException(nameof(infoBase));
-            if (string.IsNullOrWhiteSpace(infoBase.Version)) throw new InvalidOperationException(nameof(infoBase));
-            
-            string metadataFilePath = Path.Combine(MetadataCatalogPath, infoBase.Name);
-            if (!Directory.Exists(metadataFilePath))
-            {
-                _ = Directory.CreateDirectory(metadataFilePath);
-            }
-            
-            metadataFilePath = Path.Combine(metadataFilePath, infoBase.Version) + ".xml";
+            if (string.IsNullOrWhiteSpace(identifier)) throw new InvalidOperationException(nameof(identifier));
+
+            string metadataFilePath = Path.Combine(MetadataCatalogPath, identifier + ".xml");
             if (!File.Exists(metadataFilePath))
             {
                 throw new FileNotFoundException(metadataFilePath);
             }
-
             return metadataFilePath;
         }
-        private string BuildConnectionString(InfoBase infoBase)
+        private void InitializeMetadata(string identifier, out InfoBase infobase)
         {
-            SqlConnectionStringBuilder helper = new SqlConnectionStringBuilder()
-            {
-                DataSource = infoBase.Server,
-                InitialCatalog = infoBase.Database,
-                IntegratedSecurity = string.IsNullOrWhiteSpace(infoBase.UserName)
-            };
-            if (!helper.IntegratedSecurity)
-            {
-                helper.UserID = infoBase.UserName;
-                helper.Password = infoBase.Password;
-                helper.PersistSecurityInfo = false;
-            }
-            return helper.ToString();
+            if (string.IsNullOrWhiteSpace(identifier)) throw new ArgumentNullException(nameof(identifier));
+
+            infobase = new InfoBase() { Database = identifier };
+            string metadataFilePath = BuildMetadataFilePath(identifier);
+            XMLLoader.Load(metadataFilePath, infobase);
+            SQLLoader.Load(ConnectionString, infobase);
         }
+
+        public MetaObject GetMetaObject(string databaseName, string tableIdentifier) // $"[Документ+ПоступлениеТоваровУслуг+Товары]"
+        {
+            if (!tableIdentifier.Contains('+')) return null; // this is not 1C format, but schema object (table)
+
+            string key;
+            if (string.IsNullOrEmpty(databaseName))
+            {
+                key = CreateCashKey(CurrentDatabase.Database);
+            }
+            else
+            {
+                key = CreateCashKey(databaseName);
+            }
+            if (!Cash.TryGetValue(key, out InfoBase cash)) return null;
+
+            string tableName = tableIdentifier.TrimStart('[').TrimEnd(']');
+            string[] identifiers = tableName.Split('+');
+
+            BaseObject bo = cash.BaseObjects.Where(bo => bo.Name == identifiers[0]).FirstOrDefault();
+            if (bo == null) return null;
+
+            MetaObject @object = bo.MetaObjects.Where(mo => mo.Name == identifiers[1]).FirstOrDefault();
+            if (@object == null) return null;
+
+            if (identifiers.Length == 3)
+            {
+                @object = @object.MetaObjects.Where(mo => mo.Name == identifiers[2]).FirstOrDefault();
+                if (@object == null) return null;
+            }
+
+            return @object;
+        }
+        public Property GetProperty(string databaseName, string tableIdentifier, string columnIdentifier)
+        {
+            MetaObject @object = GetMetaObject(databaseName, tableIdentifier);
+            if (@object == null) return null;
+
+            Property @property = @object.Properties.Where(p => p.Name == columnIdentifier).FirstOrDefault();
+            if (@property == null) return null;
+            if (@property.Fields.Count == 0) return null;
+
+            return @property;
+        }
+
         public string MapSchemaIdentifier(string schemaName)
         {
             if (schemaName == "Перечисление"
@@ -115,37 +169,21 @@ namespace OneCSharp.Metadata.Services
             }
             return schemaName;
         }
-        public string MapTableIdentifier(InfoBase infoBase, string objectName)
+        public string MapTableIdentifier(string databaseName, string tableIdentifier)
         {
-            if (!objectName.Contains('+')) return objectName;
-
-            if (infoBase == null) throw new ArgumentNullException(nameof(infoBase));
-            string key = CreateCashKey(infoBase);
-            if (!Cash.TryGetValue(key, out InfoBase cash)) return objectName;
-
-            string tableName = objectName.TrimStart('[').TrimEnd(']');
-            string[] identifiers = tableName.Split('+');
-
-            BaseObject bo = cash.BaseObjects.Where(bo => bo.Name == identifiers[0]).FirstOrDefault();
-            if (bo == null) return objectName;
-
-            MetaObject mo = bo.MetaObjects.Where(mo => mo.Name == identifiers[1]).FirstOrDefault();
-            if (mo == null) return objectName;
-
-            if (identifiers.Length == 3)
+            MetaObject @object = GetMetaObject(databaseName, tableIdentifier);
+            if (@object == null)
             {
-                mo = mo.MetaObjects.Where(mo => mo.Name == identifiers[2]).FirstOrDefault();
-                if (mo == null) return objectName;
+                return tableIdentifier;
             }
-
-            return mo.Table;
+            return @object.Table;
         }
         public IList<Field> MapColumnIdentifier(InfoBase infoBase, string objectName, string propertyName)
         {
             if (!objectName.Contains('+'))return null;
 
             if (infoBase == null) throw new ArgumentNullException(nameof(infoBase));
-            string key = CreateCashKey(infoBase);
+            string key = CreateCashKey(infoBase.Database);
             if (!Cash.TryGetValue(key, out InfoBase cash)) return null;
 
             string tableName = objectName.TrimStart('[').TrimEnd(']');

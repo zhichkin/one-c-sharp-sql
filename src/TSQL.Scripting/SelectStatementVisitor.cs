@@ -1,41 +1,66 @@
 ﻿using Microsoft.SqlServer.TransactSql.ScriptDom;
 using OneCSharp.Metadata.Services;
 using System;
-using System.Collections.Generic;
 
 namespace OneCSharp.TSQL.Scripting
 {
     internal class SelectStatementVisitor : TSqlConcreteFragmentVisitor
     {
         private IMetadataService MetadataService { get; }
-        private IScriptingSession ScriptingSession { get; }
-        internal SelectStatementVisitor(IMetadataService metadata, IScriptingSession session)
+        private IBatchContext BatchContext { get; }
+        internal SelectStatementVisitor(IMetadataService metadata, IBatchContext context)
         {
+            BatchContext = context ?? throw new ArgumentNullException(nameof(context));
             MetadataService = metadata ?? throw new ArgumentNullException(nameof(metadata));
-            ScriptingSession = session ?? throw new ArgumentNullException(nameof(session));
         }
-        public override void Visit(SelectStatement node)
+        public override void Visit(SelectStatement select)
         {
-            if (node == null) return;
-            var specification = node.QueryExpression as QuerySpecification;
-            IList<TableReference> tables = specification?.FromClause?.TableReferences;
-            if (tables == null) return;
+            if (select == null) return;
 
-            ScriptingSession.Statement = node;
-            ScriptingSession.TableAliases.Clear();
-            ScriptingSession.TableAliasAndOriginalName.Clear();
+            // TODO: move it to QueryExpressionVisitor !? see TableVisitor code
+            if (!(select.QueryExpression is QuerySpecification query)) return;
 
-            var tableVisitor = new TableVisitor(MetadataService, ScriptingSession);
-            foreach (var table in tables)
+            // this is root context of the SELECT statement
+            SelectContext context = new SelectContext(BatchContext)
             {
-                table.Accept(tableVisitor);
+                Statement = select
+            };
+            VisitTables(query, context);
+            VisitColumns(query, context); // including WHERE clause
+        }
+        private void VisitTables(QuerySpecification query, ISelectContext context)
+        {
+            if (query == null) return;
+            if (context == null) return;
+            if (query.FromClause == null) return;
+            if (query.FromClause.TableReferences == null) return;
+            if (query.FromClause.TableReferences.Count == 0) return;
+
+            var tableVisitor = new TableVisitor(MetadataService, context);
+            foreach (var table in query.FromClause.TableReferences)
+            {
+                tableVisitor.VisitTableReference(table);
+            }
+        }
+        private void VisitColumns(QuerySpecification query, ISelectContext context)
+        {
+            if (query == null) return;
+            if (context == null) return;
+            if (query.SelectElements == null) return;
+            if (query.SelectElements.Count == 0) return;
+
+            var columnVisitor = new ColumnVisitor(MetadataService, context);
+            foreach (var element in query.SelectElements)
+            {
+                if (columnVisitor != null)
+                {
+                    element.Accept(columnVisitor);
+                }
             }
 
-            var columnVisitor = new ColumnVisitor(MetadataService, ScriptingSession);
-            if (columnVisitor != null)
-            {
-                node.Accept(columnVisitor);
-            }
+            if (query.WhereClause == null) return;
+            if (query.WhereClause.SearchCondition == null) return;
+            query.WhereClause.SearchCondition.Accept(columnVisitor);
         }
     }
 }
