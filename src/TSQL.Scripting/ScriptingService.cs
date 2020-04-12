@@ -50,22 +50,24 @@ namespace OneCSharp.TSQL.Scripting
         }
         public string PrepareScript(string script, out IList<ParseError> errors)
         {
-            if (MetadataService.CurrentDatabase == null) throw new InvalidOperationException("Current database is not set!");
+            if (MetadataService.CurrentDatabase == null) throw new InvalidOperationException("Current database is not defined!");
 
             TSqlFragment fragment = Parser.Parse(new StringReader(script), out errors);
             if (errors.Count > 0)
             {
                 return script;
             }
-            BatchContext context = new BatchContext(MetadataService)
-            {
-                InfoBase = MetadataService.CurrentDatabase
-            };
-            var visitor = new SelectStatementVisitor(MetadataService, context);
-            if (visitor != null)
-            {
-                fragment.Accept(visitor);
-            }
+
+            ScriptNode result = new ScriptNode() { InfoBase = MetadataService.CurrentDatabase };
+            
+            SyntaxTreeVisitor.Visitors.Add(typeof(QuerySpecification), new QuerySpecificationVisitor(MetadataService));
+            SyntaxTreeVisitor.Visitors.Add(typeof(NamedTableReference), new NamedTableReferenceVisitor(MetadataService));
+            SyntaxTreeVisitor.Visitors.Add(typeof(ColumnReferenceExpression), new ColumnReferenceExpressionVisitor(MetadataService));
+            SyntaxTreeVisitor.Visitors.Add(typeof(FunctionCall), new FunctionCallVisitor(MetadataService));
+            SyntaxTreeVisitor.Visitors.Add(typeof(QualifiedJoin), new QualifiedJoinVisitor(MetadataService));
+
+            SyntaxTreeVisitor.Visit(fragment, result);
+
             Generator.GenerateScript(fragment, out string sql);
             return sql;
         }

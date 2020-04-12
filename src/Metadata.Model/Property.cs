@@ -23,6 +23,18 @@ namespace OneCSharp.Metadata.Model
         public bool IsPrimaryKey { get; set; }
         public List<int> PropertyTypes { get; set; } = new List<int>();
         public List<Field> Fields { get; set; } = new List<Field>();
+        public bool IsReferenceType
+        {
+            get
+            {
+                if (PropertyTypes.Count == 0) return false;
+                foreach (int typeCode in PropertyTypes)
+                {
+                    if (typeCode > 0) return true;
+                }
+                return false;
+            }
+        }
         public override string ToString()
         {
             return Name;

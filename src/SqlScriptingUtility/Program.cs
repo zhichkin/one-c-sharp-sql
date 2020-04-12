@@ -58,9 +58,12 @@ namespace SqlScriptingUtility
                 Console.WriteLine(ex.Message);
                 Console.WriteLine("***");
             }
+
+            string sql = service.PrepareScript(query, out IList<ParseError> errors);
+
             try
             {
-                string sql = service.PrepareScript(query, out IList<ParseError> errors);
+                
                 foreach (ParseError error in errors)
                 {
                     Console.WriteLine($"{error.Line}: {error.Message}");
