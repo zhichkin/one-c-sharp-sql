@@ -6,7 +6,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace OneCSharp.TSQL.Scripting
 {
@@ -22,11 +21,13 @@ namespace OneCSharp.TSQL.Scripting
         {
             FunctionCall functionCall = node as FunctionCall;
             if (functionCall == null) return result;
-            if (functionCall.CallTarget == null) return result; // SUM(...)
+            if (functionCall.CallTarget == null) return result; // SUM(...) // TODO: TYPEOF function !
             if (functionCall.Parameters != null && functionCall.Parameters.Count > 0) return result;
-            if (functionCall.FunctionName.Value != "uuid" && functionCall.FunctionName.Value != "type") return result;
+            if (functionCall.FunctionName.Value != "uuid"
+                && functionCall.FunctionName.Value != "type"
+                && functionCall.FunctionName.Value != "dttp") return result;
             MultiPartIdentifierCallTarget callTarget = functionCall.CallTarget as MultiPartIdentifierCallTarget;
-            if (callTarget == null) return result;
+            if (callTarget == null) return result; // SUM(...)
 
             SelectNode select = result as SelectNode;
             if (select == null) return result;
@@ -86,15 +87,6 @@ namespace OneCSharp.TSQL.Scripting
             
             VisitReferenceTypeColumn(functionCall, parent, sourceProperty, callTarget.MultiPartIdentifier, property);
 
-            select.Columns.Add(new FunctionNode()
-            {
-                Parent = result,
-                Fragment = node,
-                ParentFragment = parent,
-                TargetProperty = sourceProperty,
-                MetaProperty = property
-            });
-
             return result;
         }
         private void VisitReferenceTypeColumn(FunctionCall functionCall, TSqlFragment parent, string sourceProperty, MultiPartIdentifier identifier, Property property)
@@ -123,6 +115,25 @@ namespace OneCSharp.TSQL.Scripting
                 {
                     field = property.Fields.Where(f => f.Purpose == FieldPurpose.TypeCode).FirstOrDefault();
                     fieldName = field.Name;
+                }
+            }
+            if (functionCall.FunctionName.Value == "dttp")
+            {
+                if (property.Fields.Count == 1)
+                {
+                    fieldName = "0x08"; // reference data type
+                }
+                else
+                {
+                    field = property.Fields.Where(f => f.Purpose == FieldPurpose.Discriminator).FirstOrDefault();
+                    if (field == null)
+                    {
+                        fieldName = "0x08"; // reference data type
+                    }
+                    else
+                    {
+                        fieldName = field.Name;
+                    }
                 }
             }
             if (fieldName == null) return;

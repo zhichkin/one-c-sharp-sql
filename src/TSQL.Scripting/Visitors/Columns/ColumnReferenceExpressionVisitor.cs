@@ -95,15 +95,6 @@ namespace OneCSharp.TSQL.Scripting
                 VisitValueTypeColumn(identifier, property);
             }
 
-            select.Columns.Add(new ColumnNode()
-            {
-                Parent = result,
-                Fragment = node,
-                ParentFragment = parent,
-                TargetProperty = sourceProperty,
-                MetaProperty = property
-            });
-
             return result;
         }
         private void VisitValueTypeColumn(Identifier identifier, Property property)

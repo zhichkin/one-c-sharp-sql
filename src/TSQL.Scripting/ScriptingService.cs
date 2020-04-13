@@ -64,7 +64,10 @@ namespace OneCSharp.TSQL.Scripting
             SyntaxTreeVisitor.Visitors.Add(typeof(NamedTableReference), new NamedTableReferenceVisitor(MetadataService));
             SyntaxTreeVisitor.Visitors.Add(typeof(ColumnReferenceExpression), new ColumnReferenceExpressionVisitor(MetadataService));
             SyntaxTreeVisitor.Visitors.Add(typeof(FunctionCall), new FunctionCallVisitor(MetadataService));
-            SyntaxTreeVisitor.Visitors.Add(typeof(QualifiedJoin), new QualifiedJoinVisitor(MetadataService));
+            SyntaxTreeVisitor.Visitors.Add(typeof(QualifiedJoin), new QualifiedJoinVisitor(MetadataService)); // ? see use of VisitContext
+            SyntaxTreeVisitor.Visitors.Add(typeof(SelectScalarExpression), new SelectElementVisitor(MetadataService));
+            SyntaxTreeVisitor.Visitors.Add(typeof(WhereClause), new WhereClauseVisitor(MetadataService)); // ? see use of VisitContext
+            SyntaxTreeVisitor.Visitors.Add(typeof(BooleanBinaryExpression), new BooleanBinaryExpressionVisitor(MetadataService)); // ? see use of VisitContext
 
             SyntaxTreeVisitor.Visit(fragment, result);
 

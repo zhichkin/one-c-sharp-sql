@@ -5,16 +5,24 @@ using System.Collections.Generic;
 
 namespace OneCSharp.TSQL.Scripting
 {
-    internal sealed class QualifiedJoinVisitor : ISyntaxTreeVisitor
+    internal sealed class WhereClauseVisitor :ISyntaxTreeVisitor
     {
         private IMetadataService MetadataService { get; }
-        internal QualifiedJoinVisitor(IMetadataService metadata)
+        internal WhereClauseVisitor(IMetadataService metadata)
         {
             MetadataService = metadata ?? throw new ArgumentNullException(nameof(metadata));
         }
-        public IList<string> PriorityProperties { get { return new List<string>() { "FirstTableReference", "SecondTableReference" }; } }
+        public IList<string> PriorityProperties { get { return null; } }
         public ISyntaxNode Visit(TSqlFragment node, TSqlFragment parent, string sourceProperty, ISyntaxNode result)
         {
+            WhereClause where = node as WhereClause;
+            if (where == null) return result;
+
+            SelectNode select = result as SelectNode;
+            if (select == null) return result;
+
+            select.VisitContext = where; // set current visiting context
+
             return result;
         }
     }

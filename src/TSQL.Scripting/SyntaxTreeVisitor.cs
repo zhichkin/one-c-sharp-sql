@@ -119,5 +119,29 @@ namespace OneCSharp.TSQL.Scripting
 
             return properties;
         }
+
+        internal static T Descendant<T>(TSqlFragment node) where T : TSqlFragment
+        {
+            // TODO: see VisitChildren method of this class
+            return null;
+        }
+
+        //public T Ancestor<T>() where T : ISyntaxNode
+        //{
+        //    Type ancestorType = typeof(T);
+        //    ISyntaxNode ancestor = this.Parent;
+        //    while (ancestor != null)
+        //    {
+        //        if (ancestor.GetType() != ancestorType)
+        //        {
+        //            ancestor = ancestor.Parent;
+        //        }
+        //        else
+        //        {
+        //            break;
+        //        }
+        //    }
+        //    return (T)ancestor;
+        //}
     }
 }

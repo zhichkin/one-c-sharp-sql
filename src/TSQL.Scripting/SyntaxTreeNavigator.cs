@@ -18,23 +18,6 @@ namespace OneCSharp.TSQL.Scripting
         public TSqlFragment Fragment { get; set; }
         public TSqlFragment ParentFragment { get; set; }
         public string TargetProperty { get; set; }
-        public T Ancestor<T>() where T : ISyntaxNode
-        {
-            Type ancestorType = typeof(T);
-            ISyntaxNode ancestor = this.Parent;
-            while (ancestor != null)
-            {
-                if (ancestor.GetType() != ancestorType)
-                {
-                    ancestor = ancestor.Parent;
-                }
-                else
-                {
-                    break;
-                }
-            }
-            return (T)ancestor;
-        }
     }
     internal sealed class ScriptNode : SyntaxNode
     {
@@ -45,15 +28,18 @@ namespace OneCSharp.TSQL.Scripting
     {
         public Dictionary<string, ISyntaxNode> Tables { get; } = new Dictionary<string, ISyntaxNode>(); // TableNode | SelectNode
         public List<ISyntaxNode> Columns { get; } = new List<ISyntaxNode>(); // ColumnNode | FunctionNode | CastNode
+        public TSqlFragment VisitContext { get; set; } // current query clause context provided during AST traversing
+        // TODO: special property visitor plus to type visitors !?
+        // TODO: EnterContext + ExitContext !?
     }
     internal sealed class TableNode : SyntaxNode // Документ.ПоступлениеТоваровУслуг => NamedTableReference
     {
         public string Alias { get; set; }
         public MetaObject MetaObject { get; set; }
     }
-    internal sealed class ColumnNode : SyntaxNode // Т.Ссылка => ColumnReferenceExpression
+    internal sealed class ColumnNode : SyntaxNode // Т.Ссылка AS [Ссылка] => SelectScalarExpression
     {
-        public Property MetaProperty { get; set; }
+        public string Name { get; set; } // alias of the select element, ex. in SELECT statement
     }
     internal sealed class FunctionNode : SyntaxNode // Т.Ссылка.type() => FunctionCall
     {
