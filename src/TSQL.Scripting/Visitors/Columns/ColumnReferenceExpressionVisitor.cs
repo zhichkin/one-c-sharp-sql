@@ -31,6 +31,7 @@ namespace OneCSharp.TSQL.Scripting
             TableNode table = null;
             Property property = null;
             Identifier identifier = null;
+            string propertyFieldName = null;
             if (columnReference.MultiPartIdentifier.Identifiers.Count == 1)
             {
                 // no table alias - just column name
@@ -75,12 +76,24 @@ namespace OneCSharp.TSQL.Scripting
                     }
                 }    
             }
-            else
+            else // columnReference.MultiPartIdentifier.Identifiers.Count == 3
             {
-                // TODO: resolve property, ex. Т.Ссылка.Код
-                // 1. Add LEFT JOIN operator
-                // 2. Replace MultiPartIdentifier[1] with reference to the last property in the expression
-                // 3. Remove all Identifiers from MultiPartIdentifier where index > 1
+                Identifier alias = columnReference.MultiPartIdentifier.Identifiers[0];
+                identifier = columnReference.MultiPartIdentifier.Identifiers[1];
+                propertyFieldName = columnReference.MultiPartIdentifier.Identifiers[2].Value;
+                if (select.Tables.TryGetValue(alias.Value, out ISyntaxNode tableNode))
+                {
+                    if (tableNode is TableNode)
+                    {
+                        table = (TableNode)tableNode;
+                        property = table.MetaObject.Properties.Where(p => p.Name == identifier.Value).FirstOrDefault();
+                    }
+                    else if (tableNode is SelectNode)
+                    {
+                        // TODO: query derived table ... get column from there to understand what to do ... tunneling ...
+                        return result;
+                    }
+                }
             }
 
             if (property == null) return result;
@@ -88,7 +101,14 @@ namespace OneCSharp.TSQL.Scripting
 
             if (property.IsReferenceType)
             {
-                VisitReferenceTypeColumn(columnReference, parent, sourceProperty, identifier, property);
+                if (propertyFieldName == null)
+                {
+                    VisitReferenceTypeColumn(columnReference, parent, sourceProperty, identifier, property);
+                }
+                else
+                {
+                    VisitReferenceTypeColumn(identifier, property, columnReference.MultiPartIdentifier.Identifiers, propertyFieldName);
+                }
             }
             else
             {
@@ -107,6 +127,26 @@ namespace OneCSharp.TSQL.Scripting
             {
                 // TODO: error !? compound type properties is not supported for multivalued columns !
             }
+        }
+        private void VisitReferenceTypeColumn(Identifier identifier, Property property, IList<Identifier> identifiers, string fieldName)
+        {
+            Field field = null;
+            if (fieldName == "uuid")
+            {
+                field = property.Fields.Where(f => f.Purpose == FieldPurpose.Object).FirstOrDefault();
+            }
+            else if (fieldName == "type")
+            {
+                field = property.Fields.Where(f => f.Purpose == FieldPurpose.TypeCode).FirstOrDefault();
+            }
+            else if (fieldName == "TYPE")
+            {
+                field = property.Fields.Where(f => f.Purpose == FieldPurpose.Discriminator).FirstOrDefault();
+            }
+            if (field == null) { return; } // TODO: throw new MissingMemberException !?
+
+            identifier.Value = field.Name;
+            identifiers.RemoveAt(2); // uuid | type | TYPE
         }
         private void VisitReferenceTypeColumn(ColumnReferenceExpression node, TSqlFragment parent, string sourceProperty, Identifier identifier, Property property)
         {

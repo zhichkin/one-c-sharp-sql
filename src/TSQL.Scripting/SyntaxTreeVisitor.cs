@@ -1,4 +1,6 @@
 ﻿using Microsoft.SqlServer.TransactSql.ScriptDom;
+using OneCSharp.Metadata.Model;
+using OneCSharp.Metadata.Services;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,29 +14,44 @@ namespace OneCSharp.TSQL.Scripting
         IList<string> PriorityProperties { get; }
         ISyntaxNode Visit(TSqlFragment node, TSqlFragment parent, string sourceProperty, ISyntaxNode result);
     }
-    internal static class SyntaxTreeVisitor
+    internal sealed class SyntaxTreeVisitor
     {
-        internal static Dictionary<Type, ISyntaxTreeVisitor> Visitors = new Dictionary<Type, ISyntaxTreeVisitor>();
-        internal static void Visit(TSqlFragment node, ISyntaxNode result)
+        private IMetadataService MetadataService { get; set; }
+        private Dictionary<Type, ISyntaxTreeVisitor> Visitors = new Dictionary<Type, ISyntaxTreeVisitor>();
+        internal SyntaxTreeVisitor(IMetadataService metadata)
+        {
+            MetadataService = metadata ?? throw new ArgumentNullException(nameof(metadata));
+            Visitors.Add(typeof(QuerySpecification), new QuerySpecificationVisitor(MetadataService));
+            Visitors.Add(typeof(NamedTableReference), new NamedTableReferenceVisitor(MetadataService));
+            Visitors.Add(typeof(ColumnReferenceExpression), new ColumnReferenceExpressionVisitor(MetadataService));
+            Visitors.Add(typeof(FunctionCall), new FunctionCallVisitor(MetadataService));
+            Visitors.Add(typeof(QualifiedJoin), new QualifiedJoinVisitor(MetadataService)); // ? see use of VisitContext
+            Visitors.Add(typeof(SelectScalarExpression), new SelectElementVisitor(MetadataService));
+            Visitors.Add(typeof(WhereClause), new WhereClauseVisitor(MetadataService)); // ? see use of VisitContext
+            Visitors.Add(typeof(BooleanBinaryExpression), new BooleanBinaryExpressionVisitor(MetadataService)); // ? see use of VisitContext
+        }
+        internal void Visit(TSqlFragment node, ISyntaxNode result)
         {
             VisitRecursively(node, null, null, result);
             // VisitIteratively using queue ...
         }
-        private static void VisitRecursively(TSqlFragment node, TSqlFragment parent, string sourceProperty, ISyntaxNode result)
+        private void VisitRecursively(TSqlFragment node, TSqlFragment parent, string sourceProperty, ISyntaxNode result)
         {
             if (node == null) return;
             VisitChildren(node, VisitNode(node, parent, sourceProperty, result));
         }
-        private static ISyntaxNode VisitNode(TSqlFragment node, TSqlFragment parent, string sourceProperty, ISyntaxNode result)
+        private ISyntaxNode VisitNode(TSqlFragment node, TSqlFragment parent, string sourceProperty, ISyntaxNode result)
         {
             ISyntaxTreeVisitor visitor;
             if (Visitors.TryGetValue(node.GetType(), out visitor))
             {
+                // TODO: visitor.BeforeVisitAction(); // set visiting context
                 return visitor.Visit(node, parent, sourceProperty, result);
+                // TODO: visitor.AfterVisitAction(); // clear or restore context
             }
             return result;
         }
-        private static void VisitChildren(TSqlFragment parent, ISyntaxNode result)
+        private void VisitChildren(TSqlFragment parent, ISyntaxNode result)
         {
             Type type = parent.GetType();
 
@@ -81,7 +98,7 @@ namespace OneCSharp.TSQL.Scripting
                 }
             }
         }
-        private static IList<PropertyInfo> GetProperties(Type type)
+        private IList<PropertyInfo> GetProperties(Type type)
         {
             List<PropertyInfo> properties = null;
 
@@ -120,11 +137,11 @@ namespace OneCSharp.TSQL.Scripting
             return properties;
         }
 
-        internal static T Descendant<T>(TSqlFragment node) where T : TSqlFragment
-        {
-            // TODO: see VisitChildren method of this class
-            return null;
-        }
+        //internal static T Descendant<T>(TSqlFragment node) where T : TSqlFragment
+        //{
+        //    // TODO: see VisitChildren method of this class
+        //    return null;
+        //}
 
         //public T Ancestor<T>() where T : ISyntaxNode
         //{

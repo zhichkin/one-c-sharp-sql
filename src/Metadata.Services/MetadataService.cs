@@ -16,6 +16,7 @@ namespace OneCSharp.Metadata.Services
         string MapSchemaIdentifier(string schemaName);
         string MapTableIdentifier(string databaseName, string tableIdentifier);
         IList<Field> MapColumnIdentifier(InfoBase infoBase, string tableName, string columnName);
+        MetaObject GetMetaObject(IList<string> tableIdentifiers);
         MetaObject GetMetaObject(string databaseName, string tableIdentifier);
         Property GetProperty(string databaseName, string tableIdentifier, string columnIdentifier);
     }
@@ -109,6 +110,85 @@ namespace OneCSharp.Metadata.Services
             SQLLoader.Load(ConnectionString, infobase);
         }
 
+        private bool IsSpecialSchema(string schemaName)
+        {
+            return (schemaName == "Перечисление"
+                || schemaName == "Справочник"
+                || schemaName == "Документ"
+                || schemaName == "ПланВидовХарактеристик"
+                || schemaName == "ПланСчетов"
+                || schemaName == "ПланОбмена"
+                || schemaName == "РегистрСведений"
+                || schemaName == "РегистрНакопления"
+                || schemaName == "РегистрБухгалтерии");
+        }
+        public MetaObject GetMetaObject(IList<string> tableIdentifiers)
+        {
+            if (tableIdentifiers == null || tableIdentifiers.Count != 4) { return null; }
+
+            string databaseName = null;
+            string serverIdentifier = tableIdentifiers[0];
+            string databaseIdentifier = tableIdentifiers[1];
+            string schemaIdentifier = tableIdentifiers[2];
+            string tableIdentifier = tableIdentifiers[3];
+
+            if (serverIdentifier != null)
+            {
+                if (tableIdentifier.Contains('+')) // [server].[database].Документ.[ПоступлениеТоваровУслуг+Товары]
+                {
+                    databaseName = tableIdentifiers[1];
+                    tableIdentifiers[3] = $"{schemaIdentifier}+{tableIdentifier}";
+                    tableIdentifiers[2] = string.Empty; // dbo
+                }
+                else
+                {
+                    if (IsSpecialSchema(databaseIdentifier)) // [database].Документ.ПоступлениеТоваровУслуг.Товары
+                    {
+                        databaseName = tableIdentifiers[0];
+                        tableIdentifiers[3] = $"{databaseIdentifier}+{schemaIdentifier}+{tableIdentifier}";
+                        tableIdentifiers[2] = string.Empty; // dbo
+                        tableIdentifiers[1] = serverIdentifier;
+                        tableIdentifiers[0] = null;
+                    }
+                    else if (IsSpecialSchema(schemaIdentifier)) // [server].[database].Документ.ПоступлениеТоваровУслуг
+                    {
+                        databaseName = tableIdentifiers[1];
+                        tableIdentifiers[3] = $"{schemaIdentifier}+{tableIdentifier}";
+                        tableIdentifiers[2] = string.Empty; // dbo
+                    }
+                }
+            }
+            else if (databaseIdentifier != null)
+            {
+                if (IsSpecialSchema(databaseIdentifier)) // Документ.ПоступлениеТоваровУслуг.Товары
+                {
+                    databaseName = tableIdentifiers[1];
+                    tableIdentifiers[3] = $"{databaseIdentifier}+{schemaIdentifier}+{tableIdentifier}";
+                    tableIdentifiers[2] = null;
+                    tableIdentifiers[1] = null;
+                }
+                else if (IsSpecialSchema(schemaIdentifier)) // [database].Документ.ПоступлениеТоваровУслуг
+                {
+                    databaseName = tableIdentifiers[1];
+                    tableIdentifiers[3] = $"{schemaIdentifier}+{tableIdentifier}";
+                    tableIdentifiers[2] = string.Empty; // dbo
+                }
+            }
+            else if (schemaIdentifier != null)
+            {
+                if (IsSpecialSchema(schemaIdentifier)) // Документ.ПоступлениеТоваровУслуг
+                {
+                    tableIdentifiers[3] = $"{schemaIdentifier}+{tableIdentifier}";
+                    tableIdentifiers[2] = null;
+                }
+            }
+            else // ПоступлениеТоваровУслуг or some normal table
+            {
+                return null;
+            }
+
+            return GetMetaObject(databaseName, tableIdentifiers[3]);
+        }
         public MetaObject GetMetaObject(string databaseName, string tableIdentifier) // $"[Документ+ПоступлениеТоваровУслуг+Товары]"
         {
             if (!tableIdentifier.Contains('+')) return null; // this is not 1C format, but schema object (table)

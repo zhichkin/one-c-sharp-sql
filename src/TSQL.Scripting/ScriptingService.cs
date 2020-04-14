@@ -59,17 +59,8 @@ namespace OneCSharp.TSQL.Scripting
             }
 
             ScriptNode result = new ScriptNode() { InfoBase = MetadataService.CurrentDatabase };
-            
-            SyntaxTreeVisitor.Visitors.Add(typeof(QuerySpecification), new QuerySpecificationVisitor(MetadataService));
-            SyntaxTreeVisitor.Visitors.Add(typeof(NamedTableReference), new NamedTableReferenceVisitor(MetadataService));
-            SyntaxTreeVisitor.Visitors.Add(typeof(ColumnReferenceExpression), new ColumnReferenceExpressionVisitor(MetadataService));
-            SyntaxTreeVisitor.Visitors.Add(typeof(FunctionCall), new FunctionCallVisitor(MetadataService));
-            SyntaxTreeVisitor.Visitors.Add(typeof(QualifiedJoin), new QualifiedJoinVisitor(MetadataService)); // ? see use of VisitContext
-            SyntaxTreeVisitor.Visitors.Add(typeof(SelectScalarExpression), new SelectElementVisitor(MetadataService));
-            SyntaxTreeVisitor.Visitors.Add(typeof(WhereClause), new WhereClauseVisitor(MetadataService)); // ? see use of VisitContext
-            SyntaxTreeVisitor.Visitors.Add(typeof(BooleanBinaryExpression), new BooleanBinaryExpressionVisitor(MetadataService)); // ? see use of VisitContext
-
-            SyntaxTreeVisitor.Visit(fragment, result);
+            SyntaxTreeVisitor visitor = new SyntaxTreeVisitor(MetadataService);
+            visitor.Visit(fragment, result);
 
             Generator.GenerateScript(fragment, out string sql);
             return sql;
