@@ -28,94 +28,131 @@ namespace OneCSharp.TSQL.Scripting
             if (columnReference.ColumnType != ColumnType.Regular) return result;
             if (select.Tables == null || select.Tables.Count == 0) return result;
 
-            TableNode table = null;
-            Property property = null;
             Identifier identifier = null;
             string propertyFieldName = null;
-            if (columnReference.MultiPartIdentifier.Identifiers.Count == 1)
+            IList<string> identifiers = new List<string>();
+            for (int i = 0; i < columnReference.MultiPartIdentifier.Identifiers.Count; i++)
             {
-                // no table alias - just column name
+                identifiers.Add(columnReference.MultiPartIdentifier.Identifiers[i].Value);
+            }
+
+            if (identifiers.Count == 1) // no table alias - just column name
+            {
                 identifier = columnReference.MultiPartIdentifier.Identifiers[0];
-                foreach (ISyntaxNode tableNode in select.Tables.Values)
-                {
-                    if (tableNode is TableNode)
-                    {
-                        table = (TableNode)tableNode;
-                        if (table.Alias == null)
-                        {
-                            property = table.MetaObject.Properties.Where(p => p.Name == identifier.Value).FirstOrDefault();
-                            if (property != null)
-                            {
-                                break;
-                            }
-                        }
-                        //TODO: check if property name is unique for all tables having no alias
-                    }
-                    else if (tableNode is SelectNode)
-                    {
-                        // TODO: query derived table ... get column from there to understand what to do ... tunneling ...
-                        return result;
-                    }
-                }
             }
             else if (columnReference.MultiPartIdentifier.Identifiers.Count == 2)
             {
-                Identifier alias = columnReference.MultiPartIdentifier.Identifiers[0];
-                identifier = columnReference.MultiPartIdentifier.Identifiers[1];
-                if (select.Tables.TryGetValue(alias.Value, out ISyntaxNode tableNode))
+                if (IsSpecialField(identifiers[1])) // no table alias - just column name
                 {
-                    if (tableNode is TableNode)
-                    {
-                        table = (TableNode)tableNode;
-                        property = table.MetaObject.Properties.Where(p => p.Name == identifier.Value).FirstOrDefault();
-                    }
-                    else if (tableNode is SelectNode)
-                    {
-                        // TODO: query derived table ... get column from there to understand what to do ... tunneling ...
-                        return result;
-                    }
-                }    
+                    propertyFieldName = identifiers[1];
+                    identifier = columnReference.MultiPartIdentifier.Identifiers[0];
+                }
+                else
+                {
+                    identifier = columnReference.MultiPartIdentifier.Identifiers[1];
+                }
             }
             else // columnReference.MultiPartIdentifier.Identifiers.Count == 3
             {
-                Identifier alias = columnReference.MultiPartIdentifier.Identifiers[0];
+                propertyFieldName = identifiers[2];
                 identifier = columnReference.MultiPartIdentifier.Identifiers[1];
-                propertyFieldName = columnReference.MultiPartIdentifier.Identifiers[2].Value;
-                if (select.Tables.TryGetValue(alias.Value, out ISyntaxNode tableNode))
-                {
-                    if (tableNode is TableNode)
-                    {
-                        table = (TableNode)tableNode;
-                        property = table.MetaObject.Properties.Where(p => p.Name == identifier.Value).FirstOrDefault();
-                    }
-                    else if (tableNode is SelectNode)
-                    {
-                        // TODO: query derived table ... get column from there to understand what to do ... tunneling ...
-                        return result;
-                    }
-                }
             }
 
+            Property property = GetProperty(identifiers, select);
             if (property == null) return result;
             if (property.Fields.Count == 0) return result;
 
             if (property.IsReferenceType)
             {
-                if (propertyFieldName == null)
+                if (propertyFieldName == null) // Т.Ссылка | Т.Владелец
                 {
                     VisitReferenceTypeColumn(columnReference, parent, sourceProperty, identifier, property);
                 }
-                else
+                else // uuid | type | TYPE
                 {
-                    VisitReferenceTypeColumn(identifier, property, columnReference.MultiPartIdentifier.Identifiers, propertyFieldName);
+                    VisitReferenceTypeColumn(columnReference, parent, sourceProperty, columnReference.MultiPartIdentifier.Identifiers, identifier, property, propertyFieldName);
                 }
             }
-            else
+            else // Т.Наименование
             {
                 VisitValueTypeColumn(identifier, property);
             }
 
             return result;
+        }
+        private bool IsSpecialField(string fieldName)
+        {
+            return (fieldName == "uuid" || fieldName == "type" || fieldName == "TYPE");
+        }
+        private Property GetProperty(IList<string> identifiers, SelectNode select)
+        {
+            if (identifiers.Count == 1)
+            {
+                return GetPropertyWithoutTableAlias(identifiers, select);
+            }
+            else if (identifiers.Count == 2)
+            {
+                if (IsSpecialField(identifiers[1]))
+                {
+                    return GetPropertyWithoutTableAlias(identifiers, select);
+                }
+                else
+                {
+                    return GetPropertyWithTableAlias(identifiers, select);
+                }
+            }
+            else
+            {
+                return GetPropertyWithTableAlias(identifiers, select);
+            }
+        }
+        private Property GetPropertyWithTableAlias(IList<string> identifiers, SelectNode select)
+        {
+            TableNode table = null;
+            Property property = null;
+            string alias = identifiers[0];
+            string propertyName = identifiers[1];
+
+            if (select.Tables.TryGetValue(alias, out ISyntaxNode tableNode))
+            {
+                if (tableNode is TableNode)
+                {
+                    table = (TableNode)tableNode;
+                    property = table.MetaObject.Properties.Where(p => p.Name == propertyName).FirstOrDefault();
+                }
+                else if (tableNode is SelectNode)
+                {
+                    return property; // TODO: query derived table ... tunneling ... value type inference ... !?
+                }
+            }
+            return property;
+        }
+        private Property GetPropertyWithoutTableAlias(IList<string> identifiers, SelectNode select)
+        {
+            TableNode table = null;
+            Property property = null;
+            string propertyName = identifiers[0];
+
+            foreach (ISyntaxNode tableNode in select.Tables.Values)
+            {
+                if (tableNode is TableNode)
+                {
+                    table = (TableNode)tableNode;
+                    if (table.Alias == null)
+                    {
+                        property = table.MetaObject.Properties.Where(p => p.Name == propertyName).FirstOrDefault();
+                        if (property != null)
+                        {
+                            return property; //TODO: check if property name is unique for all tables having no alias
+                        }
+                    }
+                }
+                else if (tableNode is SelectNode)
+                {
+                    return property; // TODO: query derived table ... tunneling ... value type inference ... !?
+                }
+            }
+            return property;
         }
         private void VisitValueTypeColumn(Identifier identifier, Property property)
         {
@@ -128,29 +165,76 @@ namespace OneCSharp.TSQL.Scripting
                 // TODO: error !? compound type properties is not supported for multivalued columns !
             }
         }
-        private void VisitReferenceTypeColumn(Identifier identifier, Property property, IList<Identifier> identifiers, string fieldName)
+        private void VisitReferenceTypeColumn(ColumnReferenceExpression node, TSqlFragment parent, string sourceProperty, IList<Identifier> identifiers, Identifier identifier, Property property, string fieldName)
         {
             Field field = null;
+            BinaryLiteral binaryLiteral = null;
+            
             if (fieldName == "uuid")
             {
-                field = property.Fields.Where(f => f.Purpose == FieldPurpose.Object).FirstOrDefault();
+                if (property.Fields.Count == 1)
+                {
+                    field = property.Fields[0];
+                }
+                else
+                {
+                    field = property.Fields.Where(f => f.Purpose == FieldPurpose.Object).FirstOrDefault();
+                }
             }
             else if (fieldName == "type")
             {
-                field = property.Fields.Where(f => f.Purpose == FieldPurpose.TypeCode).FirstOrDefault();
+                if (property.Fields.Count == 1)
+                {
+                    string HexTypeCode = $"0x{property.PropertyTypes[0].ToString("X").PadLeft(8, '0')}";
+                    binaryLiteral = new BinaryLiteral() { Value = HexTypeCode };
+                }
+                else
+                {
+                    field = property.Fields.Where(f => f.Purpose == FieldPurpose.TypeCode).FirstOrDefault();
+                }
             }
             else if (fieldName == "TYPE")
             {
-                field = property.Fields.Where(f => f.Purpose == FieldPurpose.Discriminator).FirstOrDefault();
+                if (property.Fields.Count == 1)
+                {
+                    binaryLiteral = new BinaryLiteral() { Value = "0x08" };
+                }
+                else
+                {
+                    field = property.Fields.Where(f => f.Purpose == FieldPurpose.Discriminator).FirstOrDefault();
+                }
             }
-            if (field == null) { return; } // TODO: throw new MissingMemberException !?
+            // TODO: throw new MissingMemberException !? if nonexistent field referenced
 
-            identifier.Value = field.Name;
-            identifiers.RemoveAt(2); // uuid | type | TYPE
+            if (binaryLiteral == null)
+            {
+                identifier.Value = field.Name; // change object property identifier to SQL table column identifier
+                identifiers.RemoveAt(identifiers.Count - 1); // uuid | type | TYPE
+            }
+            else
+            {
+                TransformToBinaryLiteral(node, parent, sourceProperty, binaryLiteral);
+            }
+        }
+        private void TransformToBinaryLiteral(ColumnReferenceExpression node, TSqlFragment parent, string sourceProperty, TSqlFragment expression)
+        {
+            PropertyInfo property = parent.GetType().GetProperty(sourceProperty);
+            bool isList = (property.PropertyType.IsGenericType
+                && property.PropertyType.GetGenericTypeDefinition() == typeof(IList<>));
+            if (isList)
+            {
+                IList list = (IList)property.GetValue(parent);
+                int index = list.IndexOf(node);
+                list[index] = expression;
+            }
+            else
+            {
+                property.SetValue(parent, expression);
+            }
         }
         private void VisitReferenceTypeColumn(ColumnReferenceExpression node, TSqlFragment parent, string sourceProperty, Identifier identifier, Property property)
         {
-            if (property.Fields.Count == 1) // Т.Ссылка
+            if (property.Fields.Count == 1) // Т.Ссылка (не составной тип)
             {
                 string hexTypeCode = $"0x{property.PropertyTypes[0].ToString("X").PadLeft(8, '0')}";
                 identifier.Value = property.Fields[0].Name;
@@ -176,10 +260,8 @@ namespace OneCSharp.TSQL.Scripting
                     pi.SetValue(parent, expression);
                 }
             }
-            else // Т.Владелец
+            else // Т.Владелец (составной тип)
             {
-                // TODO: if parent is SearchCondition => AND TYPE + TRef + RRef
-
                 Field typeCode = property.Fields.Where(f => f.Purpose == FieldPurpose.TypeCode).FirstOrDefault();
                 Field reference = property.Fields.Where(f => f.Purpose == FieldPurpose.Object).FirstOrDefault();
                 identifier.Value = reference.Name;
