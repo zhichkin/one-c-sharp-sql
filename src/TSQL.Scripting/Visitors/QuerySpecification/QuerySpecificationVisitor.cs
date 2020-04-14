@@ -18,7 +18,7 @@ namespace OneCSharp.TSQL.Scripting
             QuerySpecification specification = node as QuerySpecification;
             if (specification == null) return result;
 
-            SelectNode query = new SelectNode()
+            StatementNode statement = new StatementNode()
             {
                 Parent = result,
                 Fragment = node,
@@ -29,22 +29,22 @@ namespace OneCSharp.TSQL.Scripting
             {
                 if (parent is SelectStatement)
                 {
-                    script.Statements.Add(query);
+                    script.Statements.Add(statement);
                 }
             }
-            else if (result is SelectNode select)
+            else if (result is StatementNode query)
             {
                 if (parent is TableReferenceWithAlias table)
                 {
                     string alias = GetAlias(table);
-                    select.Tables.Add(alias, query);
+                    query.Tables.Add(alias, statement);
                 }
             }
             else
             {
                 return result; // TODO: error ?
             }
-            return query;
+            return statement;
         }
         private string GetAlias(TableReferenceWithAlias table)
         {

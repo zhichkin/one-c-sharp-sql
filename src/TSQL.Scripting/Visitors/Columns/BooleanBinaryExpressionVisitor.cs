@@ -18,11 +18,11 @@ namespace OneCSharp.TSQL.Scripting
             BooleanBinaryExpression expression = node as BooleanBinaryExpression;
             if (expression == null) return result;
 
-            SelectNode select = result as SelectNode;
-            if (select == null) return result;
+            StatementNode statement = result as StatementNode;
+            if (statement == null) return result;
 
-            if (select.VisitContext is WhereClause // WHERE
-                || select.VisitContext is QualifiedJoin) // ON
+            if (statement.VisitContext is WhereClause // WHERE
+                || statement.VisitContext is QualifiedJoin) // ON
             {
                 VisitBooleanBinaryExpression(expression, parent, sourceProperty);
             }

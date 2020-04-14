@@ -23,10 +23,10 @@ namespace OneCSharp.TSQL.Scripting
             ColumnReferenceExpression columnReference = node as ColumnReferenceExpression;
             if (columnReference == null) return result;
 
-            SelectNode select = result as SelectNode;
-            if (select == null) return result;
+            StatementNode statement = result as StatementNode;
+            if (statement == null) return result;
             if (columnReference.ColumnType != ColumnType.Regular) return result;
-            if (select.Tables == null || select.Tables.Count == 0) return result;
+            if (statement.Tables == null || statement.Tables.Count == 0) return result;
 
             Identifier identifier = null;
             string propertyFieldName = null;
@@ -58,7 +58,7 @@ namespace OneCSharp.TSQL.Scripting
                 identifier = columnReference.MultiPartIdentifier.Identifiers[1];
             }
 
-            Property property = GetProperty(identifiers, select);
+            Property property = GetProperty(identifiers, statement);
             if (property == null) return result;
             if (property.Fields.Count == 0) return result;
 
@@ -84,56 +84,56 @@ namespace OneCSharp.TSQL.Scripting
         {
             return (fieldName == "uuid" || fieldName == "type" || fieldName == "TYPE");
         }
-        private Property GetProperty(IList<string> identifiers, SelectNode select)
+        private Property GetProperty(IList<string> identifiers, StatementNode statement)
         {
             if (identifiers.Count == 1)
             {
-                return GetPropertyWithoutTableAlias(identifiers, select);
+                return GetPropertyWithoutTableAlias(identifiers, statement);
             }
             else if (identifiers.Count == 2)
             {
                 if (IsSpecialField(identifiers[1]))
                 {
-                    return GetPropertyWithoutTableAlias(identifiers, select);
+                    return GetPropertyWithoutTableAlias(identifiers, statement);
                 }
                 else
                 {
-                    return GetPropertyWithTableAlias(identifiers, select);
+                    return GetPropertyWithTableAlias(identifiers, statement);
                 }
             }
             else
             {
-                return GetPropertyWithTableAlias(identifiers, select);
+                return GetPropertyWithTableAlias(identifiers, statement);
             }
         }
-        private Property GetPropertyWithTableAlias(IList<string> identifiers, SelectNode select)
+        private Property GetPropertyWithTableAlias(IList<string> identifiers, StatementNode statement)
         {
             TableNode table = null;
             Property property = null;
             string alias = identifiers[0];
             string propertyName = identifiers[1];
 
-            if (select.Tables.TryGetValue(alias, out ISyntaxNode tableNode))
+            if (statement.Tables.TryGetValue(alias, out ISyntaxNode tableNode))
             {
                 if (tableNode is TableNode)
                 {
                     table = (TableNode)tableNode;
                     property = table.MetaObject.Properties.Where(p => p.Name == propertyName).FirstOrDefault();
                 }
-                else if (tableNode is SelectNode)
+                else if (tableNode is StatementNode)
                 {
                     return property; // TODO: query derived table ... tunneling ... value type inference ... !?
                 }
             }
             return property;
         }
-        private Property GetPropertyWithoutTableAlias(IList<string> identifiers, SelectNode select)
+        private Property GetPropertyWithoutTableAlias(IList<string> identifiers, StatementNode statement)
         {
             TableNode table = null;
             Property property = null;
             string propertyName = identifiers[0];
 
-            foreach (ISyntaxNode tableNode in select.Tables.Values)
+            foreach (ISyntaxNode tableNode in statement.Tables.Values)
             {
                 if (tableNode is TableNode)
                 {
@@ -147,7 +147,7 @@ namespace OneCSharp.TSQL.Scripting
                         }
                     }
                 }
-                else if (tableNode is SelectNode)
+                else if (tableNode is StatementNode)
                 {
                     return property; // TODO: query derived table ... tunneling ... value type inference ... !?
                 }

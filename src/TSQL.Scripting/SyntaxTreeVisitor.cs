@@ -21,6 +21,9 @@ namespace OneCSharp.TSQL.Scripting
         internal SyntaxTreeVisitor(IMetadataService metadata)
         {
             MetadataService = metadata ?? throw new ArgumentNullException(nameof(metadata));
+            Visitors.Add(typeof(InsertSpecification), new InsertSpecificationVisitor(MetadataService));
+            Visitors.Add(typeof(UpdateSpecification), new UpdateSpecificationVisitor(MetadataService));
+            Visitors.Add(typeof(DeleteSpecification), new DeleteSpecificationVisitor(MetadataService));
             Visitors.Add(typeof(QuerySpecification), new QuerySpecificationVisitor(MetadataService));
             Visitors.Add(typeof(NamedTableReference), new NamedTableReferenceVisitor(MetadataService));
             Visitors.Add(typeof(ColumnReferenceExpression), new ColumnReferenceExpressionVisitor(MetadataService));

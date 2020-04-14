@@ -18,10 +18,10 @@ namespace OneCSharp.TSQL.Scripting
             WhereClause where = node as WhereClause;
             if (where == null) return result;
 
-            SelectNode select = result as SelectNode;
-            if (select == null) return result;
+            StatementNode statement = result as StatementNode;
+            if (statement == null) return result;
 
-            select.VisitContext = where; // set current visiting context
+            statement.VisitContext = where; // set current visiting context
 
             return result;
         }

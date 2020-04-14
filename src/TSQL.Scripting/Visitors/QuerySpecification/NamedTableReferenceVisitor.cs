@@ -19,8 +19,8 @@ namespace OneCSharp.TSQL.Scripting
             NamedTableReference tableReference = node as NamedTableReference;
             if (tableReference == null) return result;
             
-            SelectNode select = result as SelectNode;
-            if (select == null) return result;
+            StatementNode statement = result as StatementNode;
+            if (statement == null) return result;
 
             SchemaObjectName name = tableReference.SchemaObject;
             string serverIdentifier = name.ServerIdentifier?.Value;
@@ -119,12 +119,12 @@ namespace OneCSharp.TSQL.Scripting
             {
                 // no alias table - just table identifier
                 table.Alias = null;
-                select.Tables.Add(tableIdentifier, table);
+                statement.Tables.Add(tableIdentifier, table);
             }
             else
             {
                 table.Alias = alias;
-                select.Tables.Add(alias, table);
+                statement.Tables.Add(alias, table);
             }
             return result;
         }

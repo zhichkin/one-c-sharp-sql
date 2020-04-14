@@ -24,9 +24,9 @@ namespace OneCSharp.TSQL.Scripting
         public InfoBase InfoBase { get; set; } // initial catalog = default database name
         public List<ISyntaxNode> Statements { get; } = new List<ISyntaxNode>();
     }
-    internal sealed class SelectNode : SyntaxNode // SELECT => QuerySpecification
+    internal sealed class StatementNode : SyntaxNode // SELECT => QuerySpecification | InsertSpecification | UpdateSpecification | DeleteSpecification
     {
-        public Dictionary<string, ISyntaxNode> Tables { get; } = new Dictionary<string, ISyntaxNode>(); // TableNode | SelectNode
+        public Dictionary<string, ISyntaxNode> Tables { get; } = new Dictionary<string, ISyntaxNode>(); // TableNode | StatementNode
         public List<ISyntaxNode> Columns { get; } = new List<ISyntaxNode>(); // ColumnNode | FunctionNode | CastNode
         public TSqlFragment VisitContext { get; set; } // current query clause context provided during AST traversing
         // TODO: special property visitor plus to type visitors !?
@@ -39,7 +39,7 @@ namespace OneCSharp.TSQL.Scripting
     }
     internal sealed class ColumnNode : SyntaxNode // Т.Ссылка AS [Ссылка] => SelectScalarExpression
     {
-        public string Name { get; set; } // alias of the select element, ex. in SELECT statement
+        public string Name { get; set; } // alias of the SELECT element, ex. in SELECT statement
     }
     internal sealed class FunctionNode : SyntaxNode // Т.Ссылка.type() => FunctionCall
     {

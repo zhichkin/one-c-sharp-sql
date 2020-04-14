@@ -19,10 +19,10 @@ namespace OneCSharp.TSQL.Scripting
             SelectElement element = node as SelectElement;
             if (element == null) return result;
 
-            SelectNode select = result as SelectNode;
-            if (select == null) return result;
+            StatementNode statement = result as StatementNode;
+            if (statement == null) return result;
 
-            select.VisitContext = element; // set current visiting context
+            statement.VisitContext = element; // set current visiting context
 
             if (!(element is SelectScalarExpression expression)) return result;
 
@@ -36,7 +36,7 @@ namespace OneCSharp.TSQL.Scripting
                 columnName = expression.ColumnName.Value;
             }
 
-            select.Columns.Add(new ColumnNode()
+            statement.Columns.Add(new ColumnNode()
             {
                 Parent = result,
                 Fragment = node,

@@ -18,10 +18,10 @@ namespace OneCSharp.TSQL.Scripting
             QualifiedJoin join = node as QualifiedJoin;
             if (join == null) return result;
 
-            SelectNode select = result as SelectNode;
-            if (select == null) return result;
+            StatementNode statement = result as StatementNode;
+            if (statement == null) return result;
 
-            select.VisitContext = join; // set current visiting context
+            statement.VisitContext = join; // set current visiting context
             // TODO: how to set VisitingContext to null when QualifiedJoin visiting scope is missed ???
             // TODO: EnterContext !?
             // TODO: ExitContext  !?
