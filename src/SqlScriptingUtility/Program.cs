@@ -48,7 +48,7 @@ namespace SqlScriptingUtility
                 Console.WriteLine("Initializing database [reverse_engineering] at server [zhichkin] ...");
                 Stopwatch watch = new Stopwatch();
                 watch.Start();
-                service.Initialize("zhichkin", new string[] { "reverse_engineering" });
+                service.Initialize("zhichkin", new string[] { "trade_11_2_3_159_demo", "accounting_3_0_72_72_demo" });
                 watch.Stop();
                 Console.WriteLine($"Initializing {watch.Elapsed} elapsed.");
                 Console.WriteLine();

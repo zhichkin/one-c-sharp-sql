@@ -18,14 +18,14 @@ namespace OneCSharp.TSQL.Scripting
         private TSql150Parser Parser { get; }
         private Sql150ScriptGenerator Generator { get; }
         private IMetadataService MetadataService { get; }
-        public ScriptingService()
+        public ScriptingService(IMetadataService metadata)
         {
             Parser = new TSql150Parser(false, SqlEngineType.Standalone);
             Generator = new Sql150ScriptGenerator(new SqlScriptGeneratorOptions()
             {
                 AlignClauseBodies = true
             });
-            MetadataService = new MetadataService();
+            MetadataService = metadata;
         }
         public void Initialize(string server, IList<string> databases)
         {
