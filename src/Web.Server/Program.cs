@@ -3,30 +3,30 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using OneCSharp.TSQL.Scripting;
+using OneCSharp.Metadata.Model;
+using OneCSharp.Metadata.Services;
 using System;
+using System.IO;
 
 namespace OneCSharp.Web.Server
 {
     public class Program
     {
+        private const string METADATA_CATALOG_NAME = "metadata";
         public static void Main(string[] args)
         {
-            var config = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json", optional: false)
-                .Build();
-            OneCSharpSettings settings = new OneCSharpSettings();
-            config.GetSection("OneCSharpSettings").Bind(settings);
+            OneCSharpSettings settings = OneCSharpSettings();
 
             var host = CreateHostBuilder(args).Build();
-
+            
             using (var serviceScope = host.Services.CreateScope())
             {
                 var services = serviceScope.ServiceProvider;
                 try
                 {
-                    var service = services.GetRequiredService<IScriptingService>();
-                    ConfigureScriptingService(service, settings);
+                    var env = services.GetRequiredService<IWebHostEnvironment>();
+                    var metadata = services.GetRequiredService<IMetadataService>();
+                    ConfigureMetadataService(metadata, settings.MetadataSettings, env);
                 }
                 catch (Exception ex)
                 {
@@ -34,6 +34,7 @@ namespace OneCSharp.Web.Server
                     logger.LogError(ex, "An error occurred.");
                 }
             }
+
             host.Run();
         }
         public static IHostBuilder CreateHostBuilder(string[] args)
@@ -44,22 +45,31 @@ namespace OneCSharp.Web.Server
                     webBuilder.UseStartup<Startup>();
                 });
         }
-        private static void ConfigureScriptingService(IScriptingService scripting, OneCSharpSettings settings)
+        private static OneCSharpSettings OneCSharpSettings()
         {
-            if (string.IsNullOrEmpty(settings.UseServer))
+            OneCSharpSettings settings = new OneCSharpSettings();
+            var config = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json", optional: false)
+                .Build();
+            config.GetSection("OneCSharpSettings").Bind(settings);
+            return settings;
+        }
+        private static string MetadataCatalogPath(IWebHostEnvironment environment)
+        {
+            string metadataCatalogPath = Path.Combine(environment.ContentRootPath, METADATA_CATALOG_NAME);
+            if (!Directory.Exists(metadataCatalogPath))
             {
-                return;
+                _ = Directory.CreateDirectory(metadataCatalogPath);
             }
-            scripting.UseServer("zhichkin");
-
-            if (settings.UseDatabases == null || settings.UseDatabases.Count == 0)
+            return metadataCatalogPath;
+        }
+        private static void ConfigureMetadataService(IMetadataService metadata, MetadataServiceSettings settings, IWebHostEnvironment environment)
+        {
+            if (string.IsNullOrWhiteSpace(settings.Catalog))
             {
-                return;
+                settings.Catalog = MetadataCatalogPath(environment);
             }
-            //foreach (string database in settings.UseDatabases)
-            //{
-            //    scripting.UseDatabase(database);
-            //}
+            metadata.Configure(settings);
         }
     }
 }

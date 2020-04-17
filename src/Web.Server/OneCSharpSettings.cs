@@ -1,10 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using OneCSharp.Metadata.Model;
 
 namespace OneCSharp.Web.Server
 {
     public sealed class OneCSharpSettings
     {
-        public string UseServer { get; set; }
-        public List<string> UseDatabases { get; } = new List<string>();
+        public MetadataServiceSettings MetadataSettings { get; set; }
     }
 }

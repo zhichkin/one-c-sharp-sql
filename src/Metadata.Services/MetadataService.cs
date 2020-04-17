@@ -4,112 +4,147 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 
 namespace OneCSharp.Metadata.Services
 {
     public interface IMetadataService
     {
+        DatabaseServer CurrentServer { get; }
         InfoBase CurrentDatabase { get; }
-        void UseServer(string serverAddress);
+        void Configure(MetadataServiceSettings settings);
+        void UseServer(string serverName);
         void UseDatabase(string databaseName);
+
         string MapSchemaIdentifier(string schemaName);
         string MapTableIdentifier(string databaseName, string tableIdentifier);
-        IList<Field> MapColumnIdentifier(InfoBase infoBase, string tableName, string columnName);
         MetaObject GetMetaObject(IList<string> tableIdentifiers);
         MetaObject GetMetaObject(string databaseName, string tableIdentifier);
         Property GetProperty(string databaseName, string tableIdentifier, string columnIdentifier);
     }
     public sealed class MetadataService : IMetadataService
     {
+        private const string ERROR_SERVICE_IS_NOT_CONFIGURED = "Metadata service is not configured properly!";
+        private const string ERROR_SERVER_IS_NOT_DEFINED = "Current database server is not defined!";
         private XMLMetadataLoader XMLLoader { get; } = new XMLMetadataLoader();
         private SQLMetadataLoader SQLLoader { get; } = new SQLMetadataLoader();
-        private Dictionary<string, InfoBase> Cash { get; } = new Dictionary<string, InfoBase>();
-        private string MetadataCatalogPath
+        private MetadataServiceSettings Settings { get; set; }
+        public DatabaseServer CurrentServer { get; private set; }
+        public InfoBase CurrentDatabase { get; private set; }
+        public string ConnectionString { get; private set; }
+        private string ServerCatalogPath(string serverName)
         {
-            get
+            return Path.Combine(Settings.Catalog, serverName);
+        }
+        private string MetadataFilePath(string serverName, string databaseName)
+        {
+            return Path.Combine(ServerCatalogPath(serverName), databaseName + ".xml");
+        }
+        public void Configure(MetadataServiceSettings settings)
+        {
+            if (settings == null) throw new ArgumentNullException(nameof(settings));
+            if (string.IsNullOrWhiteSpace(settings.Catalog)) throw new ArgumentNullException(nameof(settings.Catalog));
+            if (!Directory.Exists(settings.Catalog)) throw new DirectoryNotFoundException(settings.Catalog);
+
+            Settings = settings;
+
+            if (settings.Servers.Count == 0) return;
+
+            int s = 0;
+            int i = 0;
+            InfoBase database;
+            DatabaseServer server;
+            string serverCatalogPath;
+            string metadataFilePath;
+            while (s < settings.Servers.Count)
             {
-                Assembly assembly = Assembly.GetExecutingAssembly();
-                string assemblyCatalogPath = Path.GetDirectoryName(assembly.Location);
-                string metadataCatalogPath = Path.Combine(assemblyCatalogPath, "Metadata");
-                if (!Directory.Exists(metadataCatalogPath))
+                server = settings.Servers[s];
+                serverCatalogPath = ServerCatalogPath(server.Name);
+
+                if (server == null || string.IsNullOrWhiteSpace(server.Name) || !Directory.Exists(serverCatalogPath))
                 {
-                    _ = Directory.CreateDirectory(metadataCatalogPath);
+                    settings.Servers.RemoveAt(s);
+                    continue;
                 }
-                return metadataCatalogPath;
+                s++;
+
+                if (server.Databases.Count == 0) continue;
+
+                while (i < server.Databases.Count)
+                {
+                    database = server.Databases[i];
+                    metadataFilePath = MetadataFilePath(server.Name, database.Name);
+
+                    if (database == null || string.IsNullOrWhiteSpace(database.Name) || !File.Exists(metadataFilePath))
+                    {
+                        server.Databases.RemoveAt(i);
+                        continue;
+                    }
+                    i++;
+
+                    InitializeMetadata(database, metadataFilePath);
+                }
             }
         }
-        public string ConnectionString { get; private set; }
-        public InfoBase CurrentDatabase { get; private set; }
-        public void UseServer(string address)
+        private void InitializeMetadata(InfoBase infobase, string metadataFilePath)
         {
-            if (string.IsNullOrWhiteSpace(address)) throw new ArgumentNullException(nameof(address));
+            XMLLoader.Load(metadataFilePath, infobase);
+            //SQLLoader.Load(ConnectionString, infobase); // TODO: optimize loading of SQL metadata time !
+        }
+        public void UseServer(string serverName)
+        {
+            if (string.IsNullOrWhiteSpace(serverName)) throw new ArgumentNullException(nameof(serverName));
+            if (Settings == null) throw new InvalidOperationException(ERROR_SERVICE_IS_NOT_CONFIGURED);
 
+            string catalogPath = ServerCatalogPath(serverName);
+            if (!Directory.Exists(catalogPath)) throw new DirectoryNotFoundException(catalogPath);
+
+            DatabaseServer server = Settings.Servers.Where(s => s.Name == serverName).FirstOrDefault();
+            if (server == null)
+            {
+                server = new DatabaseServer() { Name = serverName };
+                Settings.Servers.Add(server);
+            }
+            
             SqlConnectionStringBuilder csb;
             if (string.IsNullOrWhiteSpace(ConnectionString))
             {
-                csb = new SqlConnectionStringBuilder()
-                {
-                    IntegratedSecurity = true
-                };
+                csb = new SqlConnectionStringBuilder() { IntegratedSecurity = true };
             }
             else
             {
                 csb = new SqlConnectionStringBuilder(ConnectionString);
             }
-            csb.InitialCatalog = address;
+            csb.DataSource = string.IsNullOrWhiteSpace(server.Address) ? server.Name : server.Address;
             ConnectionString = csb.ToString();
+
+            CurrentServer = server;
         }
-        public void UseDatabase(string identifier)
+        public void UseDatabase(string databaseName)
         {
-            if (string.IsNullOrWhiteSpace(ConnectionString)) throw new InvalidOperationException(nameof(ConnectionString));
-            if (string.IsNullOrWhiteSpace(identifier)) throw new ArgumentNullException(nameof(identifier));
+            if (string.IsNullOrWhiteSpace(databaseName)) throw new ArgumentNullException(nameof(databaseName));
+            if (Settings == null) throw new InvalidOperationException(ERROR_SERVICE_IS_NOT_CONFIGURED);
+            if (CurrentServer == null) throw new InvalidOperationException(ERROR_SERVER_IS_NOT_DEFINED);
 
-            InfoBase infobase;
-            string key = CreateCashKey(identifier);
+            string metadataFilePath = MetadataFilePath(CurrentServer.Name, databaseName);
+            if (!File.Exists(metadataFilePath)) throw new DirectoryNotFoundException(metadataFilePath);
 
-            if (Cash.TryGetValue(key, out infobase))
+            InfoBase database = CurrentServer.Databases.Where(db => db.Name == databaseName).FirstOrDefault();
+            if (database == null)
             {
-                CurrentDatabase = infobase;
+                database = new InfoBase() { Name = databaseName };
+                InitializeMetadata(database, metadataFilePath);
+                CurrentServer.Databases.Add(database);
             }
-            else
+            
+            SqlConnectionStringBuilder csb = new SqlConnectionStringBuilder(ConnectionString)
             {
-                SqlConnectionStringBuilder csb = new SqlConnectionStringBuilder(ConnectionString)
-                {
-                    InitialCatalog = identifier
-                };
-                ConnectionString = csb.ToString();
+                InitialCatalog = database.Name
+            };
+            ConnectionString = csb.ToString();
 
-                InitializeMetadata(identifier, out infobase);
-                Cash.Add(key, infobase);
-                CurrentDatabase = infobase;
-            }
+            CurrentDatabase = database;
         }
-        private string CreateCashKey(string databaseIdentifier)
-        {
-            return databaseIdentifier;
-        }
-        private string BuildMetadataFilePath(string identifier)
-        {
-            if (string.IsNullOrWhiteSpace(identifier)) throw new InvalidOperationException(nameof(identifier));
-
-            string metadataFilePath = Path.Combine(MetadataCatalogPath, identifier + ".xml");
-            if (!File.Exists(metadataFilePath))
-            {
-                throw new FileNotFoundException(metadataFilePath);
-            }
-            return metadataFilePath;
-        }
-        private void InitializeMetadata(string identifier, out InfoBase infobase)
-        {
-            if (string.IsNullOrWhiteSpace(identifier)) throw new ArgumentNullException(nameof(identifier));
-
-            infobase = new InfoBase() { Database = identifier };
-            string metadataFilePath = BuildMetadataFilePath(identifier);
-            XMLLoader.Load(metadataFilePath, infobase);
-            SQLLoader.Load(ConnectionString, infobase);
-        }
-
+        
         private bool IsSpecialSchema(string schemaName)
         {
             return (schemaName == "Перечисление"
@@ -191,23 +226,23 @@ namespace OneCSharp.Metadata.Services
         }
         public MetaObject GetMetaObject(string databaseName, string tableIdentifier) // $"[Документ+ПоступлениеТоваровУслуг+Товары]"
         {
-            if (!tableIdentifier.Contains('+')) return null; // this is not 1C format, but schema object (table)
+            if (!tableIdentifier.Contains('+')) return null; // this is not special format, but schema object (table)
 
-            string key;
+            InfoBase database;
             if (string.IsNullOrEmpty(databaseName))
             {
-                key = CreateCashKey(CurrentDatabase.Database);
+                database = CurrentDatabase;
             }
             else
             {
-                key = CreateCashKey(databaseName);
+                database = CurrentServer.Databases.Where(db => db.Name == databaseName).FirstOrDefault();
             }
-            if (!Cash.TryGetValue(key, out InfoBase cash)) return null;
+            if (database == null) return null;
 
             string tableName = tableIdentifier.TrimStart('[').TrimEnd(']');
             string[] identifiers = tableName.Split('+');
 
-            BaseObject bo = cash.BaseObjects.Where(bo => bo.Name == identifiers[0]).FirstOrDefault();
+            BaseObject bo = database.BaseObjects.Where(bo => bo.Name == identifiers[0]).FirstOrDefault();
             if (bo == null) return null;
 
             MetaObject @object = bo.MetaObjects.Where(mo => mo.Name == identifiers[1]).FirstOrDefault();
@@ -257,32 +292,6 @@ namespace OneCSharp.Metadata.Services
                 return tableIdentifier;
             }
             return @object.Table;
-        }
-        public IList<Field> MapColumnIdentifier(InfoBase infoBase, string objectName, string propertyName)
-        {
-            if (!objectName.Contains('+'))return null;
-
-            if (infoBase == null) throw new ArgumentNullException(nameof(infoBase));
-            string key = CreateCashKey(infoBase.Database);
-            if (!Cash.TryGetValue(key, out InfoBase cash)) return null;
-
-            string tableName = objectName.TrimStart('[').TrimEnd(']');
-            string[] identifiers = tableName.Split('+');
-
-            BaseObject bo = cash.BaseObjects.Where(bo => bo.Name == identifiers[0]).FirstOrDefault();
-            if (bo == null) return null;
-            MetaObject mo = bo.MetaObjects.Where(mo => mo.Name == identifiers[1]).FirstOrDefault();
-            if (mo == null) return null;
-            if (identifiers.Length == 3)
-            {
-                mo = mo.MetaObjects.Where(mo => mo.Name == identifiers[2]).FirstOrDefault();
-                if (mo == null) return null;
-            }
-            Property property = mo.Properties.Where(p => p.Name == propertyName).FirstOrDefault();
-            if (property == null) return null;
-            if (property.Fields.Count == 0) return null;
-
-            return property.Fields;
         }
     }
 }

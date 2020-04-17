@@ -8,10 +8,8 @@ namespace OneCSharp.TSQL.Scripting
 {
     public interface IScriptingService
     {
-        void Initialize(string server, IList<string> databases);
-        void UseServer(string server);
-        void UseDatabase(string database);
         string PrepareScript(string script, out IList<ParseError> errors);
+        string ExecuteScript(string script, out IList<ParseError> errors);
     }
     public sealed class ScriptingService : IScriptingService
     {
@@ -26,27 +24,6 @@ namespace OneCSharp.TSQL.Scripting
                 AlignClauseBodies = true
             });
             MetadataService = metadata;
-        }
-        public void Initialize(string server, IList<string> databases)
-        {
-            if (string.IsNullOrWhiteSpace(server)) throw new ArgumentNullException(nameof(server));
-            if (databases == null) throw new ArgumentNullException(nameof(databases));
-            if (databases.Count == 0) throw new InvalidOperationException(nameof(databases));
-
-            MetadataService.UseServer(server);
-            foreach (var db in databases)
-            {
-                MetadataService.UseDatabase(db);
-            }
-            MetadataService.UseDatabase(databases[0]); // set current database !
-        }
-        public void UseServer(string server)
-        {
-            MetadataService.UseServer(server);
-        }
-        public void UseDatabase(string database)
-        {
-            MetadataService.UseDatabase(database);
         }
         public string PrepareScript(string script, out IList<ParseError> errors)
         {

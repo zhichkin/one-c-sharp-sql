@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using OneCSharp.TSQL.Scripting;
+using OneCSharp.Metadata.Services;
+using System;
 
 namespace OneCSharp.Web.Server
 {
@@ -7,26 +8,36 @@ namespace OneCSharp.Web.Server
     [ApiController]
     public class MetadataController : ControllerBase
     {
-        private IScriptingService Scripting { get; }
-        public MetadataController(IScriptingService scripting)
+        private IMetadataService MetadataService { get; }
+        public MetadataController(IMetadataService service)
         {
-            Scripting = scripting;
+            MetadataService = service;
         }
-        // POST: metadata/use
-        [HttpPost("use")] public ActionResult<ExecuteScriptResponse> Post([FromBody] ExecuteScriptRequest request)
+        [HttpGet("use")]
+        public ActionResult Get()
         {
-            ExecuteScriptResponse response = new ExecuteScriptResponse();
-            if (request == null)
+            string serverName = (MetadataService.CurrentServer == null) ? "not defined" : MetadataService.CurrentServer.Name;
+            string databaseName = (MetadataService.CurrentDatabase == null) ? "not defined" : MetadataService.CurrentDatabase.Name;
+            string response = $"Server: {serverName}\nDatabase: {databaseName}";
+            return Content(response);
+        }
+        // POST: metadata/use/{server}/{database}
+        [HttpPost("use/{server}/{database}")]
+        public ActionResult Post([FromRoute] string server, string database)
+        {
+            if (string.IsNullOrWhiteSpace(server)) return NotFound();
+            if (string.IsNullOrWhiteSpace(database)) return NotFound();
+
+            try
             {
-                response.Result = string.Empty;
-                response.Errors.Add(new ParseErrorDescription()
-                {
-                    Line = 0,
-                    Description = "Script is empty"
-                });
-                return BadRequest();
+                MetadataService.UseServer(server);
+                MetadataService.UseDatabase(database);
             }
-            return response;
+            catch (Exception ex)
+            {
+                return NotFound(ex.Message);
+            }
+            return Ok();
         }
     }
 }

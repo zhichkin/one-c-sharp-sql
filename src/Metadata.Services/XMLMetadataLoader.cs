@@ -135,9 +135,9 @@ namespace OneCSharp.Metadata.Services
         }
         private void Read_InfoBase_Element(XmlReader reader, LoadContext context)
         {
-            context.InfoBase.Name = reader.GetAttribute("name");
+            context.InfoBase.Alias = reader.GetAttribute("name");
             //context.InfoBase.Server = reader.GetAttribute("server");
-            context.InfoBase.Database = reader.GetAttribute("database");
+            context.InfoBase.Name = reader.GetAttribute("database");
         }
         private void Close_InfoBase_Element(LoadContext context)
         {
