@@ -11,6 +11,7 @@ namespace OneCSharp.Metadata.Services
     {
         DatabaseServer CurrentServer { get; }
         InfoBase CurrentDatabase { get; }
+        string ConnectionString { get; }
         void Configure(MetadataServiceSettings settings);
         void UseServer(string serverName);
         void UseDatabase(string databaseName);

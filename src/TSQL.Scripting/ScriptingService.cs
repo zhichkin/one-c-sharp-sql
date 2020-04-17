@@ -15,14 +15,16 @@ namespace OneCSharp.TSQL.Scripting
     {
         private TSql150Parser Parser { get; }
         private Sql150ScriptGenerator Generator { get; }
+        private IQueryExecutor ScriptExecutor { get; }
         private IMetadataService MetadataService { get; }
-        public ScriptingService(IMetadataService metadata)
+        public ScriptingService(IMetadataService metadata, IQueryExecutor executor)
         {
             Parser = new TSql150Parser(false, SqlEngineType.Standalone);
             Generator = new Sql150ScriptGenerator(new SqlScriptGeneratorOptions()
             {
                 AlignClauseBodies = true
             });
+            ScriptExecutor = executor;
             MetadataService = metadata;
         }
         public string PrepareScript(string script, out IList<ParseError> errors)
@@ -44,13 +46,8 @@ namespace OneCSharp.TSQL.Scripting
         }
         public string ExecuteScript(string script, out IList<ParseError> errors)
         {
-            // TODO:
-            // 1. prepare script
-            // 2. execute script
-            // 3. serialize result to JSON
-            // 4. return JSON
-            errors = new ParseError[] { };
-            return null;
+            errors = new ParseError[] { }; // TODO
+            return ScriptExecutor.ExecuteJson(script);
         }
     }
 }

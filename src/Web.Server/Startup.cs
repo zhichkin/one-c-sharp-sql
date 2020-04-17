@@ -31,7 +31,16 @@ namespace OneCSharp.Web.Server
         }
         public void ConfigureServices(IServiceCollection services)
         {
+            //services.AddMvc(options =>
+            //{
+            //    options.Filters.Add(new ProducesAttribute("application/json"));
+            //});
+            //services.Configure<MvcOptions>(options =>
+            //{
+            //    options.Filters.Add(new ProducesAttribute("application/json"));
+            //});
             services.AddControllers();
+            services.AddSingleton<IQueryExecutor, QueryExecutor>();
             services.AddSingleton<IMetadataService, MetadataService>();
             services.AddSingleton<IScriptingService, ScriptingService>();
         }
