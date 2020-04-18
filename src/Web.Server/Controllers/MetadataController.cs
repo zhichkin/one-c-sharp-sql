@@ -13,17 +13,15 @@ namespace OneCSharp.Web.Server
         {
             MetadataService = service;
         }
-        [HttpGet("use")]
-        public ActionResult Get()
+        [HttpGet("use")] public ActionResult Get()
         {
             string serverName = (MetadataService.CurrentServer == null) ? "not defined" : MetadataService.CurrentServer.Name;
             string databaseName = (MetadataService.CurrentDatabase == null) ? "not defined" : MetadataService.CurrentDatabase.Name;
-            string response = $"Server: {serverName}\nDatabase: {databaseName}";
+            string response = $"{{ \"Server\": \"{serverName}\", \"Database\": \"{databaseName}\" }}";
             return Content(response);
         }
         // POST: metadata/use/{server}/{database}
-        [HttpPost("use/{server}/{database}")]
-        public ActionResult Post([FromRoute] string server, string database)
+        [HttpPost("use/{server}/{database}")] public ActionResult Post([FromRoute] string server, string database)
         {
             if (string.IsNullOrWhiteSpace(server)) return NotFound();
             if (string.IsNullOrWhiteSpace(database)) return NotFound();
@@ -37,7 +35,8 @@ namespace OneCSharp.Web.Server
             {
                 return NotFound(ex.Message);
             }
-            return Ok();
+            string response = $"{{ \"Server\": \"{server}\", \"Database\": \"{database}\" }}";
+            return Content(response);
         }
     }
 }
