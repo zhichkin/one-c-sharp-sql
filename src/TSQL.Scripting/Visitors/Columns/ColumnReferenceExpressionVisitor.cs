@@ -118,7 +118,10 @@ namespace OneCSharp.TSQL.Scripting
                 if (tableNode is TableNode)
                 {
                     table = (TableNode)tableNode;
-                    property = table.MetaObject.Properties.Where(p => p.Name == propertyName).FirstOrDefault();
+                    if (table.MetaObject != null)
+                    {
+                        property = table.MetaObject.Properties.Where(p => p.Name == propertyName).FirstOrDefault();
+                    }
                 }
                 else if (tableNode is StatementNode)
                 {
@@ -140,10 +143,13 @@ namespace OneCSharp.TSQL.Scripting
                     table = (TableNode)tableNode;
                     if (table.Alias == null)
                     {
-                        property = table.MetaObject.Properties.Where(p => p.Name == propertyName).FirstOrDefault();
-                        if (property != null)
+                        if (table.MetaObject != null)
                         {
-                            return property; //TODO: check if property name is unique for all tables having no alias
+                            property = table.MetaObject.Properties.Where(p => p.Name == propertyName).FirstOrDefault();
+                            if (property != null)
+                            {
+                                return property; //TODO: check if property name is unique for all tables having no alias
+                            }
                         }
                     }
                 }

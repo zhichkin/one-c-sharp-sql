@@ -108,6 +108,8 @@ namespace OneCSharp.Metadata.Services
                         else if (reader.Name == "Namespace")
                         {
                             context.BaseObject = null;
+                            context.MetaObject = null;
+                            context.MetaObjectOwner = null;
                         }
                         else if (reader.Name == "Entities")
                         {

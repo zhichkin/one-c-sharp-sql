@@ -1,0 +1,162 @@
+{
+	"info": {
+		"_postman_id": "7f4ce5de-3650-41b3-9db7-030de1813c15",
+		"name": "OneCSharp Scripting",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/metadata/use",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/metadata/use",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"metadata",
+						"use"
+					]
+				},
+				"description": "Script/Prepare"
+			},
+			"response": []
+		},
+		{
+			"name": "/metadata/use/{server}/{database}",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/metadata/use/zhichkin/trade_11_2_3_159_demo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"metadata",
+						"use",
+						"zhichkin",
+						"trade_11_2_3_159_demo"
+					]
+				},
+				"description": "Script/Prepare"
+			},
+			"response": []
+		},
+		{
+			"name": "/script/translate",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"script\": \"SELECT УТДок.Дата AS ТоргДата, УТДок.Номер AS ТоргНомер, УТЦН.Цена AS ТоргЦена, БПДок.Дата  AS БухДата, БПДок.Номер AS БухНомер, БПЦН.Цена AS БухЦена FROM trade_11_2_3_159_demo.РегистрСведений.ЦеныНоменклатуры AS УТЦН LEFT JOIN accounting_3_0_72_72_demo.РегистрСведений.ЦеныНоменклатуры AS БПЦН ON УТЦН.Регистратор.uuid = БПЦН.Регистратор.uuid AND УТЦН.Регистратор.type = TYPEOF(trade_11_2_3_159_demo.Документ.УстановкаЦенНоменклатуры) AND БПЦН.Регистратор.type = TYPEOF(accounting_3_0_72_72_demo.Документ.УстановкаЦенНоменклатуры) LEFT JOIN trade_11_2_3_159_demo.Документ.УстановкаЦенНоменклатуры AS УТДок ON  УТЦН.Регистратор.uuid = УТДок.Ссылка.uuid AND УТЦН.Регистратор.type = УТДок.Ссылка.type LEFT JOIN accounting_3_0_72_72_demo.Документ.УстановкаЦенНоменклатуры AS БПДок ON  БПЦН.Регистратор.uuid = БПДок.Ссылка.uuid AND БПЦН.Регистратор.type = БПДок.Ссылка.type WHERE NOT БПЦН.Регистратор.uuid IS NULL\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/script/translate",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"script",
+						"translate"
+					]
+				},
+				"description": "Script/Prepare"
+			},
+			"response": []
+		},
+		{
+			"name": "/script/execute",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"script\": \"SELECT TOP 1 ФЛ.Наименование AS ФИО, БСК.НомерСчета AS НомерСчета FROM Справочник.ФизическиеЛица AS ФЛ INNER JOIN Справочник.БанковскиеСчетаКонтрагентов AS БСК ON ФЛ.Ссылка.uuid = БСК.Владелец.uuid AND ФЛ.Ссылка.type = БСК.Владелец.type AND ФЛ.Ссылка.TYPE = БСК.Владелец.TYPE\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/script/execute",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"script",
+						"execute"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
