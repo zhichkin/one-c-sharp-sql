@@ -1,0 +1,973 @@
+{
+"#type": "jcfg:DocumentRef.УстановкаЦенНоменклатуры",
+"#value": "14860174-ee50-11e4-92f1-0050568b35ac"
+}
+
+{
+"#type": "jcfg:DocumentObject.УстановкаЦенНоменклатуры",
+"#value": {
+"Ref": "14860174-ee50-11e4-92f1-0050568b35ac",
+"DeletionMark": false,
+"Date": "2015-04-25T00:00:00",
+"Number": "00-00000022",
+"Posted": true,
+"Ответственный": "a4212b3d-730a-11df-b338-0011955cba6b",
+"Комментарий": "",
+"Согласован": true,
+"ДокументОснование": {
+"#type": "jcfg:DocumentRef.ЗаказПоставщику",
+"#value": "e26bcd56-ee4f-11e4-92f1-0050568b35ac"
+},
+"Статус": "Согласован",
+"Товары": [
+{
+"Номенклатура": "cbcf493f-55bc-11d9-848a-00112f43529a",
+"Характеристика": "00000000-0000-0000-0000-000000000000",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "2bee1998-8d8f-4fbb-be96-640454416e63",
+"Цена": 1200,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "cbcf493f-55bc-11d9-848a-00112f43529a",
+"Характеристика": "00000000-0000-0000-0000-000000000000",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "73867e74-73c8-11df-b338-0011955cba6b",
+"Цена": 1440,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "cbcf493f-55bc-11d9-848a-00112f43529a",
+"Характеристика": "00000000-0000-0000-0000-000000000000",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "73867e75-73c8-11df-b338-0011955cba6b",
+"Цена": 1296,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "cbcf493f-55bc-11d9-848a-00112f43529a",
+"Характеристика": "00000000-0000-0000-0000-000000000000",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "08305aca-7303-11df-b338-0011955cba6b",
+"Цена": 1728,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "cbcf493f-55bc-11d9-848a-00112f43529a",
+"Характеристика": "00000000-0000-0000-0000-000000000000",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "73867e78-73c8-11df-b338-0011955cba6b",
+"Цена": 1260,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "cbcf493f-55bc-11d9-848a-00112f43529a",
+"Характеристика": "00000000-0000-0000-0000-000000000000",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "b203c35a-239e-11e0-aeeb-0015e9b8c48d",
+"Цена": 1368,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "cbcf493f-55bc-11d9-848a-00112f43529a",
+"Характеристика": "00000000-0000-0000-0000-000000000000",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "73867e76-73c8-11df-b338-0011955cba6b",
+"Цена": 1231.2,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "cbcf493f-55bc-11d9-848a-00112f43529a",
+"Характеристика": "00000000-0000-0000-0000-000000000000",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "73867e77-73c8-11df-b338-0011955cba6b",
+"Цена": 1814.4,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "cbcf4945-55bc-11d9-848a-00112f43529a",
+"Характеристика": "00000000-0000-0000-0000-000000000000",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "2bee1998-8d8f-4fbb-be96-640454416e63",
+"Цена": 1400,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "cbcf4945-55bc-11d9-848a-00112f43529a",
+"Характеристика": "00000000-0000-0000-0000-000000000000",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "73867e74-73c8-11df-b338-0011955cba6b",
+"Цена": 1680,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "cbcf4945-55bc-11d9-848a-00112f43529a",
+"Характеристика": "00000000-0000-0000-0000-000000000000",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "73867e75-73c8-11df-b338-0011955cba6b",
+"Цена": 1512,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "cbcf4945-55bc-11d9-848a-00112f43529a",
+"Характеристика": "00000000-0000-0000-0000-000000000000",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "08305aca-7303-11df-b338-0011955cba6b",
+"Цена": 2016,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "cbcf4945-55bc-11d9-848a-00112f43529a",
+"Характеристика": "00000000-0000-0000-0000-000000000000",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "73867e78-73c8-11df-b338-0011955cba6b",
+"Цена": 1470,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "cbcf4945-55bc-11d9-848a-00112f43529a",
+"Характеристика": "00000000-0000-0000-0000-000000000000",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "b203c35a-239e-11e0-aeeb-0015e9b8c48d",
+"Цена": 1596,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "cbcf4945-55bc-11d9-848a-00112f43529a",
+"Характеристика": "00000000-0000-0000-0000-000000000000",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "73867e76-73c8-11df-b338-0011955cba6b",
+"Цена": 1436.4,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "cbcf4945-55bc-11d9-848a-00112f43529a",
+"Характеристика": "00000000-0000-0000-0000-000000000000",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "73867e77-73c8-11df-b338-0011955cba6b",
+"Цена": 2116.8,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "cbcf4957-55bc-11d9-848a-00112f43529a",
+"Характеристика": "00000000-0000-0000-0000-000000000000",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "2bee1998-8d8f-4fbb-be96-640454416e63",
+"Цена": 700,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "cbcf4957-55bc-11d9-848a-00112f43529a",
+"Характеристика": "00000000-0000-0000-0000-000000000000",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "73867e74-73c8-11df-b338-0011955cba6b",
+"Цена": 840,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "cbcf4957-55bc-11d9-848a-00112f43529a",
+"Характеристика": "00000000-0000-0000-0000-000000000000",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "73867e75-73c8-11df-b338-0011955cba6b",
+"Цена": 756,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "cbcf4957-55bc-11d9-848a-00112f43529a",
+"Характеристика": "00000000-0000-0000-0000-000000000000",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "08305aca-7303-11df-b338-0011955cba6b",
+"Цена": 1008,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "cbcf4957-55bc-11d9-848a-00112f43529a",
+"Характеристика": "00000000-0000-0000-0000-000000000000",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "73867e78-73c8-11df-b338-0011955cba6b",
+"Цена": 735,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "cbcf4957-55bc-11d9-848a-00112f43529a",
+"Характеристика": "00000000-0000-0000-0000-000000000000",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "b203c35a-239e-11e0-aeeb-0015e9b8c48d",
+"Цена": 798,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "cbcf4957-55bc-11d9-848a-00112f43529a",
+"Характеристика": "00000000-0000-0000-0000-000000000000",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "73867e76-73c8-11df-b338-0011955cba6b",
+"Цена": 718.2,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "cbcf4957-55bc-11d9-848a-00112f43529a",
+"Характеристика": "00000000-0000-0000-0000-000000000000",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "73867e77-73c8-11df-b338-0011955cba6b",
+"Цена": 1058.4,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "cbcf498f-55bc-11d9-848a-00112f43529a",
+"Характеристика": "00000000-0000-0000-0000-000000000000",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "2bee1998-8d8f-4fbb-be96-640454416e63",
+"Цена": 2100,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "cbcf498f-55bc-11d9-848a-00112f43529a",
+"Характеристика": "00000000-0000-0000-0000-000000000000",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "73867e74-73c8-11df-b338-0011955cba6b",
+"Цена": 2625,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "cbcf498f-55bc-11d9-848a-00112f43529a",
+"Характеристика": "00000000-0000-0000-0000-000000000000",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "73867e75-73c8-11df-b338-0011955cba6b",
+"Цена": 2362.5,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "cbcf498f-55bc-11d9-848a-00112f43529a",
+"Характеристика": "00000000-0000-0000-0000-000000000000",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "08305aca-7303-11df-b338-0011955cba6b",
+"Цена": 3150,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "cbcf498f-55bc-11d9-848a-00112f43529a",
+"Характеристика": "00000000-0000-0000-0000-000000000000",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "73867e78-73c8-11df-b338-0011955cba6b",
+"Цена": 2205,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "cbcf498f-55bc-11d9-848a-00112f43529a",
+"Характеристика": "00000000-0000-0000-0000-000000000000",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "b203c35a-239e-11e0-aeeb-0015e9b8c48d",
+"Цена": 2493.75,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "cbcf498f-55bc-11d9-848a-00112f43529a",
+"Характеристика": "00000000-0000-0000-0000-000000000000",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "73867e76-73c8-11df-b338-0011955cba6b",
+"Цена": 2244.4,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "cbcf498f-55bc-11d9-848a-00112f43529a",
+"Характеристика": "00000000-0000-0000-0000-000000000000",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "73867e77-73c8-11df-b338-0011955cba6b",
+"Цена": 3307.5,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a4-55bc-11d9-848a-00112f43529a",
+"Характеристика": "00000000-0000-0000-0000-000000000000",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "2bee1998-8d8f-4fbb-be96-640454416e63",
+"Цена": 0,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a4-55bc-11d9-848a-00112f43529a",
+"Характеристика": "00000000-0000-0000-0000-000000000000",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "73867e74-73c8-11df-b338-0011955cba6b",
+"Цена": 0,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a4-55bc-11d9-848a-00112f43529a",
+"Характеристика": "00000000-0000-0000-0000-000000000000",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "73867e75-73c8-11df-b338-0011955cba6b",
+"Цена": 0,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a4-55bc-11d9-848a-00112f43529a",
+"Характеристика": "00000000-0000-0000-0000-000000000000",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "08305aca-7303-11df-b338-0011955cba6b",
+"Цена": 0,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a4-55bc-11d9-848a-00112f43529a",
+"Характеристика": "00000000-0000-0000-0000-000000000000",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "73867e78-73c8-11df-b338-0011955cba6b",
+"Цена": 0,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a4-55bc-11d9-848a-00112f43529a",
+"Характеристика": "00000000-0000-0000-0000-000000000000",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "b203c35a-239e-11e0-aeeb-0015e9b8c48d",
+"Цена": 0,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a4-55bc-11d9-848a-00112f43529a",
+"Характеристика": "00000000-0000-0000-0000-000000000000",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "73867e76-73c8-11df-b338-0011955cba6b",
+"Цена": 0,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a4-55bc-11d9-848a-00112f43529a",
+"Характеристика": "00000000-0000-0000-0000-000000000000",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "73867e77-73c8-11df-b338-0011955cba6b",
+"Цена": 0,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a4-55bc-11d9-848a-00112f43529a",
+"Характеристика": "cee2c9d4-328c-11e0-aef8-0015e9b8c48d",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "2bee1998-8d8f-4fbb-be96-640454416e63",
+"Цена": 3400,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a4-55bc-11d9-848a-00112f43529a",
+"Характеристика": "cee2c9d4-328c-11e0-aef8-0015e9b8c48d",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "73867e74-73c8-11df-b338-0011955cba6b",
+"Цена": 4250,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a4-55bc-11d9-848a-00112f43529a",
+"Характеристика": "cee2c9d4-328c-11e0-aef8-0015e9b8c48d",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "73867e75-73c8-11df-b338-0011955cba6b",
+"Цена": 3825,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a4-55bc-11d9-848a-00112f43529a",
+"Характеристика": "cee2c9d4-328c-11e0-aef8-0015e9b8c48d",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "08305aca-7303-11df-b338-0011955cba6b",
+"Цена": 5100,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a4-55bc-11d9-848a-00112f43529a",
+"Характеристика": "cee2c9d4-328c-11e0-aef8-0015e9b8c48d",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "73867e78-73c8-11df-b338-0011955cba6b",
+"Цена": 3570,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a4-55bc-11d9-848a-00112f43529a",
+"Характеристика": "cee2c9d4-328c-11e0-aef8-0015e9b8c48d",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "b203c35a-239e-11e0-aeeb-0015e9b8c48d",
+"Цена": 4037.5,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a4-55bc-11d9-848a-00112f43529a",
+"Характеристика": "cee2c9d4-328c-11e0-aef8-0015e9b8c48d",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "73867e76-73c8-11df-b338-0011955cba6b",
+"Цена": 3633.8,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a4-55bc-11d9-848a-00112f43529a",
+"Характеристика": "cee2c9d4-328c-11e0-aef8-0015e9b8c48d",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "73867e77-73c8-11df-b338-0011955cba6b",
+"Цена": 5355,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a4-55bc-11d9-848a-00112f43529a",
+"Характеристика": "b9c33de3-1fec-11e0-aee7-0015e9b8c48d",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "2bee1998-8d8f-4fbb-be96-640454416e63",
+"Цена": 3400,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a4-55bc-11d9-848a-00112f43529a",
+"Характеристика": "b9c33de3-1fec-11e0-aee7-0015e9b8c48d",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "73867e74-73c8-11df-b338-0011955cba6b",
+"Цена": 4250,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a4-55bc-11d9-848a-00112f43529a",
+"Характеристика": "b9c33de3-1fec-11e0-aee7-0015e9b8c48d",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "73867e75-73c8-11df-b338-0011955cba6b",
+"Цена": 3825,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a4-55bc-11d9-848a-00112f43529a",
+"Характеристика": "b9c33de3-1fec-11e0-aee7-0015e9b8c48d",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "08305aca-7303-11df-b338-0011955cba6b",
+"Цена": 5100,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a4-55bc-11d9-848a-00112f43529a",
+"Характеристика": "b9c33de3-1fec-11e0-aee7-0015e9b8c48d",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "73867e78-73c8-11df-b338-0011955cba6b",
+"Цена": 3570,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a4-55bc-11d9-848a-00112f43529a",
+"Характеристика": "b9c33de3-1fec-11e0-aee7-0015e9b8c48d",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "b203c35a-239e-11e0-aeeb-0015e9b8c48d",
+"Цена": 4037.5,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a4-55bc-11d9-848a-00112f43529a",
+"Характеристика": "b9c33de3-1fec-11e0-aee7-0015e9b8c48d",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "73867e76-73c8-11df-b338-0011955cba6b",
+"Цена": 3633.8,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a4-55bc-11d9-848a-00112f43529a",
+"Характеристика": "b9c33de3-1fec-11e0-aee7-0015e9b8c48d",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "73867e77-73c8-11df-b338-0011955cba6b",
+"Цена": 5355,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a6-55bc-11d9-848a-00112f43529a",
+"Характеристика": "00000000-0000-0000-0000-000000000000",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "2bee1998-8d8f-4fbb-be96-640454416e63",
+"Цена": 0,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a6-55bc-11d9-848a-00112f43529a",
+"Характеристика": "00000000-0000-0000-0000-000000000000",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "73867e74-73c8-11df-b338-0011955cba6b",
+"Цена": 0,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a6-55bc-11d9-848a-00112f43529a",
+"Характеристика": "00000000-0000-0000-0000-000000000000",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "73867e75-73c8-11df-b338-0011955cba6b",
+"Цена": 0,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a6-55bc-11d9-848a-00112f43529a",
+"Характеристика": "00000000-0000-0000-0000-000000000000",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "08305aca-7303-11df-b338-0011955cba6b",
+"Цена": 0,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a6-55bc-11d9-848a-00112f43529a",
+"Характеристика": "00000000-0000-0000-0000-000000000000",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "73867e78-73c8-11df-b338-0011955cba6b",
+"Цена": 0,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a6-55bc-11d9-848a-00112f43529a",
+"Характеристика": "00000000-0000-0000-0000-000000000000",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "b203c35a-239e-11e0-aeeb-0015e9b8c48d",
+"Цена": 0,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a6-55bc-11d9-848a-00112f43529a",
+"Характеристика": "00000000-0000-0000-0000-000000000000",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "73867e76-73c8-11df-b338-0011955cba6b",
+"Цена": 0,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a6-55bc-11d9-848a-00112f43529a",
+"Характеристика": "00000000-0000-0000-0000-000000000000",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "73867e77-73c8-11df-b338-0011955cba6b",
+"Цена": 0,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a6-55bc-11d9-848a-00112f43529a",
+"Характеристика": "e1679cc0-5b65-11e0-af1f-0015e9b8c48d",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "2bee1998-8d8f-4fbb-be96-640454416e63",
+"Цена": 4800,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a6-55bc-11d9-848a-00112f43529a",
+"Характеристика": "e1679cc0-5b65-11e0-af1f-0015e9b8c48d",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "73867e74-73c8-11df-b338-0011955cba6b",
+"Цена": 6000,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a6-55bc-11d9-848a-00112f43529a",
+"Характеристика": "e1679cc0-5b65-11e0-af1f-0015e9b8c48d",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "73867e75-73c8-11df-b338-0011955cba6b",
+"Цена": 5400,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a6-55bc-11d9-848a-00112f43529a",
+"Характеристика": "e1679cc0-5b65-11e0-af1f-0015e9b8c48d",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "08305aca-7303-11df-b338-0011955cba6b",
+"Цена": 7200,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a6-55bc-11d9-848a-00112f43529a",
+"Характеристика": "e1679cc0-5b65-11e0-af1f-0015e9b8c48d",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "73867e78-73c8-11df-b338-0011955cba6b",
+"Цена": 5040,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a6-55bc-11d9-848a-00112f43529a",
+"Характеристика": "e1679cc0-5b65-11e0-af1f-0015e9b8c48d",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "b203c35a-239e-11e0-aeeb-0015e9b8c48d",
+"Цена": 5700,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a6-55bc-11d9-848a-00112f43529a",
+"Характеристика": "e1679cc0-5b65-11e0-af1f-0015e9b8c48d",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "73867e76-73c8-11df-b338-0011955cba6b",
+"Цена": 5130,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a6-55bc-11d9-848a-00112f43529a",
+"Характеристика": "e1679cc0-5b65-11e0-af1f-0015e9b8c48d",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "73867e77-73c8-11df-b338-0011955cba6b",
+"Цена": 7560,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a6-55bc-11d9-848a-00112f43529a",
+"Характеристика": "cee2c9d5-328c-11e0-aef8-0015e9b8c48d",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "2bee1998-8d8f-4fbb-be96-640454416e63",
+"Цена": 4800,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a6-55bc-11d9-848a-00112f43529a",
+"Характеристика": "cee2c9d5-328c-11e0-aef8-0015e9b8c48d",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "73867e74-73c8-11df-b338-0011955cba6b",
+"Цена": 6000,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a6-55bc-11d9-848a-00112f43529a",
+"Характеристика": "cee2c9d5-328c-11e0-aef8-0015e9b8c48d",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "73867e75-73c8-11df-b338-0011955cba6b",
+"Цена": 5400,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a6-55bc-11d9-848a-00112f43529a",
+"Характеристика": "cee2c9d5-328c-11e0-aef8-0015e9b8c48d",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "08305aca-7303-11df-b338-0011955cba6b",
+"Цена": 7200,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a6-55bc-11d9-848a-00112f43529a",
+"Характеристика": "cee2c9d5-328c-11e0-aef8-0015e9b8c48d",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "73867e78-73c8-11df-b338-0011955cba6b",
+"Цена": 5040,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a6-55bc-11d9-848a-00112f43529a",
+"Характеристика": "cee2c9d5-328c-11e0-aef8-0015e9b8c48d",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "b203c35a-239e-11e0-aeeb-0015e9b8c48d",
+"Цена": 5700,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a6-55bc-11d9-848a-00112f43529a",
+"Характеристика": "cee2c9d5-328c-11e0-aef8-0015e9b8c48d",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "73867e76-73c8-11df-b338-0011955cba6b",
+"Цена": 5130,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a6-55bc-11d9-848a-00112f43529a",
+"Характеристика": "cee2c9d5-328c-11e0-aef8-0015e9b8c48d",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "73867e77-73c8-11df-b338-0011955cba6b",
+"Цена": 7560,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a8-55bc-11d9-848a-00112f43529a",
+"Характеристика": "00000000-0000-0000-0000-000000000000",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "2bee1998-8d8f-4fbb-be96-640454416e63",
+"Цена": 0,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a8-55bc-11d9-848a-00112f43529a",
+"Характеристика": "00000000-0000-0000-0000-000000000000",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "73867e74-73c8-11df-b338-0011955cba6b",
+"Цена": 0,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a8-55bc-11d9-848a-00112f43529a",
+"Характеристика": "00000000-0000-0000-0000-000000000000",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "73867e75-73c8-11df-b338-0011955cba6b",
+"Цена": 0,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a8-55bc-11d9-848a-00112f43529a",
+"Характеристика": "00000000-0000-0000-0000-000000000000",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "08305aca-7303-11df-b338-0011955cba6b",
+"Цена": 0,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a8-55bc-11d9-848a-00112f43529a",
+"Характеристика": "00000000-0000-0000-0000-000000000000",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "73867e78-73c8-11df-b338-0011955cba6b",
+"Цена": 0,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a8-55bc-11d9-848a-00112f43529a",
+"Характеристика": "00000000-0000-0000-0000-000000000000",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "b203c35a-239e-11e0-aeeb-0015e9b8c48d",
+"Цена": 0,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a8-55bc-11d9-848a-00112f43529a",
+"Характеристика": "00000000-0000-0000-0000-000000000000",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "73867e76-73c8-11df-b338-0011955cba6b",
+"Цена": 0,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a8-55bc-11d9-848a-00112f43529a",
+"Характеристика": "00000000-0000-0000-0000-000000000000",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "73867e77-73c8-11df-b338-0011955cba6b",
+"Цена": 0,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a8-55bc-11d9-848a-00112f43529a",
+"Характеристика": "cee2c9d7-328c-11e0-aef8-0015e9b8c48d",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "2bee1998-8d8f-4fbb-be96-640454416e63",
+"Цена": 4700,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a8-55bc-11d9-848a-00112f43529a",
+"Характеристика": "cee2c9d7-328c-11e0-aef8-0015e9b8c48d",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "73867e74-73c8-11df-b338-0011955cba6b",
+"Цена": 5875,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a8-55bc-11d9-848a-00112f43529a",
+"Характеристика": "cee2c9d7-328c-11e0-aef8-0015e9b8c48d",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "73867e75-73c8-11df-b338-0011955cba6b",
+"Цена": 5287.5,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a8-55bc-11d9-848a-00112f43529a",
+"Характеристика": "cee2c9d7-328c-11e0-aef8-0015e9b8c48d",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "08305aca-7303-11df-b338-0011955cba6b",
+"Цена": 7050,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a8-55bc-11d9-848a-00112f43529a",
+"Характеристика": "cee2c9d7-328c-11e0-aef8-0015e9b8c48d",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "73867e78-73c8-11df-b338-0011955cba6b",
+"Цена": 4935,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a8-55bc-11d9-848a-00112f43529a",
+"Характеристика": "cee2c9d7-328c-11e0-aef8-0015e9b8c48d",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "b203c35a-239e-11e0-aeeb-0015e9b8c48d",
+"Цена": 5581.25,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a8-55bc-11d9-848a-00112f43529a",
+"Характеристика": "cee2c9d7-328c-11e0-aef8-0015e9b8c48d",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "73867e76-73c8-11df-b338-0011955cba6b",
+"Цена": 5023.1,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a8-55bc-11d9-848a-00112f43529a",
+"Характеристика": "cee2c9d7-328c-11e0-aef8-0015e9b8c48d",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "73867e77-73c8-11df-b338-0011955cba6b",
+"Цена": 7402.5,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a8-55bc-11d9-848a-00112f43529a",
+"Характеристика": "08170e7e-73a3-11df-b338-0011955cba6b",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "2bee1998-8d8f-4fbb-be96-640454416e63",
+"Цена": 4700,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a8-55bc-11d9-848a-00112f43529a",
+"Характеристика": "08170e7e-73a3-11df-b338-0011955cba6b",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "73867e74-73c8-11df-b338-0011955cba6b",
+"Цена": 5875,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a8-55bc-11d9-848a-00112f43529a",
+"Характеристика": "08170e7e-73a3-11df-b338-0011955cba6b",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "73867e75-73c8-11df-b338-0011955cba6b",
+"Цена": 5287.5,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a8-55bc-11d9-848a-00112f43529a",
+"Характеристика": "08170e7e-73a3-11df-b338-0011955cba6b",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "08305aca-7303-11df-b338-0011955cba6b",
+"Цена": 7050,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a8-55bc-11d9-848a-00112f43529a",
+"Характеристика": "08170e7e-73a3-11df-b338-0011955cba6b",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "73867e78-73c8-11df-b338-0011955cba6b",
+"Цена": 4935,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a8-55bc-11d9-848a-00112f43529a",
+"Характеристика": "08170e7e-73a3-11df-b338-0011955cba6b",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "b203c35a-239e-11e0-aeeb-0015e9b8c48d",
+"Цена": 5581.25,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a8-55bc-11d9-848a-00112f43529a",
+"Характеристика": "08170e7e-73a3-11df-b338-0011955cba6b",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "73867e76-73c8-11df-b338-0011955cba6b",
+"Цена": 5023.1,
+"ЦенаИзмененаВручную": false
+},
+{
+"Номенклатура": "dee6e1a8-55bc-11d9-848a-00112f43529a",
+"Характеристика": "08170e7e-73a3-11df-b338-0011955cba6b",
+"Упаковка": "00000000-0000-0000-0000-000000000000",
+"ВидЦены": "73867e77-73c8-11df-b338-0011955cba6b",
+"Цена": 7402.5,
+"ЦенаИзмененаВручную": false
+}
+],
+"ВидыЦен": [
+{
+"ВидЦены": "2bee1998-8d8f-4fbb-be96-640454416e63",
+"НастройкиКомпоновкиДанных": "AQE1AAAAAAAAAO+7v3siIyIsM2M3MmZmNTYtN2UwNC00Mzg1LWJjMDMtOTJkNGJk\r\nNmMzNTFjLA0KezB9DQp9AAAAAOUDAAAAAAAA77u/PD94bWwgdmVyc2lvbj0iMS4w\r\nIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxTZXR0aW5ncyB4bWxucz0iaHR0cDovL3Y4\r\nLjFjLnJ1LzguMS9kYXRhLWNvbXBvc2l0aW9uLXN5c3RlbS9zZXR0aW5ncyIgeG1s\r\nbnM6ZGNzY29yPSJodHRwOi8vdjguMWMucnUvOC4xL2RhdGEtY29tcG9zaXRpb24t\r\nc3lzdGVtL2NvcmUiIHhtbG5zOnN0eWxlPSJodHRwOi8vdjguMWMucnUvOC4xL2Rh\r\ndGEvdWkvc3R5bGUiIHhtbG5zOnN5cz0iaHR0cDovL3Y4LjFjLnJ1LzguMS9kYXRh\r\nL3VpL2ZvbnRzL3N5c3RlbSIgeG1sbnM6djg9Imh0dHA6Ly92OC4xYy5ydS84LjEv\r\nZGF0YS9jb3JlIiB4bWxuczp2OHVpPSJodHRwOi8vdjguMWMucnUvOC4xL2RhdGEv\r\ndWkiIHhtbG5zOndlYj0iaHR0cDovL3Y4LjFjLnJ1LzguMS9kYXRhL3VpL2NvbG9y\r\ncy93ZWIiIHhtbG5zOndpbj0iaHR0cDovL3Y4LjFjLnJ1LzguMS9kYXRhL3VpL2Nv\r\nbG9ycy93aW5kb3dzIiB4bWxuczp4cz0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9Y\r\nTUxTY2hlbWEiIHhtbG5zOnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxT\r\nY2hlbWEtaW5zdGFuY2UiPg0KCTxkYXRhUGFyYW1ldGVycz4NCgkJPGRjc2Nvcjpp\r\ndGVtIHhzaTp0eXBlPSJTZXR0aW5nc1BhcmFtZXRlclZhbHVlIj4NCgkJCTxkY3Nj\r\nb3I6cGFyYW1ldGVyPtCS0YvQsdC+0YDQo9C/0LDQutC+0LLQutC4PC9kY3Njb3I6\r\ncGFyYW1ldGVyPg0KCQkJPGRjc2Nvcjp2YWx1ZSB4c2k6dHlwZT0ieHM6ZGVjaW1h\r\nbCI+MTwvZGNzY29yOnZhbHVlPg0KCQk8L2Rjc2NvcjppdGVtPg0KCQk8ZGNzY29y\r\nOml0ZW0geHNpOnR5cGU9IlNldHRpbmdzUGFyYW1ldGVyVmFsdWUiPg0KCQkJPGRj\r\nc2NvcjpwYXJhbWV0ZXI+0JLRi9Cx0L7RgNCm0LXQvdGLPC9kY3Njb3I6cGFyYW1l\r\ndGVyPg0KCQkJPGRjc2Nvcjp2YWx1ZSB4c2k6dHlwZT0ieHM6ZGVjaW1hbCI+Mzwv\r\nZGNzY29yOnZhbHVlPg0KCQk8L2Rjc2NvcjppdGVtPg0KCTwvZGF0YVBhcmFtZXRl\r\ncnM+DQo8L1NldHRpbmdzPg=="
+},
+{
+"ВидЦены": "73867e74-73c8-11df-b338-0011955cba6b",
+"НастройкиКомпоновкиДанных": "AQE1AAAAAAAAAO+7v3siIyIsM2M3MmZmNTYtN2UwNC00Mzg1LWJjMDMtOTJkNGJk\r\nNmMzNTFjLA0KezB9DQp9AAAAAOUDAAAAAAAA77u/PD94bWwgdmVyc2lvbj0iMS4w\r\nIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxTZXR0aW5ncyB4bWxucz0iaHR0cDovL3Y4\r\nLjFjLnJ1LzguMS9kYXRhLWNvbXBvc2l0aW9uLXN5c3RlbS9zZXR0aW5ncyIgeG1s\r\nbnM6ZGNzY29yPSJodHRwOi8vdjguMWMucnUvOC4xL2RhdGEtY29tcG9zaXRpb24t\r\nc3lzdGVtL2NvcmUiIHhtbG5zOnN0eWxlPSJodHRwOi8vdjguMWMucnUvOC4xL2Rh\r\ndGEvdWkvc3R5bGUiIHhtbG5zOnN5cz0iaHR0cDovL3Y4LjFjLnJ1LzguMS9kYXRh\r\nL3VpL2ZvbnRzL3N5c3RlbSIgeG1sbnM6djg9Imh0dHA6Ly92OC4xYy5ydS84LjEv\r\nZGF0YS9jb3JlIiB4bWxuczp2OHVpPSJodHRwOi8vdjguMWMucnUvOC4xL2RhdGEv\r\ndWkiIHhtbG5zOndlYj0iaHR0cDovL3Y4LjFjLnJ1LzguMS9kYXRhL3VpL2NvbG9y\r\ncy93ZWIiIHhtbG5zOndpbj0iaHR0cDovL3Y4LjFjLnJ1LzguMS9kYXRhL3VpL2Nv\r\nbG9ycy93aW5kb3dzIiB4bWxuczp4cz0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9Y\r\nTUxTY2hlbWEiIHhtbG5zOnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxT\r\nY2hlbWEtaW5zdGFuY2UiPg0KCTxkYXRhUGFyYW1ldGVycz4NCgkJPGRjc2Nvcjpp\r\ndGVtIHhzaTp0eXBlPSJTZXR0aW5nc1BhcmFtZXRlclZhbHVlIj4NCgkJCTxkY3Nj\r\nb3I6cGFyYW1ldGVyPtCS0YvQsdC+0YDQo9C/0LDQutC+0LLQutC4PC9kY3Njb3I6\r\ncGFyYW1ldGVyPg0KCQkJPGRjc2Nvcjp2YWx1ZSB4c2k6dHlwZT0ieHM6ZGVjaW1h\r\nbCI+MTwvZGNzY29yOnZhbHVlPg0KCQk8L2Rjc2NvcjppdGVtPg0KCQk8ZGNzY29y\r\nOml0ZW0geHNpOnR5cGU9IlNldHRpbmdzUGFyYW1ldGVyVmFsdWUiPg0KCQkJPGRj\r\nc2NvcjpwYXJhbWV0ZXI+0JLRi9Cx0L7RgNCm0LXQvdGLPC9kY3Njb3I6cGFyYW1l\r\ndGVyPg0KCQkJPGRjc2Nvcjp2YWx1ZSB4c2k6dHlwZT0ieHM6ZGVjaW1hbCI+Mzwv\r\nZGNzY29yOnZhbHVlPg0KCQk8L2Rjc2NvcjppdGVtPg0KCTwvZGF0YVBhcmFtZXRl\r\ncnM+DQo8L1NldHRpbmdzPg=="
+},
+{
+"ВидЦены": "73867e75-73c8-11df-b338-0011955cba6b",
+"НастройкиКомпоновкиДанных": "AQE1AAAAAAAAAO+7v3siIyIsM2M3MmZmNTYtN2UwNC00Mzg1LWJjMDMtOTJkNGJk\r\nNmMzNTFjLA0KezB9DQp9AAAAACkJAAAAAAAA77u/PD94bWwgdmVyc2lvbj0iMS4w\r\nIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxTZXR0aW5ncyB4bWxucz0iaHR0cDovL3Y4\r\nLjFjLnJ1LzguMS9kYXRhLWNvbXBvc2l0aW9uLXN5c3RlbS9zZXR0aW5ncyIgeG1s\r\nbnM6ZGNzY29yPSJodHRwOi8vdjguMWMucnUvOC4xL2RhdGEtY29tcG9zaXRpb24t\r\nc3lzdGVtL2NvcmUiIHhtbG5zOnN0eWxlPSJodHRwOi8vdjguMWMucnUvOC4xL2Rh\r\ndGEvdWkvc3R5bGUiIHhtbG5zOnN5cz0iaHR0cDovL3Y4LjFjLnJ1LzguMS9kYXRh\r\nL3VpL2ZvbnRzL3N5c3RlbSIgeG1sbnM6djg9Imh0dHA6Ly92OC4xYy5ydS84LjEv\r\nZGF0YS9jb3JlIiB4bWxuczp2OHVpPSJodHRwOi8vdjguMWMucnUvOC4xL2RhdGEv\r\ndWkiIHhtbG5zOndlYj0iaHR0cDovL3Y4LjFjLnJ1LzguMS9kYXRhL3VpL2NvbG9y\r\ncy93ZWIiIHhtbG5zOndpbj0iaHR0cDovL3Y4LjFjLnJ1LzguMS9kYXRhL3VpL2Nv\r\nbG9ycy93aW5kb3dzIiB4bWxuczp4cz0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9Y\r\nTUxTY2hlbWEiIHhtbG5zOnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxT\r\nY2hlbWEtaW5zdGFuY2UiPg0KCTxmaWx0ZXI+DQoJCTxpdGVtIHhzaTp0eXBlPSJG\r\naWx0ZXJJdGVtQ29tcGFyaXNvbiI+DQoJCQk8dXNlPmZhbHNlPC91c2U+DQoJCQk8\r\nbGVmdCB4c2k6dHlwZT0iZGNzY29yOkZpZWxkIj7QktC40LTQndC+0LzQtdC90LrQ\r\nu9Cw0YLRg9GA0Ys8L2xlZnQ+DQoJCQk8Y29tcGFyaXNvblR5cGU+RXF1YWw8L2Nv\r\nbXBhcmlzb25UeXBlPg0KCQk8L2l0ZW0+DQoJCTxpdGVtIHhzaTp0eXBlPSJGaWx0\r\nZXJJdGVtQ29tcGFyaXNvbiI+DQoJCQk8dXNlPmZhbHNlPC91c2U+DQoJCQk8bGVm\r\ndCB4c2k6dHlwZT0iZGNzY29yOkZpZWxkIj7QndC+0LzQtdC90LrQu9Cw0YLRg9GA\r\n0LAu0KDQvtC00LjRgtC10LvRjDwvbGVmdD4NCgkJCTxjb21wYXJpc29uVHlwZT5F\r\ncXVhbDwvY29tcGFyaXNvblR5cGU+DQoJCTwvaXRlbT4NCgkJPGl0ZW0geHNpOnR5\r\ncGU9IkZpbHRlckl0ZW1Db21wYXJpc29uIj4NCgkJCTx1c2U+ZmFsc2U8L3VzZT4N\r\nCgkJCTxsZWZ0IHhzaTp0eXBlPSJkY3Njb3I6RmllbGQiPtCd0L7QvNC10L3QutC7\r\n0LDRgtGD0YDQsC7QotC40L/QndC+0LzQtdC90LrQu9Cw0YLRg9GA0Ys8L2xlZnQ+\r\nDQoJCQk8Y29tcGFyaXNvblR5cGU+RXF1YWw8L2NvbXBhcmlzb25UeXBlPg0KCQk8\r\nL2l0ZW0+DQoJCTxpdGVtIHhzaTp0eXBlPSJGaWx0ZXJJdGVtQ29tcGFyaXNvbiI+\r\nDQoJCQk8dXNlPmZhbHNlPC91c2U+DQoJCQk8bGVmdCB4c2k6dHlwZT0iZGNzY29y\r\nOkZpZWxkIj7QndC+0LzQtdC90LrQu9Cw0YLRg9GA0LAu0KbQtdC90L7QstCw0Y/Q\r\nk9GA0YPQv9C/0LA8L2xlZnQ+DQoJCQk8Y29tcGFyaXNvblR5cGU+RXF1YWw8L2Nv\r\nbXBhcmlzb25UeXBlPg0KCQk8L2l0ZW0+DQoJPC9maWx0ZXI+DQoJPGl0ZW0geHNp\r\nOnR5cGU9IlN0cnVjdHVyZUl0ZW1Hcm91cCI+DQoJCTxncm91cEl0ZW1zPg0KCQkJ\r\nPGl0ZW0geHNpOnR5cGU9Ikdyb3VwSXRlbUZpZWxkIj4NCgkJCQk8ZmllbGQ+0J3Q\r\nvtC80LXQvdC60LvQsNGC0YPRgNCwPC9maWVsZD4NCgkJCQk8Z3JvdXBUeXBlPkl0\r\nZW1zPC9ncm91cFR5cGU+DQoJCQkJPHBlcmlvZEFkZGl0aW9uVHlwZT5Ob25lPC9w\r\nZXJpb2RBZGRpdGlvblR5cGU+DQoJCQkJPHBlcmlvZEFkZGl0aW9uQmVnaW4geHNp\r\nOnR5cGU9InhzOmRhdGVUaW1lIj4wMDAxLTAxLTAxVDAwOjAwOjAwPC9wZXJpb2RB\r\nZGRpdGlvbkJlZ2luPg0KCQkJCTxwZXJpb2RBZGRpdGlvbkVuZCB4c2k6dHlwZT0i\r\neHM6ZGF0ZVRpbWUiPjAwMDEtMDEtMDFUMDA6MDA6MDA8L3BlcmlvZEFkZGl0aW9u\r\nRW5kPg0KCQkJPC9pdGVtPg0KCQkJPGl0ZW0geHNpOnR5cGU9Ikdyb3VwSXRlbUZp\r\nZWxkIj4NCgkJCQk8ZmllbGQ+0KXQsNGA0LDQutGC0LXRgNC40YHRgtC40LrQsDwv\r\nZmllbGQ+DQoJCQkJPGdyb3VwVHlwZT5JdGVtczwvZ3JvdXBUeXBlPg0KCQkJCTxw\r\nZXJpb2RBZGRpdGlvblR5cGU+Tm9uZTwvcGVyaW9kQWRkaXRpb25UeXBlPg0KCQkJ\r\nCTxwZXJpb2RBZGRpdGlvbkJlZ2luIHhzaTp0eXBlPSJ4czpkYXRlVGltZSI+MDAw\r\nMS0wMS0wMVQwMDowMDowMDwvcGVyaW9kQWRkaXRpb25CZWdpbj4NCgkJCQk8cGVy\r\naW9kQWRkaXRpb25FbmQgeHNpOnR5cGU9InhzOmRhdGVUaW1lIj4wMDAxLTAxLTAx\r\nVDAwOjAwOjAwPC9wZXJpb2RBZGRpdGlvbkVuZD4NCgkJCTwvaXRlbT4NCgkJPC9n\r\ncm91cEl0ZW1zPg0KCQk8b3JkZXI+DQoJCQk8aXRlbSB4c2k6dHlwZT0iT3JkZXJJ\r\ndGVtQXV0byIvPg0KCQk8L29yZGVyPg0KCQk8c2VsZWN0aW9uPg0KCQkJPGl0ZW0g\r\neHNpOnR5cGU9IlNlbGVjdGVkSXRlbUF1dG8iLz4NCgkJPC9zZWxlY3Rpb24+DQoJ\r\nPC9pdGVtPg0KPC9TZXR0aW5ncz4="
+},
+{
+"ВидЦены": "08305aca-7303-11df-b338-0011955cba6b",
+"НастройкиКомпоновкиДанных": "AQE1AAAAAAAAAO+7v3siIyIsM2M3MmZmNTYtN2UwNC00Mzg1LWJjMDMtOTJkNGJk\r\nNmMzNTFjLA0KezB9DQp9AAAAACkJAAAAAAAA77u/PD94bWwgdmVyc2lvbj0iMS4w\r\nIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxTZXR0aW5ncyB4bWxucz0iaHR0cDovL3Y4\r\nLjFjLnJ1LzguMS9kYXRhLWNvbXBvc2l0aW9uLXN5c3RlbS9zZXR0aW5ncyIgeG1s\r\nbnM6ZGNzY29yPSJodHRwOi8vdjguMWMucnUvOC4xL2RhdGEtY29tcG9zaXRpb24t\r\nc3lzdGVtL2NvcmUiIHhtbG5zOnN0eWxlPSJodHRwOi8vdjguMWMucnUvOC4xL2Rh\r\ndGEvdWkvc3R5bGUiIHhtbG5zOnN5cz0iaHR0cDovL3Y4LjFjLnJ1LzguMS9kYXRh\r\nL3VpL2ZvbnRzL3N5c3RlbSIgeG1sbnM6djg9Imh0dHA6Ly92OC4xYy5ydS84LjEv\r\nZGF0YS9jb3JlIiB4bWxuczp2OHVpPSJodHRwOi8vdjguMWMucnUvOC4xL2RhdGEv\r\ndWkiIHhtbG5zOndlYj0iaHR0cDovL3Y4LjFjLnJ1LzguMS9kYXRhL3VpL2NvbG9y\r\ncy93ZWIiIHhtbG5zOndpbj0iaHR0cDovL3Y4LjFjLnJ1LzguMS9kYXRhL3VpL2Nv\r\nbG9ycy93aW5kb3dzIiB4bWxuczp4cz0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9Y\r\nTUxTY2hlbWEiIHhtbG5zOnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxT\r\nY2hlbWEtaW5zdGFuY2UiPg0KCTxmaWx0ZXI+DQoJCTxpdGVtIHhzaTp0eXBlPSJG\r\naWx0ZXJJdGVtQ29tcGFyaXNvbiI+DQoJCQk8dXNlPmZhbHNlPC91c2U+DQoJCQk8\r\nbGVmdCB4c2k6dHlwZT0iZGNzY29yOkZpZWxkIj7QktC40LTQndC+0LzQtdC90LrQ\r\nu9Cw0YLRg9GA0Ys8L2xlZnQ+DQoJCQk8Y29tcGFyaXNvblR5cGU+RXF1YWw8L2Nv\r\nbXBhcmlzb25UeXBlPg0KCQk8L2l0ZW0+DQoJCTxpdGVtIHhzaTp0eXBlPSJGaWx0\r\nZXJJdGVtQ29tcGFyaXNvbiI+DQoJCQk8dXNlPmZhbHNlPC91c2U+DQoJCQk8bGVm\r\ndCB4c2k6dHlwZT0iZGNzY29yOkZpZWxkIj7QndC+0LzQtdC90LrQu9Cw0YLRg9GA\r\n0LAu0KDQvtC00LjRgtC10LvRjDwvbGVmdD4NCgkJCTxjb21wYXJpc29uVHlwZT5F\r\ncXVhbDwvY29tcGFyaXNvblR5cGU+DQoJCTwvaXRlbT4NCgkJPGl0ZW0geHNpOnR5\r\ncGU9IkZpbHRlckl0ZW1Db21wYXJpc29uIj4NCgkJCTx1c2U+ZmFsc2U8L3VzZT4N\r\nCgkJCTxsZWZ0IHhzaTp0eXBlPSJkY3Njb3I6RmllbGQiPtCd0L7QvNC10L3QutC7\r\n0LDRgtGD0YDQsC7QotC40L/QndC+0LzQtdC90LrQu9Cw0YLRg9GA0Ys8L2xlZnQ+\r\nDQoJCQk8Y29tcGFyaXNvblR5cGU+RXF1YWw8L2NvbXBhcmlzb25UeXBlPg0KCQk8\r\nL2l0ZW0+DQoJCTxpdGVtIHhzaTp0eXBlPSJGaWx0ZXJJdGVtQ29tcGFyaXNvbiI+\r\nDQoJCQk8dXNlPmZhbHNlPC91c2U+DQoJCQk8bGVmdCB4c2k6dHlwZT0iZGNzY29y\r\nOkZpZWxkIj7QndC+0LzQtdC90LrQu9Cw0YLRg9GA0LAu0KbQtdC90L7QstCw0Y/Q\r\nk9GA0YPQv9C/0LA8L2xlZnQ+DQoJCQk8Y29tcGFyaXNvblR5cGU+RXF1YWw8L2Nv\r\nbXBhcmlzb25UeXBlPg0KCQk8L2l0ZW0+DQoJPC9maWx0ZXI+DQoJPGl0ZW0geHNp\r\nOnR5cGU9IlN0cnVjdHVyZUl0ZW1Hcm91cCI+DQoJCTxncm91cEl0ZW1zPg0KCQkJ\r\nPGl0ZW0geHNpOnR5cGU9Ikdyb3VwSXRlbUZpZWxkIj4NCgkJCQk8ZmllbGQ+0J3Q\r\nvtC80LXQvdC60LvQsNGC0YPRgNCwPC9maWVsZD4NCgkJCQk8Z3JvdXBUeXBlPkl0\r\nZW1zPC9ncm91cFR5cGU+DQoJCQkJPHBlcmlvZEFkZGl0aW9uVHlwZT5Ob25lPC9w\r\nZXJpb2RBZGRpdGlvblR5cGU+DQoJCQkJPHBlcmlvZEFkZGl0aW9uQmVnaW4geHNp\r\nOnR5cGU9InhzOmRhdGVUaW1lIj4wMDAxLTAxLTAxVDAwOjAwOjAwPC9wZXJpb2RB\r\nZGRpdGlvbkJlZ2luPg0KCQkJCTxwZXJpb2RBZGRpdGlvbkVuZCB4c2k6dHlwZT0i\r\neHM6ZGF0ZVRpbWUiPjAwMDEtMDEtMDFUMDA6MDA6MDA8L3BlcmlvZEFkZGl0aW9u\r\nRW5kPg0KCQkJPC9pdGVtPg0KCQkJPGl0ZW0geHNpOnR5cGU9Ikdyb3VwSXRlbUZp\r\nZWxkIj4NCgkJCQk8ZmllbGQ+0KXQsNGA0LDQutGC0LXRgNC40YHRgtC40LrQsDwv\r\nZmllbGQ+DQoJCQkJPGdyb3VwVHlwZT5JdGVtczwvZ3JvdXBUeXBlPg0KCQkJCTxw\r\nZXJpb2RBZGRpdGlvblR5cGU+Tm9uZTwvcGVyaW9kQWRkaXRpb25UeXBlPg0KCQkJ\r\nCTxwZXJpb2RBZGRpdGlvbkJlZ2luIHhzaTp0eXBlPSJ4czpkYXRlVGltZSI+MDAw\r\nMS0wMS0wMVQwMDowMDowMDwvcGVyaW9kQWRkaXRpb25CZWdpbj4NCgkJCQk8cGVy\r\naW9kQWRkaXRpb25FbmQgeHNpOnR5cGU9InhzOmRhdGVUaW1lIj4wMDAxLTAxLTAx\r\nVDAwOjAwOjAwPC9wZXJpb2RBZGRpdGlvbkVuZD4NCgkJCTwvaXRlbT4NCgkJPC9n\r\ncm91cEl0ZW1zPg0KCQk8b3JkZXI+DQoJCQk8aXRlbSB4c2k6dHlwZT0iT3JkZXJJ\r\ndGVtQXV0byIvPg0KCQk8L29yZGVyPg0KCQk8c2VsZWN0aW9uPg0KCQkJPGl0ZW0g\r\neHNpOnR5cGU9IlNlbGVjdGVkSXRlbUF1dG8iLz4NCgkJPC9zZWxlY3Rpb24+DQoJ\r\nPC9pdGVtPg0KPC9TZXR0aW5ncz4="
+},
+{
+"ВидЦены": "73867e78-73c8-11df-b338-0011955cba6b",
+"НастройкиКомпоновкиДанных": "AQE1AAAAAAAAAO+7v3siIyIsM2M3MmZmNTYtN2UwNC00Mzg1LWJjMDMtOTJkNGJk\r\nNmMzNTFjLA0KezB9DQp9AAAAACkJAAAAAAAA77u/PD94bWwgdmVyc2lvbj0iMS4w\r\nIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxTZXR0aW5ncyB4bWxucz0iaHR0cDovL3Y4\r\nLjFjLnJ1LzguMS9kYXRhLWNvbXBvc2l0aW9uLXN5c3RlbS9zZXR0aW5ncyIgeG1s\r\nbnM6ZGNzY29yPSJodHRwOi8vdjguMWMucnUvOC4xL2RhdGEtY29tcG9zaXRpb24t\r\nc3lzdGVtL2NvcmUiIHhtbG5zOnN0eWxlPSJodHRwOi8vdjguMWMucnUvOC4xL2Rh\r\ndGEvdWkvc3R5bGUiIHhtbG5zOnN5cz0iaHR0cDovL3Y4LjFjLnJ1LzguMS9kYXRh\r\nL3VpL2ZvbnRzL3N5c3RlbSIgeG1sbnM6djg9Imh0dHA6Ly92OC4xYy5ydS84LjEv\r\nZGF0YS9jb3JlIiB4bWxuczp2OHVpPSJodHRwOi8vdjguMWMucnUvOC4xL2RhdGEv\r\ndWkiIHhtbG5zOndlYj0iaHR0cDovL3Y4LjFjLnJ1LzguMS9kYXRhL3VpL2NvbG9y\r\ncy93ZWIiIHhtbG5zOndpbj0iaHR0cDovL3Y4LjFjLnJ1LzguMS9kYXRhL3VpL2Nv\r\nbG9ycy93aW5kb3dzIiB4bWxuczp4cz0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9Y\r\nTUxTY2hlbWEiIHhtbG5zOnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxT\r\nY2hlbWEtaW5zdGFuY2UiPg0KCTxmaWx0ZXI+DQoJCTxpdGVtIHhzaTp0eXBlPSJG\r\naWx0ZXJJdGVtQ29tcGFyaXNvbiI+DQoJCQk8dXNlPmZhbHNlPC91c2U+DQoJCQk8\r\nbGVmdCB4c2k6dHlwZT0iZGNzY29yOkZpZWxkIj7QktC40LTQndC+0LzQtdC90LrQ\r\nu9Cw0YLRg9GA0Ys8L2xlZnQ+DQoJCQk8Y29tcGFyaXNvblR5cGU+RXF1YWw8L2Nv\r\nbXBhcmlzb25UeXBlPg0KCQk8L2l0ZW0+DQoJCTxpdGVtIHhzaTp0eXBlPSJGaWx0\r\nZXJJdGVtQ29tcGFyaXNvbiI+DQoJCQk8dXNlPmZhbHNlPC91c2U+DQoJCQk8bGVm\r\ndCB4c2k6dHlwZT0iZGNzY29yOkZpZWxkIj7QndC+0LzQtdC90LrQu9Cw0YLRg9GA\r\n0LAu0KDQvtC00LjRgtC10LvRjDwvbGVmdD4NCgkJCTxjb21wYXJpc29uVHlwZT5F\r\ncXVhbDwvY29tcGFyaXNvblR5cGU+DQoJCTwvaXRlbT4NCgkJPGl0ZW0geHNpOnR5\r\ncGU9IkZpbHRlckl0ZW1Db21wYXJpc29uIj4NCgkJCTx1c2U+ZmFsc2U8L3VzZT4N\r\nCgkJCTxsZWZ0IHhzaTp0eXBlPSJkY3Njb3I6RmllbGQiPtCd0L7QvNC10L3QutC7\r\n0LDRgtGD0YDQsC7QotC40L/QndC+0LzQtdC90LrQu9Cw0YLRg9GA0Ys8L2xlZnQ+\r\nDQoJCQk8Y29tcGFyaXNvblR5cGU+RXF1YWw8L2NvbXBhcmlzb25UeXBlPg0KCQk8\r\nL2l0ZW0+DQoJCTxpdGVtIHhzaTp0eXBlPSJGaWx0ZXJJdGVtQ29tcGFyaXNvbiI+\r\nDQoJCQk8dXNlPmZhbHNlPC91c2U+DQoJCQk8bGVmdCB4c2k6dHlwZT0iZGNzY29y\r\nOkZpZWxkIj7QndC+0LzQtdC90LrQu9Cw0YLRg9GA0LAu0KbQtdC90L7QstCw0Y/Q\r\nk9GA0YPQv9C/0LA8L2xlZnQ+DQoJCQk8Y29tcGFyaXNvblR5cGU+RXF1YWw8L2Nv\r\nbXBhcmlzb25UeXBlPg0KCQk8L2l0ZW0+DQoJPC9maWx0ZXI+DQoJPGl0ZW0geHNp\r\nOnR5cGU9IlN0cnVjdHVyZUl0ZW1Hcm91cCI+DQoJCTxncm91cEl0ZW1zPg0KCQkJ\r\nPGl0ZW0geHNpOnR5cGU9Ikdyb3VwSXRlbUZpZWxkIj4NCgkJCQk8ZmllbGQ+0J3Q\r\nvtC80LXQvdC60LvQsNGC0YPRgNCwPC9maWVsZD4NCgkJCQk8Z3JvdXBUeXBlPkl0\r\nZW1zPC9ncm91cFR5cGU+DQoJCQkJPHBlcmlvZEFkZGl0aW9uVHlwZT5Ob25lPC9w\r\nZXJpb2RBZGRpdGlvblR5cGU+DQoJCQkJPHBlcmlvZEFkZGl0aW9uQmVnaW4geHNp\r\nOnR5cGU9InhzOmRhdGVUaW1lIj4wMDAxLTAxLTAxVDAwOjAwOjAwPC9wZXJpb2RB\r\nZGRpdGlvbkJlZ2luPg0KCQkJCTxwZXJpb2RBZGRpdGlvbkVuZCB4c2k6dHlwZT0i\r\neHM6ZGF0ZVRpbWUiPjAwMDEtMDEtMDFUMDA6MDA6MDA8L3BlcmlvZEFkZGl0aW9u\r\nRW5kPg0KCQkJPC9pdGVtPg0KCQkJPGl0ZW0geHNpOnR5cGU9Ikdyb3VwSXRlbUZp\r\nZWxkIj4NCgkJCQk8ZmllbGQ+0KXQsNGA0LDQutGC0LXRgNC40YHRgtC40LrQsDwv\r\nZmllbGQ+DQoJCQkJPGdyb3VwVHlwZT5JdGVtczwvZ3JvdXBUeXBlPg0KCQkJCTxw\r\nZXJpb2RBZGRpdGlvblR5cGU+Tm9uZTwvcGVyaW9kQWRkaXRpb25UeXBlPg0KCQkJ\r\nCTxwZXJpb2RBZGRpdGlvbkJlZ2luIHhzaTp0eXBlPSJ4czpkYXRlVGltZSI+MDAw\r\nMS0wMS0wMVQwMDowMDowMDwvcGVyaW9kQWRkaXRpb25CZWdpbj4NCgkJCQk8cGVy\r\naW9kQWRkaXRpb25FbmQgeHNpOnR5cGU9InhzOmRhdGVUaW1lIj4wMDAxLTAxLTAx\r\nVDAwOjAwOjAwPC9wZXJpb2RBZGRpdGlvbkVuZD4NCgkJCTwvaXRlbT4NCgkJPC9n\r\ncm91cEl0ZW1zPg0KCQk8b3JkZXI+DQoJCQk8aXRlbSB4c2k6dHlwZT0iT3JkZXJJ\r\ndGVtQXV0byIvPg0KCQk8L29yZGVyPg0KCQk8c2VsZWN0aW9uPg0KCQkJPGl0ZW0g\r\neHNpOnR5cGU9IlNlbGVjdGVkSXRlbUF1dG8iLz4NCgkJPC9zZWxlY3Rpb24+DQoJ\r\nPC9pdGVtPg0KPC9TZXR0aW5ncz4="
+},
+{
+"ВидЦены": "b203c35a-239e-11e0-aeeb-0015e9b8c48d",
+"НастройкиКомпоновкиДанных": "AQE1AAAAAAAAAO+7v3siIyIsM2M3MmZmNTYtN2UwNC00Mzg1LWJjMDMtOTJkNGJk\r\nNmMzNTFjLA0KezB9DQp9AAAAACkJAAAAAAAA77u/PD94bWwgdmVyc2lvbj0iMS4w\r\nIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxTZXR0aW5ncyB4bWxucz0iaHR0cDovL3Y4\r\nLjFjLnJ1LzguMS9kYXRhLWNvbXBvc2l0aW9uLXN5c3RlbS9zZXR0aW5ncyIgeG1s\r\nbnM6ZGNzY29yPSJodHRwOi8vdjguMWMucnUvOC4xL2RhdGEtY29tcG9zaXRpb24t\r\nc3lzdGVtL2NvcmUiIHhtbG5zOnN0eWxlPSJodHRwOi8vdjguMWMucnUvOC4xL2Rh\r\ndGEvdWkvc3R5bGUiIHhtbG5zOnN5cz0iaHR0cDovL3Y4LjFjLnJ1LzguMS9kYXRh\r\nL3VpL2ZvbnRzL3N5c3RlbSIgeG1sbnM6djg9Imh0dHA6Ly92OC4xYy5ydS84LjEv\r\nZGF0YS9jb3JlIiB4bWxuczp2OHVpPSJodHRwOi8vdjguMWMucnUvOC4xL2RhdGEv\r\ndWkiIHhtbG5zOndlYj0iaHR0cDovL3Y4LjFjLnJ1LzguMS9kYXRhL3VpL2NvbG9y\r\ncy93ZWIiIHhtbG5zOndpbj0iaHR0cDovL3Y4LjFjLnJ1LzguMS9kYXRhL3VpL2Nv\r\nbG9ycy93aW5kb3dzIiB4bWxuczp4cz0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9Y\r\nTUxTY2hlbWEiIHhtbG5zOnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxT\r\nY2hlbWEtaW5zdGFuY2UiPg0KCTxmaWx0ZXI+DQoJCTxpdGVtIHhzaTp0eXBlPSJG\r\naWx0ZXJJdGVtQ29tcGFyaXNvbiI+DQoJCQk8dXNlPmZhbHNlPC91c2U+DQoJCQk8\r\nbGVmdCB4c2k6dHlwZT0iZGNzY29yOkZpZWxkIj7QktC40LTQndC+0LzQtdC90LrQ\r\nu9Cw0YLRg9GA0Ys8L2xlZnQ+DQoJCQk8Y29tcGFyaXNvblR5cGU+RXF1YWw8L2Nv\r\nbXBhcmlzb25UeXBlPg0KCQk8L2l0ZW0+DQoJCTxpdGVtIHhzaTp0eXBlPSJGaWx0\r\nZXJJdGVtQ29tcGFyaXNvbiI+DQoJCQk8dXNlPmZhbHNlPC91c2U+DQoJCQk8bGVm\r\ndCB4c2k6dHlwZT0iZGNzY29yOkZpZWxkIj7QndC+0LzQtdC90LrQu9Cw0YLRg9GA\r\n0LAu0KDQvtC00LjRgtC10LvRjDwvbGVmdD4NCgkJCTxjb21wYXJpc29uVHlwZT5F\r\ncXVhbDwvY29tcGFyaXNvblR5cGU+DQoJCTwvaXRlbT4NCgkJPGl0ZW0geHNpOnR5\r\ncGU9IkZpbHRlckl0ZW1Db21wYXJpc29uIj4NCgkJCTx1c2U+ZmFsc2U8L3VzZT4N\r\nCgkJCTxsZWZ0IHhzaTp0eXBlPSJkY3Njb3I6RmllbGQiPtCd0L7QvNC10L3QutC7\r\n0LDRgtGD0YDQsC7QotC40L/QndC+0LzQtdC90LrQu9Cw0YLRg9GA0Ys8L2xlZnQ+\r\nDQoJCQk8Y29tcGFyaXNvblR5cGU+RXF1YWw8L2NvbXBhcmlzb25UeXBlPg0KCQk8\r\nL2l0ZW0+DQoJCTxpdGVtIHhzaTp0eXBlPSJGaWx0ZXJJdGVtQ29tcGFyaXNvbiI+\r\nDQoJCQk8dXNlPmZhbHNlPC91c2U+DQoJCQk8bGVmdCB4c2k6dHlwZT0iZGNzY29y\r\nOkZpZWxkIj7QndC+0LzQtdC90LrQu9Cw0YLRg9GA0LAu0KbQtdC90L7QstCw0Y/Q\r\nk9GA0YPQv9C/0LA8L2xlZnQ+DQoJCQk8Y29tcGFyaXNvblR5cGU+RXF1YWw8L2Nv\r\nbXBhcmlzb25UeXBlPg0KCQk8L2l0ZW0+DQoJPC9maWx0ZXI+DQoJPGl0ZW0geHNp\r\nOnR5cGU9IlN0cnVjdHVyZUl0ZW1Hcm91cCI+DQoJCTxncm91cEl0ZW1zPg0KCQkJ\r\nPGl0ZW0geHNpOnR5cGU9Ikdyb3VwSXRlbUZpZWxkIj4NCgkJCQk8ZmllbGQ+0J3Q\r\nvtC80LXQvdC60LvQsNGC0YPRgNCwPC9maWVsZD4NCgkJCQk8Z3JvdXBUeXBlPkl0\r\nZW1zPC9ncm91cFR5cGU+DQoJCQkJPHBlcmlvZEFkZGl0aW9uVHlwZT5Ob25lPC9w\r\nZXJpb2RBZGRpdGlvblR5cGU+DQoJCQkJPHBlcmlvZEFkZGl0aW9uQmVnaW4geHNp\r\nOnR5cGU9InhzOmRhdGVUaW1lIj4wMDAxLTAxLTAxVDAwOjAwOjAwPC9wZXJpb2RB\r\nZGRpdGlvbkJlZ2luPg0KCQkJCTxwZXJpb2RBZGRpdGlvbkVuZCB4c2k6dHlwZT0i\r\neHM6ZGF0ZVRpbWUiPjAwMDEtMDEtMDFUMDA6MDA6MDA8L3BlcmlvZEFkZGl0aW9u\r\nRW5kPg0KCQkJPC9pdGVtPg0KCQkJPGl0ZW0geHNpOnR5cGU9Ikdyb3VwSXRlbUZp\r\nZWxkIj4NCgkJCQk8ZmllbGQ+0KXQsNGA0LDQutGC0LXRgNC40YHRgtC40LrQsDwv\r\nZmllbGQ+DQoJCQkJPGdyb3VwVHlwZT5JdGVtczwvZ3JvdXBUeXBlPg0KCQkJCTxw\r\nZXJpb2RBZGRpdGlvblR5cGU+Tm9uZTwvcGVyaW9kQWRkaXRpb25UeXBlPg0KCQkJ\r\nCTxwZXJpb2RBZGRpdGlvbkJlZ2luIHhzaTp0eXBlPSJ4czpkYXRlVGltZSI+MDAw\r\nMS0wMS0wMVQwMDowMDowMDwvcGVyaW9kQWRkaXRpb25CZWdpbj4NCgkJCQk8cGVy\r\naW9kQWRkaXRpb25FbmQgeHNpOnR5cGU9InhzOmRhdGVUaW1lIj4wMDAxLTAxLTAx\r\nVDAwOjAwOjAwPC9wZXJpb2RBZGRpdGlvbkVuZD4NCgkJCTwvaXRlbT4NCgkJPC9n\r\ncm91cEl0ZW1zPg0KCQk8b3JkZXI+DQoJCQk8aXRlbSB4c2k6dHlwZT0iT3JkZXJJ\r\ndGVtQXV0byIvPg0KCQk8L29yZGVyPg0KCQk8c2VsZWN0aW9uPg0KCQkJPGl0ZW0g\r\neHNpOnR5cGU9IlNlbGVjdGVkSXRlbUF1dG8iLz4NCgkJPC9zZWxlY3Rpb24+DQoJ\r\nPC9pdGVtPg0KPC9TZXR0aW5ncz4="
+},
+{
+"ВидЦены": "73867e76-73c8-11df-b338-0011955cba6b",
+"НастройкиКомпоновкиДанных": "AQE1AAAAAAAAAO+7v3siIyIsM2M3MmZmNTYtN2UwNC00Mzg1LWJjMDMtOTJkNGJk\r\nNmMzNTFjLA0KezB9DQp9AAAAACkJAAAAAAAA77u/PD94bWwgdmVyc2lvbj0iMS4w\r\nIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxTZXR0aW5ncyB4bWxucz0iaHR0cDovL3Y4\r\nLjFjLnJ1LzguMS9kYXRhLWNvbXBvc2l0aW9uLXN5c3RlbS9zZXR0aW5ncyIgeG1s\r\nbnM6ZGNzY29yPSJodHRwOi8vdjguMWMucnUvOC4xL2RhdGEtY29tcG9zaXRpb24t\r\nc3lzdGVtL2NvcmUiIHhtbG5zOnN0eWxlPSJodHRwOi8vdjguMWMucnUvOC4xL2Rh\r\ndGEvdWkvc3R5bGUiIHhtbG5zOnN5cz0iaHR0cDovL3Y4LjFjLnJ1LzguMS9kYXRh\r\nL3VpL2ZvbnRzL3N5c3RlbSIgeG1sbnM6djg9Imh0dHA6Ly92OC4xYy5ydS84LjEv\r\nZGF0YS9jb3JlIiB4bWxuczp2OHVpPSJodHRwOi8vdjguMWMucnUvOC4xL2RhdGEv\r\ndWkiIHhtbG5zOndlYj0iaHR0cDovL3Y4LjFjLnJ1LzguMS9kYXRhL3VpL2NvbG9y\r\ncy93ZWIiIHhtbG5zOndpbj0iaHR0cDovL3Y4LjFjLnJ1LzguMS9kYXRhL3VpL2Nv\r\nbG9ycy93aW5kb3dzIiB4bWxuczp4cz0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9Y\r\nTUxTY2hlbWEiIHhtbG5zOnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxT\r\nY2hlbWEtaW5zdGFuY2UiPg0KCTxmaWx0ZXI+DQoJCTxpdGVtIHhzaTp0eXBlPSJG\r\naWx0ZXJJdGVtQ29tcGFyaXNvbiI+DQoJCQk8dXNlPmZhbHNlPC91c2U+DQoJCQk8\r\nbGVmdCB4c2k6dHlwZT0iZGNzY29yOkZpZWxkIj7QktC40LTQndC+0LzQtdC90LrQ\r\nu9Cw0YLRg9GA0Ys8L2xlZnQ+DQoJCQk8Y29tcGFyaXNvblR5cGU+RXF1YWw8L2Nv\r\nbXBhcmlzb25UeXBlPg0KCQk8L2l0ZW0+DQoJCTxpdGVtIHhzaTp0eXBlPSJGaWx0\r\nZXJJdGVtQ29tcGFyaXNvbiI+DQoJCQk8dXNlPmZhbHNlPC91c2U+DQoJCQk8bGVm\r\ndCB4c2k6dHlwZT0iZGNzY29yOkZpZWxkIj7QndC+0LzQtdC90LrQu9Cw0YLRg9GA\r\n0LAu0KDQvtC00LjRgtC10LvRjDwvbGVmdD4NCgkJCTxjb21wYXJpc29uVHlwZT5F\r\ncXVhbDwvY29tcGFyaXNvblR5cGU+DQoJCTwvaXRlbT4NCgkJPGl0ZW0geHNpOnR5\r\ncGU9IkZpbHRlckl0ZW1Db21wYXJpc29uIj4NCgkJCTx1c2U+ZmFsc2U8L3VzZT4N\r\nCgkJCTxsZWZ0IHhzaTp0eXBlPSJkY3Njb3I6RmllbGQiPtCd0L7QvNC10L3QutC7\r\n0LDRgtGD0YDQsC7QotC40L/QndC+0LzQtdC90LrQu9Cw0YLRg9GA0Ys8L2xlZnQ+\r\nDQoJCQk8Y29tcGFyaXNvblR5cGU+RXF1YWw8L2NvbXBhcmlzb25UeXBlPg0KCQk8\r\nL2l0ZW0+DQoJCTxpdGVtIHhzaTp0eXBlPSJGaWx0ZXJJdGVtQ29tcGFyaXNvbiI+\r\nDQoJCQk8dXNlPmZhbHNlPC91c2U+DQoJCQk8bGVmdCB4c2k6dHlwZT0iZGNzY29y\r\nOkZpZWxkIj7QndC+0LzQtdC90LrQu9Cw0YLRg9GA0LAu0KbQtdC90L7QstCw0Y/Q\r\nk9GA0YPQv9C/0LA8L2xlZnQ+DQoJCQk8Y29tcGFyaXNvblR5cGU+RXF1YWw8L2Nv\r\nbXBhcmlzb25UeXBlPg0KCQk8L2l0ZW0+DQoJPC9maWx0ZXI+DQoJPGl0ZW0geHNp\r\nOnR5cGU9IlN0cnVjdHVyZUl0ZW1Hcm91cCI+DQoJCTxncm91cEl0ZW1zPg0KCQkJ\r\nPGl0ZW0geHNpOnR5cGU9Ikdyb3VwSXRlbUZpZWxkIj4NCgkJCQk8ZmllbGQ+0J3Q\r\nvtC80LXQvdC60LvQsNGC0YPRgNCwPC9maWVsZD4NCgkJCQk8Z3JvdXBUeXBlPkl0\r\nZW1zPC9ncm91cFR5cGU+DQoJCQkJPHBlcmlvZEFkZGl0aW9uVHlwZT5Ob25lPC9w\r\nZXJpb2RBZGRpdGlvblR5cGU+DQoJCQkJPHBlcmlvZEFkZGl0aW9uQmVnaW4geHNp\r\nOnR5cGU9InhzOmRhdGVUaW1lIj4wMDAxLTAxLTAxVDAwOjAwOjAwPC9wZXJpb2RB\r\nZGRpdGlvbkJlZ2luPg0KCQkJCTxwZXJpb2RBZGRpdGlvbkVuZCB4c2k6dHlwZT0i\r\neHM6ZGF0ZVRpbWUiPjAwMDEtMDEtMDFUMDA6MDA6MDA8L3BlcmlvZEFkZGl0aW9u\r\nRW5kPg0KCQkJPC9pdGVtPg0KCQkJPGl0ZW0geHNpOnR5cGU9Ikdyb3VwSXRlbUZp\r\nZWxkIj4NCgkJCQk8ZmllbGQ+0KXQsNGA0LDQutGC0LXRgNC40YHRgtC40LrQsDwv\r\nZmllbGQ+DQoJCQkJPGdyb3VwVHlwZT5JdGVtczwvZ3JvdXBUeXBlPg0KCQkJCTxw\r\nZXJpb2RBZGRpdGlvblR5cGU+Tm9uZTwvcGVyaW9kQWRkaXRpb25UeXBlPg0KCQkJ\r\nCTxwZXJpb2RBZGRpdGlvbkJlZ2luIHhzaTp0eXBlPSJ4czpkYXRlVGltZSI+MDAw\r\nMS0wMS0wMVQwMDowMDowMDwvcGVyaW9kQWRkaXRpb25CZWdpbj4NCgkJCQk8cGVy\r\naW9kQWRkaXRpb25FbmQgeHNpOnR5cGU9InhzOmRhdGVUaW1lIj4wMDAxLTAxLTAx\r\nVDAwOjAwOjAwPC9wZXJpb2RBZGRpdGlvbkVuZD4NCgkJCTwvaXRlbT4NCgkJPC9n\r\ncm91cEl0ZW1zPg0KCQk8b3JkZXI+DQoJCQk8aXRlbSB4c2k6dHlwZT0iT3JkZXJJ\r\ndGVtQXV0byIvPg0KCQk8L29yZGVyPg0KCQk8c2VsZWN0aW9uPg0KCQkJPGl0ZW0g\r\neHNpOnR5cGU9IlNlbGVjdGVkSXRlbUF1dG8iLz4NCgkJPC9zZWxlY3Rpb24+DQoJ\r\nPC9pdGVtPg0KPC9TZXR0aW5ncz4="
+},
+{
+"ВидЦены": "73867e77-73c8-11df-b338-0011955cba6b",
+"НастройкиКомпоновкиДанных": "AQEIAAAAAAAAAO+7v3siVSJ9"
+}
+],
+"НаборыЗначенийДоступа": [
+{
+"НомерНабора": 1,
+"ЗначениеДоступа": {
+"#type": "jcfg:CatalogRef.ВидыЦен",
+"#value": "08305aca-7303-11df-b338-0011955cba6b"
+},
+"Уточнение": "00000000-0000-0000-0000-000000000000",
+"Чтение": true,
+"Изменение": true
+},
+{
+"НомерНабора": 1,
+"ЗначениеДоступа": {
+"#type": "jcfg:CatalogRef.ВидыЦен",
+"#value": "2bee1998-8d8f-4fbb-be96-640454416e63"
+},
+"Уточнение": "00000000-0000-0000-0000-000000000000",
+"Чтение": false,
+"Изменение": false
+},
+{
+"НомерНабора": 1,
+"ЗначениеДоступа": {
+"#type": "jcfg:CatalogRef.ВидыЦен",
+"#value": "73867e74-73c8-11df-b338-0011955cba6b"
+},
+"Уточнение": "00000000-0000-0000-0000-000000000000",
+"Чтение": false,
+"Изменение": false
+},
+{
+"НомерНабора": 1,
+"ЗначениеДоступа": {
+"#type": "jcfg:CatalogRef.ВидыЦен",
+"#value": "73867e75-73c8-11df-b338-0011955cba6b"
+},
+"Уточнение": "00000000-0000-0000-0000-000000000000",
+"Чтение": false,
+"Изменение": false
+},
+{
+"НомерНабора": 1,
+"ЗначениеДоступа": {
+"#type": "jcfg:CatalogRef.ВидыЦен",
+"#value": "73867e76-73c8-11df-b338-0011955cba6b"
+},
+"Уточнение": "00000000-0000-0000-0000-000000000000",
+"Чтение": false,
+"Изменение": false
+},
+{
+"НомерНабора": 1,
+"ЗначениеДоступа": {
+"#type": "jcfg:CatalogRef.ВидыЦен",
+"#value": "73867e77-73c8-11df-b338-0011955cba6b"
+},
+"Уточнение": "00000000-0000-0000-0000-000000000000",
+"Чтение": false,
+"Изменение": false
+},
+{
+"НомерНабора": 1,
+"ЗначениеДоступа": {
+"#type": "jcfg:CatalogRef.ВидыЦен",
+"#value": "73867e78-73c8-11df-b338-0011955cba6b"
+},
+"Уточнение": "00000000-0000-0000-0000-000000000000",
+"Чтение": false,
+"Изменение": false
+},
+{
+"НомерНабора": 1,
+"ЗначениеДоступа": {
+"#type": "jcfg:CatalogRef.ВидыЦен",
+"#value": "b203c35a-239e-11e0-aeeb-0015e9b8c48d"
+},
+"Уточнение": "00000000-0000-0000-0000-000000000000",
+"Чтение": false,
+"Изменение": false
+}
+]
+}
+}
