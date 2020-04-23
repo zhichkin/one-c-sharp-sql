@@ -70,6 +70,7 @@ namespace OneCSharp.Metadata.Services
 
                 if (server.Databases.Count == 0) continue;
 
+                i = 0;
                 while (i < server.Databases.Count)
                 {
                     database = server.Databases[i];

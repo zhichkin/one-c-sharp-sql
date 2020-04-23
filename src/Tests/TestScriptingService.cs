@@ -16,10 +16,10 @@ namespace Tests
         public void TestQuery()
         {
             MetadataServiceSettings settings = new MetadataServiceSettings();
-            settings.Catalog = @"C:\Users\User\Desktop\GitHub\one-c-sharp-sql\src\Web.Server\metadata";
+            settings.Catalog = @"C:\Users\User\Desktop\GitHub\publish\one-c-sharp-sql\bin\metadata";
             IMetadataService metadata = new MetadataService();
             metadata.Configure(settings);
-            metadata.UseServer("zhichkin");
+            metadata.UseServer("sqlexpress");
             metadata.UseDatabase("trade_11_2_3_159_demo");
             metadata.UseDatabase("accounting_3_0_72_72_demo");
             IQueryExecutor executor = new QueryExecutor(metadata);
