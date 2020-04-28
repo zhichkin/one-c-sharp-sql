@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Metadata.Services", "Metada
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Server", "Web.Server\Web.Server.csproj", "{32EB609D-F665-4470-BC9F-1476496D913A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{8EB35704-2F19-46C2-B088-04C99CF9B02F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{8EB35704-2F19-46C2-B088-04C99CF9B02F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Metadata.Module", "Metadata.Module\Metadata.Module.csproj", "{1371DB63-312C-4BC8-B194-BBF485F1B10E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{8EB35704-2F19-46C2-B088-04C99CF9B02F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8EB35704-2F19-46C2-B088-04C99CF9B02F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8EB35704-2F19-46C2-B088-04C99CF9B02F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1371DB63-312C-4BC8-B194-BBF485F1B10E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1371DB63-312C-4BC8-B194-BBF485F1B10E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1371DB63-312C-4BC8-B194-BBF485F1B10E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1371DB63-312C-4BC8-B194-BBF485F1B10E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

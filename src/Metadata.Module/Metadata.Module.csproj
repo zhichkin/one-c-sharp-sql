@@ -3,12 +3,17 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
-    <AssemblyName>OneCSharp.Scripting.Module</AssemblyName>
-    <RootNamespace>OneCSharp.Scripting.Module</RootNamespace>
+    <AssemblyName>OneCSharp.Metadata.Module</AssemblyName>
+    <RootNamespace>OneCSharp.Metadata.Module</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
     <None Remove="images\JsonScript.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Metadata.Model\Metadata.Model.csproj" />
+    <ProjectReference Include="..\Metadata.Services\Metadata.Services.csproj" />
   </ItemGroup>
 
   <ItemGroup>

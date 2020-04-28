@@ -12,9 +12,11 @@ namespace OneCSharp.Metadata.Services
         DatabaseServer CurrentServer { get; }
         InfoBase CurrentDatabase { get; }
         string ConnectionString { get; }
+        MetadataServiceSettings Settings { get; }
         void Configure(MetadataServiceSettings settings);
         void UseServer(string serverName);
         void UseDatabase(string databaseName);
+        void AttachDatabase(string serverName, InfoBase infoBase);
 
         string MapSchemaIdentifier(string schemaName);
         string MapTableIdentifier(string databaseName, string tableIdentifier);
@@ -28,7 +30,7 @@ namespace OneCSharp.Metadata.Services
         private const string ERROR_SERVER_IS_NOT_DEFINED = "Current database server is not defined!";
         private XMLMetadataLoader XMLLoader { get; } = new XMLMetadataLoader();
         private SQLMetadataLoader SQLLoader { get; } = new SQLMetadataLoader();
-        private MetadataServiceSettings Settings { get; set; }
+        public MetadataServiceSettings Settings { get; private set; }
         public DatabaseServer CurrentServer { get; private set; }
         public InfoBase CurrentDatabase { get; private set; }
         public string ConnectionString { get; private set; }
@@ -146,7 +148,25 @@ namespace OneCSharp.Metadata.Services
 
             CurrentDatabase = database;
         }
-        
+        public void AttachDatabase(string serverName, InfoBase infoBase)
+        {
+            // TODO: make UseServer and UseDatabase methods independent of file existence !
+            if (infoBase == null) throw new ArgumentNullException(nameof(infoBase));
+            if (string.IsNullOrWhiteSpace(serverName)) throw new ArgumentNullException(nameof(serverName));
+
+            DatabaseServer server = Settings.Servers.Where(s => s.Name == serverName).FirstOrDefault();
+            if (server == null)
+            {
+                server = new DatabaseServer() { Name = serverName };
+                Settings.Servers.Add(server);
+            }
+
+            InfoBase database = server.Databases.Where(db => db.Name == infoBase.Name).FirstOrDefault();
+            if (database != null) throw new InvalidOperationException(nameof(infoBase));
+
+            server.Databases.Add(database);
+        }
+
         private bool IsSpecialSchema(string schemaName)
         {
             return (schemaName == "Перечисление"
