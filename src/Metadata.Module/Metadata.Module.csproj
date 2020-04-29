@@ -8,7 +8,43 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="images\AddLocalServer.png" />
+    <None Remove="images\ConnectToDatabase.png" />
+    <None Remove="images\Database.png" />
+    <None Remove="images\DataCompare.png" />
+    <None Remove="images\DataServer.png" />
+    <None Remove="images\datetime.png" />
     <None Remove="images\JsonScript.png" />
+    <None Remove="images\Metadata.png" />
+    <None Remove="images\NestedTable.png" />
+    <None Remove="images\QuestionMark.png" />
+    <None Remove="images\Table.png" />
+    <None Remove="images\БизнесПроцесс.png" />
+    <None Remove="images\ВложеннаяТаблица.png" />
+    <None Remove="images\ВнешнийИсточникДанных.png" />
+    <None Remove="images\Документ.png" />
+    <None Remove="images\ЖурналДокументов.png" />
+    <None Remove="images\Задача.png" />
+    <None Remove="images\Измерение.png" />
+    <None Remove="images\Константа.png" />
+    <None Remove="images\Остановить.png" />
+    <None Remove="images\Перечисление.png" />
+    <None Remove="images\ПланВидовРасчета.png" />
+    <None Remove="images\ПланВидовХарактеристик.png" />
+    <None Remove="images\ПланОбмена.png" />
+    <None Remove="images\ПланСчетов.png" />
+    <None Remove="images\ПрочиеПользовательскиеНастройки.png" />
+    <None Remove="images\РегистрБухгалтерии.png" />
+    <None Remove="images\РегистрНакопления.png" />
+    <None Remove="images\РегистрРасчета.png" />
+    <None Remove="images\РегистрСведений.png" />
+    <None Remove="images\РегламентноеЗадание.png" />
+    <None Remove="images\Реквизит.png" />
+    <None Remove="images\Ресурс.png" />
+    <None Remove="images\СоздатьЭлементСписка.png" />
+    <None Remove="images\Справочник.png" />
+    <None Remove="images\СтандартныйРеквизит.png" />
+    <None Remove="images\УстановитьИнтервал.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -23,7 +59,43 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="images\AddLocalServer.png" />
+    <Resource Include="images\ConnectToDatabase.png" />
+    <Resource Include="images\Database.png" />
+    <Resource Include="images\DataCompare.png" />
+    <Resource Include="images\DataServer.png" />
+    <Resource Include="images\datetime.png" />
     <Resource Include="images\JsonScript.png" />
+    <Resource Include="images\Metadata.png" />
+    <Resource Include="images\NestedTable.png" />
+    <Resource Include="images\QuestionMark.png" />
+    <Resource Include="images\Table.png" />
+    <Resource Include="images\БизнесПроцесс.png" />
+    <Resource Include="images\ВложеннаяТаблица.png" />
+    <Resource Include="images\ВнешнийИсточникДанных.png" />
+    <Resource Include="images\Документ.png" />
+    <Resource Include="images\ЖурналДокументов.png" />
+    <Resource Include="images\Задача.png" />
+    <Resource Include="images\Измерение.png" />
+    <Resource Include="images\Константа.png" />
+    <Resource Include="images\Остановить.png" />
+    <Resource Include="images\Перечисление.png" />
+    <Resource Include="images\ПланВидовРасчета.png" />
+    <Resource Include="images\ПланВидовХарактеристик.png" />
+    <Resource Include="images\ПланОбмена.png" />
+    <Resource Include="images\ПланСчетов.png" />
+    <Resource Include="images\ПрочиеПользовательскиеНастройки.png" />
+    <Resource Include="images\РегистрБухгалтерии.png" />
+    <Resource Include="images\РегистрНакопления.png" />
+    <Resource Include="images\РегистрРасчета.png" />
+    <Resource Include="images\РегистрСведений.png" />
+    <Resource Include="images\РегламентноеЗадание.png" />
+    <Resource Include="images\Реквизит.png" />
+    <Resource Include="images\Ресурс.png" />
+    <Resource Include="images\СоздатьЭлементСписка.png" />
+    <Resource Include="images\Справочник.png" />
+    <Resource Include="images\СтандартныйРеквизит.png" />
+    <Resource Include="images\УстановитьИнтервал.png" />
   </ItemGroup>
 
 </Project>
