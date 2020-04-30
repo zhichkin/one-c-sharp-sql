@@ -3,7 +3,7 @@ using OneCSharp.Metadata.Services;
 using System;
 using System.Collections.Generic;
 
-namespace OneCSharp.TSQL.Scripting
+namespace OneCSharp.Scripting.Services
 {
     internal sealed class InsertSpecificationVisitor : ISyntaxTreeVisitor
     {

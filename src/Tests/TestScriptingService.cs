@@ -2,7 +2,7 @@ using Microsoft.SqlServer.TransactSql.ScriptDom;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OneCSharp.Metadata.Model;
 using OneCSharp.Metadata.Services;
-using OneCSharp.TSQL.Scripting;
+using OneCSharp.Scripting.Services;
 using System;
 using System.Collections.Generic;
 using System.IO;

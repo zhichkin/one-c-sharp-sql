@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using OneCSharp.Metadata.Services;
-using OneCSharp.TSQL.Scripting;
+using OneCSharp.Scripting.Services;
 
 namespace OneCSharp.Web.Server
 {

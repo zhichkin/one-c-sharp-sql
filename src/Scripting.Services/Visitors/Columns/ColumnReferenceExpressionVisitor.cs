@@ -8,7 +8,7 @@ using System.Linq;
 using System.Reflection;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
-namespace OneCSharp.TSQL.Scripting
+namespace OneCSharp.Scripting.Services
 {
     public sealed class ColumnReferenceExpressionVisitor : ISyntaxTreeVisitor
     {

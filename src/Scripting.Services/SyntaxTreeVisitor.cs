@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace OneCSharp.TSQL.Scripting
+namespace OneCSharp.Scripting.Services
 {
     internal interface ISyntaxTreeVisitor
     {

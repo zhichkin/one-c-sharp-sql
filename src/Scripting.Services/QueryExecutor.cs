@@ -6,7 +6,7 @@ using System.IO;
 using System.Text;
 using System.Text.Json;
 
-namespace OneCSharp.TSQL.Scripting
+namespace OneCSharp.Scripting.Services
 {
     public interface IQueryExecutor
     {

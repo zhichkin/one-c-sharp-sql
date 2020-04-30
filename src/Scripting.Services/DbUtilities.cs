@@ -3,7 +3,7 @@ using System;
 using System.Linq;
 using System.Text;
 
-namespace OneCSharp.TSQL.Scripting
+namespace OneCSharp.Scripting.Services
 {
     public static class DbUtilities
     {

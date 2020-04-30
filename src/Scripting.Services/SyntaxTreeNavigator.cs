@@ -1,9 +1,8 @@
 ﻿using Microsoft.SqlServer.TransactSql.ScriptDom;
 using OneCSharp.Metadata.Model;
-using System;
 using System.Collections.Generic;
 
-namespace OneCSharp.TSQL.Scripting
+namespace OneCSharp.Scripting.Services
 {
     public interface ISyntaxNode
     {

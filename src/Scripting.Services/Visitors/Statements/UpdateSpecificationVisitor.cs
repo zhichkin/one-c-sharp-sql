@@ -3,20 +3,20 @@ using OneCSharp.Metadata.Services;
 using System;
 using System.Collections.Generic;
 
-namespace OneCSharp.TSQL.Scripting
+namespace OneCSharp.Scripting.Services
 {
-    internal sealed class DeleteSpecificationVisitor :ISyntaxTreeVisitor
+    internal sealed class UpdateSpecificationVisitor : ISyntaxTreeVisitor
     {
         private IMetadataService MetadataService { get; }
-        internal DeleteSpecificationVisitor(IMetadataService metadata)
+        internal UpdateSpecificationVisitor(IMetadataService metadata)
         {
             MetadataService = metadata ?? throw new ArgumentNullException(nameof(metadata));
         }
-        public IList<string> PriorityProperties { get { return new List<string>() { "Target", "FromClause" }; } }
+        public IList<string> PriorityProperties { get { return new List<string>() { "Target", "FromClause", "SetClauses"  }; } }
         public ISyntaxNode Visit(TSqlFragment node, TSqlFragment parent, string sourceProperty, ISyntaxNode result)
         {
-            DeleteSpecification delete = node as DeleteSpecification;
-            if (delete == null) return result;
+            UpdateSpecification update = node as UpdateSpecification;
+            if (update == null) return result;
 
             StatementNode statement = new StatementNode()
             {
@@ -27,7 +27,7 @@ namespace OneCSharp.TSQL.Scripting
             };
             if (result is ScriptNode script)
             {
-                if (parent is DeleteStatement)
+                if (parent is UpdateStatement)
                 {
                     script.Statements.Add(statement);
                     return statement;
