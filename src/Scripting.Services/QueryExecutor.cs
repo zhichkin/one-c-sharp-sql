@@ -1,6 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 using OneCSharp.Metadata.Services;
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Text;
@@ -8,12 +9,28 @@ using System.Text.Json;
 
 namespace OneCSharp.Scripting.Services
 {
+    public sealed class QueryRequest
+    {
+        public string QueryName { get; set; }
+        public string QueryText { get; set; }
+        public IDictionary<string, object> Parameters { get; set; } = new Dictionary<string, object>();
+    }
+    public sealed class QueryResponse
+    {
+        public object Result { get; set; } // scalar value, table, command result, json, error code
+        public IList<string> Errors { get; set; } = new List<string>();
+    }
+
     public interface IQueryExecutor
     {
         /// <summary>
         /// Executes SQL script and returns result as JSON.
         /// </summary>
         string ExecuteJson(string sql);
+
+        string ExecuteValue(string sql);
+        string ExecuteTable(string sql);
+        string ExecuteCommand(string sql);
     }
     public sealed class QueryExecutor: IQueryExecutor
     {
@@ -115,6 +132,19 @@ namespace OneCSharp.Scripting.Services
                 json = Encoding.UTF8.GetString(stream.ToArray());
             }
             return json;
+        }
+
+        public string ExecuteValue(string sql)
+        {
+            throw new NotImplementedException();
+        }
+        public string ExecuteTable(string sql)
+        {
+            throw new NotImplementedException();
+        }
+        public string ExecuteCommand(string sql)
+        {
+            throw new NotImplementedException();
         }
     }
 }
