@@ -16,12 +16,12 @@
 - Используйте обработку 1С OneCSharpServiceBroker.epf
 - Примеры кода SQL в файле test-service-broker-database.sql
 
-**Дополнительная информация.**
-
-<a href="https://youtu.be/NGlvyD4CmiQ" target="_blank"><img src="https://img.youtube.com/vi/NGlvyD4CmiQ/mqdefault.jpg" alt="ALT-SQL Server Service Broker (presentation)" width="300" height="180" border="10" /></a>
-
 **Тестирование производительности.**
 
 Аналогична варианту использования таблиц SQL Server в качестве очередей.
 
-Подробности тут: https://github.com/zhichkin/one-c-sharp-sql/tree/master/messaging/table-queues
+Подробности: https://github.com/zhichkin/one-c-sharp-sql/tree/master/messaging/table-queues
+
+**Дополнительная информация.**
+
+<a href="https://youtu.be/NGlvyD4CmiQ" target="_blank"><img src="https://img.youtube.com/vi/NGlvyD4CmiQ/mqdefault.jpg" alt="ALT-SQL Server Service Broker (presentation)" width="300" height="180" border="10" /></a>
