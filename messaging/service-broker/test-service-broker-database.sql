@@ -24,7 +24,7 @@ GO
 --DECLARE @queue nvarchar(128) = [dbo].[fn_create_queue_name](N'test');
 --EXEC [dbo].[sp_get_local_dialog_handle] @handle OUTPUT, @queue;
 --SELECT @handle;
---EXEC [dbo].[sp_send_message] @handle, N'test message тестовое сообщение';
+--EXEC [dbo].[sp_send_message] @handle, N'test message С‚РµСЃС‚РѕРІРѕРµ СЃРѕРѕР±С‰РµРЅРёРµ';
 
 -- **************************************************
 -- * select messages to view - non-destructive read *
