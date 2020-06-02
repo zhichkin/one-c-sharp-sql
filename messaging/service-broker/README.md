@@ -10,7 +10,7 @@
 **Установка.**
 1. Выполнить скрипт **install-service-broker-database.sql** на сервере SQL Server.
 
-Будет создана база данных one-c-sharp-service-broker.
+Будет создана база данных **one-c-sharp-service-broker**
 
 **Использование.**
 - Используйте обработку 1С OneCSharpServiceBroker.epf
