@@ -15,11 +15,11 @@ API базы данных:
 - fn_is_name_valid @name returns bit (служебная функция)
 
 Установка.
-1. Запустить скрипт install-database.sql на SQL Server.
+1. Запустить скрипт install-table-queues-database.sql на SQL Server.
 Будет создана база данных one-c-sharp-table-queues
 
 Использование.
-- Можно посмотреть как использовать в файле test-produce-consume-message.sql
+- Можно посмотреть как использовать в файле test-table-queues-database.sql
 - Можно воспользоваться обработкой 1С OneCSharpTableQueues.epf
 
 Дополнительная информация.
