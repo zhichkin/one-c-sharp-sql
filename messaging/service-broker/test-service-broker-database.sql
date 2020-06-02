@@ -34,6 +34,10 @@ GO
 --	DATALENGTH(message_body) AS [bytes],
 --	CAST(message_body AS nvarchar(max)) AS [message_body]
 --FROM [dbo].[275D1176-3D37-4797-9DEC-35BCAEF91E28/queue/test] WITH(NOLOCK);
+--SELECT
+--	N'Total bytes',
+--	ISNULL(SUM(DATALENGTH(message_body)), 0) AS [total_bytes]
+--FROM [dbo].[275D1176-3D37-4797-9DEC-35BCAEF91E28/queue/test] WITH(NOLOCK);
 
 -- *******************************************************
 -- * receive one or multiple messages - destructive read *
