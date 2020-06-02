@@ -18,7 +18,7 @@
 
 **Дополнительная информация.**
 
-|<a href="https://youtu.be/NGlvyD4CmiQ" target="_blank"><img src="https://img.youtube.com/vi/NGlvyD4CmiQ/mqdefault.jpg" alt="ALT-SQL Server Service Broker (presentation)" width="300" height="180" border="10" />|
+<a href="https://youtu.be/NGlvyD4CmiQ" target="_blank"><img src="https://img.youtube.com/vi/NGlvyD4CmiQ/mqdefault.jpg" alt="ALT-SQL Server Service Broker (presentation)" width="300" height="180" border="10" /></a>
 
 **Тестирование производительности.**
 
