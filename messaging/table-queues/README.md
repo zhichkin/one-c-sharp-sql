@@ -1,10 +1,12 @@
-Использование таблиц SQL Server в качестве очередей сообщений
+# Использование таблиц SQL Server в качестве очередей сообщений
 
-Возможности.
+Другая аналогичная возможность: [Использование SQL Server Service Broker](https://github.com/zhichkin/one-c-sharp-sql/tree/master/messaging/service-broker)
+
+**Возможности.**
 1. Очереди сообщений типа 'FIFO', 'LIFO', 'HEAP', 'TIME', 'FILE'.
 2. Режим конкурентного доступа к очередям 'S' (single) и 'M' (multiple).
 
-API базы данных:
+**API базы данных.**
 1. Хранимые процедуры:
 - sp_create_queue @name, @type, @mode
 - sp_delete_queue @name
@@ -14,19 +16,19 @@ API базы данных:
 - fn_queue_exists @name returns int (0 = false, 1 = true)
 - fn_is_name_valid @name returns bit (служебная функция)
 
-Установка.
+**Установка.**
 1. Запустить скрипт install-table-queues-database.sql на SQL Server.
 Будет создана база данных one-c-sharp-table-queues
 
-Использование.
+**Использование.**
 - Можно посмотреть как использовать в файле test-table-queues-database.sql
 - Можно воспользоваться обработкой 1С OneCSharpTableQueues.epf
 
-Дополнительная информация.
+**Дополнительная информация.**
 
-https://infostart.ru/public/1214312/
+[Статья про таблицы-очереди и почему они нужны](https://infostart.ru/public/1214312/)
 
-Тестирование производительности.
+**Тестирование производительности.**
 
 - CPU: Intel Core i5-4460 3.20 GHz
 - RAM: 8 Gb
@@ -49,7 +51,7 @@ https://infostart.ru/public/1214312/
 
 SQL Server, сервер 1С и клиент 1С (обработка) находились на одной машине (сетевые издержки не учитывались).
 
-Disclaimer.
+**Disclaimer.**
 - Технически данная версия поддерживает работу с очередями типа 'FIFO', 'LIFO', 'HEAP', 'TIME'.
   Тип очереди 'FILE' находится в разработке (для передачи больших файлов).
 - Практически в обработке 1С реализована только работа с типом очереди 'FIFO' с режимом конкурентного доступа 'S'.
