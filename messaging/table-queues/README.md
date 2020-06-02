@@ -1,4 +1,4 @@
-#Использование таблиц SQL Server в качестве очередей сообщений
+# Использование таблиц SQL Server в качестве очередей сообщений#
 
 Другая аналогичная возможность: [Использование SQL Server Service Broker](https://github.com/zhichkin/one-c-sharp-sql/tree/master/messaging/service-broker)
 
