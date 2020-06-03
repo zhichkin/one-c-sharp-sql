@@ -24,4 +24,6 @@
 
 **Дополнительная информация.**
 
+Возможна доработка варианта, когда очереди находятся на разных серверах SQL Server. При таком варианте использования отправка сообщений осуществляется локально на одном сервере, а Service Broker берёт на себя маршрутизацию и доставку такого сообщения в очередь, расположенную на другом инстансе SQL Server.
+
 <a href="https://youtu.be/NGlvyD4CmiQ" target="_blank"><img src="https://img.youtube.com/vi/NGlvyD4CmiQ/mqdefault.jpg" alt="ALT-SQL Server Service Broker (presentation)" width="300" height="180" border="10" /></a>
