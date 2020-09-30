@@ -10,3 +10,5 @@ DaJet QL в своей основе использует библиотеку Mi
 [DaJet QL - расширяемый язык запросов](https://infostart.ru/public/1226230/)
 
 [JSON в запросах DaJet QL](https://infostart.ru/public/1228025/)
+
+[Использование таблиц SQL Server в качестве очередей](https://github.com/zhichkin/one-c-sharp-sql/tree/master/sql/table-queues)
